@@ -3,11 +3,11 @@ const mysql = require('mysql2/promise');
 // 数据库连接配置（适配Ubuntu服务器 115.190.234.119）
 // 注：数据库端口3306保持不变，前端访问端口调整为Nginx对外2000，应用内部端口4000
 const dbConfig = {
-    host: 'localhost', // 替换为Ubuntu服务器IP（本地测试用localhost，外网需填服务器公网IP）
-    port: 3306, // MySQL默认端口，若修改过请对应调整（生产环境建议非默认端口）
-    user: 'root',  // 数据库用户名（生产环境强烈建议创建专用用户，避免使用root）
-    password: '123456',  // 数据库密码（生产环境需改为强密码，并通过环境变量注入）
-    database: 'dnf_tool',  // 目标数据库名（需提前创建并导入备份）
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'xw197653',
+    database: process.env.DB_NAME || 'dnf_tool',
     // 解决MySQL 8.0+ caching_sha2_password认证问题（兼容旧客户端）
     // 连接池优化配置（生产环境必备，避免频繁创建连接）
     waitForConnections: true, // 连接池无可用连接时，等待而非报错

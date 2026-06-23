@@ -197,102 +197,50 @@ function closeAuthModal() {
     }, COMMON_CONFIG.MODAL_ANIMATION_DURATION); // 使用全局配置的动画时长，保持一致性
 }
 
-// 初始化登录/注册表单
-function initAuthForms() {
-    // 绑定登录按钮点击事件
-    const loginBtn = document.getElementById('loginBtn');
-    if (loginBtn) {
-        loginBtn.addEventListener('click', showLoginModal);
+// ===================== 认证状态工具（供其他页面使用） =====================
+function getToken() {
+    return localStorage.getItem('dnf_token');
+}
+
+function getCurrentUser() {
+    const userStr = localStorage.getItem('dnf_current_user');
+    if (!userStr) return null;
+    try {
+        return JSON.parse(userStr);
+    } catch {
+        return null;
     }
-    
-    // 切换到注册表单
+}
+
+function isLoggedIn() {
+    return !!getToken() && !!getCurrentUser();
+}
+
+// ===================== 初始化登录/注册表单 =====================
+// 注意：主页 index.html 有自己的完整认证逻辑，
+// 此简化版仅用于子页面（如 compare.html 等）嵌入登录表单时使用
+function initAuthForms() {
     const switchToRegister = document.getElementById('switchToRegister');
     if (switchToRegister) {
         switchToRegister.addEventListener('click', () => {
-            document.getElementById('loginForm')?.classList.add('hidden');
-            document.getElementById('registerForm')?.classList.remove('hidden');
-            document.getElementById('authModalTitle').textContent = '用户注册';
+            const loginForm = document.getElementById('loginForm');
+            const regForm = document.getElementById('registerForm');
+            if (loginForm) loginForm.classList.remove('active');
+            if (regForm) regForm.classList.add('active');
+            const titleEl = document.getElementById('authModalTitle');
+            if (titleEl) titleEl.textContent = '用户注册';
         });
     }
-    
-    // 切换到登录表单
+
     const switchToLogin = document.getElementById('switchToLogin');
     if (switchToLogin) {
         switchToLogin.addEventListener('click', () => {
-            document.getElementById('registerForm')?.classList.add('hidden');
-            document.getElementById('loginForm')?.classList.remove('hidden');
-            document.getElementById('authModalTitle').textContent = '用户登录';
-        });
-    }
-
-    // 登录表单提交
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername')?.value;
-            const password = document.getElementById('loginPassword')?.value;
-            
-            // 简单的表单验证
-            if (!username || !password) {
-                showModal('提示', '请输入完整的用户名和密码');
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    showModal('登录成功', `欢迎回来，${escapeHtml(username)}`); // 使用escapeHtml防XSS
-                    closeAuthModal();
-                    // 这里可以添加登录状态保存逻辑
-                } else {
-                    showModal('登录失败', escapeHtml(data.message || '登录失败，请检查账号密码'));
-                }
-            } catch (error) {
-                console.error('登录请求失败:', error);
-                showModal('错误', '登录请求失败，请稍后重试');
-            }
-        });
-    }
-
-    // 注册表单提交
-    const registerForm = document.getElementById('registerForm');
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('regUsername')?.value;
-            const password = document.getElementById('regPassword')?.value;
-            
-            // 简单的表单验证
-            if (!username || !password) {
-                showModal('提示', '请输入完整的用户名和密码');
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    showModal('注册成功', '账号创建成功，请登录');
-                    document.getElementById('switchToLogin')?.click();
-                } else {
-                    showModal('注册失败', escapeHtml(data.message || '注册失败，请稍后重试'));
-                }
-            } catch (error) {
-                console.error('注册请求失败:', error);
-                showModal('错误', '注册请求失败，请稍后重试');
-            }
+            const regForm = document.getElementById('registerForm');
+            const loginForm = document.getElementById('loginForm');
+            if (regForm) regForm.classList.remove('active');
+            if (loginForm) loginForm.classList.add('active');
+            const titleEl = document.getElementById('authModalTitle');
+            if (titleEl) titleEl.textContent = '用户登录';
         });
     }
 }
@@ -466,3 +414,6 @@ window.getSetData = getSetData;
 window.showLoginModal = showLoginModal;
 window.closeAuthModal = closeAuthModal;
 window.initAuthForms = initAuthForms;
+window.getToken = getToken;
+window.getCurrentUser = getCurrentUser;
+window.isLoggedIn = isLoggedIn;

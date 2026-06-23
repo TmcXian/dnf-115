@@ -437,6 +437,10 @@
                     <h3>套装对比</h3>
                     <p>双套/多套属性对比</p>
                 </a>
+                <a href="./page/logs.html" class="nav-card" id="logsNavCard" style="display:none;">
+                    <h3>📋 操作日志</h3>
+                    <p>查看用户操作记录</p>
+                </a>
             </div>
         </nav>
 
@@ -586,11 +590,63 @@
     </div>
 
     <script>
-        // 初始化本地存储
-        if (!localStorage.getItem('dnfUsers')) localStorage.setItem('dnfUsers', JSON.stringify({}));
-        let currentUser = localStorage.getItem('dnfCurrentUser') || null;
+        // ===================== 认证 API 封装 =====================
+        const API_BASE = '';
 
-        // 页面加载完成后执行
+        async function apiLogin(username, password) {
+            const res = await fetch(`${API_BASE}/api/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            return res.json();
+        }
+
+        async function apiRegister(username, password) {
+            const res = await fetch(`${API_BASE}/api/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            return res.json();
+        }
+
+        // ===================== Token 管理 =====================
+        function getToken() {
+            return localStorage.getItem('dnf_token');
+        }
+
+        function saveToken(token) {
+            localStorage.setItem('dnf_token', token);
+        }
+
+        function clearToken() {
+            localStorage.removeItem('dnf_token');
+        }
+
+        function getCurrentUser() {
+            const userStr = localStorage.getItem('dnf_current_user');
+            if (!userStr) return null;
+            try {
+                return JSON.parse(userStr);
+            } catch {
+                return null;
+            }
+        }
+
+        function saveCurrentUser(user) {
+            localStorage.setItem('dnf_current_user', JSON.stringify(user));
+        }
+
+        function clearCurrentUser() {
+            localStorage.removeItem('dnf_current_user');
+        }
+
+        function isLoggedIn() {
+            return !!getToken() && !!getCurrentUser();
+        }
+
+        // ===================== 页面初始化 =====================
         window.onload = function() {
             // 初始化登录态展示
             renderAuthArea();
@@ -616,62 +672,74 @@
                 resetAuthForms();
             });
 
-            // 登录表单提交
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // 登录表单提交 → 调用后端 API
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const username = document.getElementById('loginUsername').value.trim();
-                const password = document.getElementById('loginPassword').value.trim();
-                const users = JSON.parse(localStorage.getItem('dnfUsers'));
+                const password = document.getElementById('loginPassword').value;
 
                 hideAllErrors();
-                let isValid = true;
 
-                if (!users[username]) {
-                    showError('loginUserError', document.getElementById('loginUsername'));
-                    isValid = false;
-                } else if (users[username] !== password) {
+                if (!username || !password) {
                     showError('loginPwdError', document.getElementById('loginPassword'));
-                    isValid = false;
+                    return;
                 }
 
-                if (isValid) {
-                    // 登录成功：保存状态 + 关闭模态框 + 显示自定义提示 + 刷新登录态
-                    localStorage.setItem('dnfCurrentUser', username);
-                    currentUser = username;
-                    document.getElementById('loginModal').classList.remove('active');
-                    showDnfAlert(); // 显示自定义提示弹窗
-                    renderAuthArea();
+                try {
+                    const data = await apiLogin(username, password);
+                    if (data.success) {
+                        saveToken(data.token);
+                        saveCurrentUser(data.user);
+                        document.getElementById('loginModal').classList.remove('active');
+                        showDnfAlert();
+                        renderAuthArea();
+                    } else {
+                        // 显示后端返回的错误信息
+                        showError('loginPwdError', document.getElementById('loginPassword'));
+                        document.getElementById('loginPwdError').textContent = data.message;
+                    }
+                } catch (error) {
+                    console.error('登录请求失败:', error);
+                    showError('loginPwdError', document.getElementById('loginPassword'));
+                    document.getElementById('loginPwdError').textContent = '网络错误，请稍后重试';
                 }
             });
 
-            // 注册表单提交（注册后自动登录）
-            document.getElementById('registerForm').addEventListener('submit', function(e) {
+            // 注册表单提交 → 调用后端 API（注册即登录）
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const username = document.getElementById('regUsername').value.trim();
-                const password = document.getElementById('regPassword').value.trim();
-                const users = JSON.parse(localStorage.getItem('dnfUsers'));
+                const password = document.getElementById('regPassword').value;
 
                 hideAllErrors();
-                let isValid = true;
 
-                if (users[username]) {
+                // 前端基础校验
+                if (!username || username.length < 3 || username.length > 20) {
                     showError('regUserError', document.getElementById('regUsername'));
-                    isValid = false;
-                } else if (password.length < 6) {
+                    document.getElementById('regUserError').textContent = '用户名需3-20位';
+                    return;
+                }
+                if (!password || password.length < 6) {
                     showError('regPwdError', document.getElementById('regPassword'));
-                    isValid = false;
+                    return;
                 }
 
-                if (isValid) {
-                    // 注册并自动登录
-                    users[username] = password;
-                    localStorage.setItem('dnfUsers', JSON.stringify(users));
-                    localStorage.setItem('dnfCurrentUser', username);
-                    currentUser = username;
-                    
-                    document.getElementById('loginModal').classList.remove('active');
-                    showDnfAlert(); // 显示自定义提示弹窗
-                    renderAuthArea();
+                try {
+                    const data = await apiRegister(username, password);
+                    if (data.success) {
+                        saveToken(data.token);
+                        saveCurrentUser(data.user);
+                        document.getElementById('loginModal').classList.remove('active');
+                        showDnfAlert();
+                        renderAuthArea();
+                    } else {
+                        showError('regUserError', document.getElementById('regUsername'));
+                        document.getElementById('regUserError').textContent = data.message;
+                    }
+                } catch (error) {
+                    console.error('注册请求失败:', error);
+                    showError('regUserError', document.getElementById('regUsername'));
+                    document.getElementById('regUserError').textContent = '网络错误，请稍后重试';
                 }
             });
 
@@ -692,39 +760,37 @@
             document.getElementById('dnfAlertBtn').addEventListener('click', hideDnfAlert);
         };
 
-        // 核心：显示自定义DNF风格提示弹窗（屏幕中心）
+        // ===================== UI 辅助函数 =====================
         function showDnfAlert() {
             const alertEl = document.getElementById('dnfAlert');
             alertEl.classList.add('active');
         }
 
-        // 隐藏自定义提示弹窗
         function hideDnfAlert() {
             const alertEl = document.getElementById('dnfAlert');
             alertEl.classList.remove('active');
         }
 
-        // 渲染登录/用户信息区域
         function renderAuthArea() {
             const authContainer = document.getElementById('authContainer');
-            currentUser = localStorage.getItem('dnfCurrentUser') || null;
+            const user = getCurrentUser();
+            const logsCard = document.getElementById('logsNavCard');
 
-            if (currentUser) {
-                // 已登录：显示欢迎语 + 退出按钮
+            if (user && getToken()) {
                 authContainer.innerHTML = `
                     <div class="user-info">
-                        <span>欢迎：${currentUser}</span>
+                        <span>欢迎：${escapeHtml(user.username)}</span>
                         <button class="logout-btn" onclick="logout()">退出</button>
                     </div>
                 `;
+                if (logsCard) logsCard.style.display = '';
             } else {
-                // 未登录：显示登录/注册按钮
                 authContainer.innerHTML = `
                     <button id="loginRegisterBtn" class="bg-gold text-dark px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-yellow-400 transition-colors">
                         登录/注册
                     </button>
                 `;
-                // 重新绑定按钮点击事件
+                if (logsCard) logsCard.style.display = 'none';
                 document.getElementById('loginRegisterBtn').addEventListener('click', function() {
                     document.getElementById('loginModal').classList.add('active');
                     resetAuthForms();
@@ -732,21 +798,18 @@
             }
         }
 
-        // 退出登录
         function logout() {
-            localStorage.removeItem('dnfCurrentUser');
-            currentUser = null;
-            hideDnfAlert(); // 关闭提示弹窗（如果存在）
-            renderAuthArea(); // 刷新展示
+            clearToken();
+            clearCurrentUser();
+            hideDnfAlert();
+            renderAuthArea();
         }
 
-        // 关闭登录模态框
         function closeAuthModal() {
             document.getElementById('loginModal').classList.remove('active');
             resetAuthForms();
         }
 
-        // 重置表单
         function resetAuthForms() {
             document.getElementById('loginForm').reset();
             document.getElementById('registerForm').reset();
@@ -759,18 +822,21 @@
             });
         }
 
-        // 显示错误提示
         function showError(errorId, inputEl) {
             document.getElementById(errorId).classList.add('show');
-            inputEl.classList.add('input-error');
+            if (inputEl) inputEl.classList.add('input-error');
         }
 
-        // 隐藏所有错误
         function hideAllErrors() {
             document.querySelectorAll('.error-text').forEach(el => el.classList.remove('show'));
         }
 
-
+        function escapeHtml(str) {
+            if (!str || typeof str !== 'string') return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
     </script>
 </body>
 </html>

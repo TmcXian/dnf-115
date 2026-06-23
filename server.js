@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const authRoutes = require('./server/auth');
+const { authMiddleware } = require('./server/auth');
+const logsRoutes = require('./server/logs');
 
 const app = express();
 // 1. 适配flask内部端口：改为4000（Nginx反向代理指向此端口）
@@ -34,6 +36,7 @@ app.use(express.static(path.join(__dirname), {
 
 // ===================== 路由配置 =====================
 app.use('/api', authRoutes);
+app.use('/api/logs', logsRoutes);
 
 // 前端页面路由：保持原有逻辑
 app.get('*', (req, res) => {
