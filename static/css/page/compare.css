@@ -1,0 +1,448 @@
+/* 对比页面样式 - 双栏布局、差异高亮样式 */
+/* 引入基础变量，确保风格统一 */
+:root {
+    --dnf-gold: #ffd700;
+    --dnf-gold-light: #ffed4e;
+    --dnf-silver: #c0c0c0;
+    --dnf-red: #dc143c;
+    --dnf-red-light: #ff4444;
+    --dnf-dark: #1a1a1a;
+    --dnf-border: #333;
+    --dnf-border-gold: #8b7355;
+    --success-color: #44ff44;
+    --danger-color: #ff4444;
+    
+    /* 响应式断点 */
+    --breakpoint-md: 768px;
+    --breakpoint-sm: 576px;
+}
+
+.compare-page {
+    padding: 30px 0;
+    min-height: calc(100vh - 120px); /* 确保占满可视区域 */
+}
+
+.compare-selection {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border-gold); /* 改用DNF复古金边框 */
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 增加阴影提升层次感 */
+}
+
+.selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* 移动端换行 */
+    gap: 15px; /* 换行后间距 */
+}
+
+.selection-header h3 {
+    color: var(--dnf-gold);
+    font-size: 18px;
+    margin: 0; /* 重置默认margin */
+}
+
+.clear-btn {
+    background: transparent;
+    color: var(--dnf-red);
+    border: 1px solid var(--dnf-red);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* 防止按钮文字换行 */
+}
+
+.clear-btn:hover {
+    background: var(--dnf-red);
+    color: white;
+    transform: translateY(-2px); /* 轻微上浮 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.set-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* 移动端换行 */
+}
+
+.selection-input {
+    flex: 1;
+    min-width: 200px; /* 移动端最小宽度 */
+    background: #2a2a2a;
+    border: 2px solid var(--dnf-border);
+    color: var(--dnf-silver);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.selection-input:focus {
+    outline: none;
+    border-color: var(--dnf-gold);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2); /* 聚焦发光效果 */
+}
+
+.add-btn {
+    background: var(--dnf-gold);
+    color: var(--dnf-dark);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* 防止按钮文字换行 */
+    flex-shrink: 0; /* 防止按钮压缩 */
+}
+
+.add-btn:hover {
+    background: var(--dnf-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.add-btn:disabled {
+    background: var(--dnf-border);
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.selected-sets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.selected-set-tag {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--dnf-gold);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--dnf-gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.selected-set-tag:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+.remove-set {
+    background: none;
+    border: none;
+    color: var(--dnf-red);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* 圆形点击区域 */
+    transition: all 0.2s ease;
+}
+
+.remove-set:hover {
+    background: var(--dnf-red);
+    color: white;
+    transform: scale(1.1); /* 轻微放大 */
+}
+
+.compare-result {
+    min-height: 400px;
+}
+
+.empty-compare-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--dnf-silver);
+    background: var(--dnf-dark);
+    border-radius: 8px;
+    border: 2px solid var(--dnf-border-gold);
+    margin-bottom: 30px;
+}
+
+.empty-compare-state img {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+    margin: 0 auto 20px; /* 居中图片 */
+    display: block; /* 消除inline间距 */
+}
+
+.empty-compare-state h3 {
+    color: var(--dnf-gold);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+/* 对比表格样式 - 核心优化：响应式适配 */
+.compare-table {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border-gold);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 100%; /* 确保表格占满宽度 */
+}
+
+.table-header {
+    background: var(--dnf-border);
+    display: grid;
+    grid-template-columns: 200px repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+}
+
+/* 移动端表格头部适配 */
+@media (max-width: 768px) {
+    .table-header {
+        grid-template-columns: 150px repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .table-header {
+        grid-template-columns: 120px repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+.header-cell {
+    padding: 20px 10px; /* 减少左右内边距 */
+    text-align: center;
+    border-right: 1px solid var(--dnf-border);
+    background: rgba(0,0,0,0.2); /* 增加背景层次 */
+}
+
+.header-cell:last-child {
+    border-right: none;
+}
+
+.header-cell h4 {
+    color: var(--dnf-gold);
+    font-size: 16px;
+    margin-bottom: 5px;
+    word-break: break-word; /* 长名称换行 */
+}
+
+.header-cell .alias {
+    color: var(--dnf-silver);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 200px repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    border-bottom: 1px solid var(--dnf-border);
+    transition: background-color 0.2s ease;
+}
+
+/* 移动端表格行适配 */
+@media (max-width: 768px) {
+    .table-row {
+        grid-template-columns: 150px repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .table-row {
+        grid-template-columns: 120px repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row:hover {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.row-label {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 15px 10px; /* 减少左右内边距 */
+    color: var(--dnf-silver);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--dnf-border);
+    word-break: break-word; /* 长标签换行 */
+}
+
+.row-values {
+    display: contents;
+}
+
+.value-cell {
+    padding: 15px 10px; /* 减少左右内边距 */
+    text-align: center;
+    border-right: 1px solid var(--dnf-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word; /* 长内容换行 */
+    transition: all 0.2s ease;
+}
+
+.value-cell:last-child {
+    border-right: none;
+}
+
+/* 高亮样式增强 */
+.value-cell.highlight {
+    background: rgba(255, 215, 0, 0.15); /* 加深高亮背景 */
+    color: var(--dnf-gold);
+    font-weight: bold;
+    box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.3); /* 内发光效果 */
+}
+
+.value-cell.positive {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.value-cell.negative {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* 对比总结 */
+.compare-summary {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border-gold);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.compare-summary h3 {
+    color: var(--dnf-gold);
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--dnf-border-gold); /* 改用复古金边框 */
+    padding-bottom: 8px;
+}
+
+.summary-content {
+    color: var(--dnf-silver);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.summary-point {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    padding-right: 10px; /* 移动端右内边距 */
+}
+
+.summary-point::before {
+    content: "•";
+    color: var(--dnf-gold);
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+    line-height: 1.2; /* 对齐文字 */
+}
+
+/* 移动端整体适配 */
+@media (max-width: 768px) {
+    .compare-page {
+        padding: 20px 0;
+    }
+    
+    .compare-selection {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+    
+    .selection-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .set-selector {
+        gap: 10px;
+    }
+    
+    .add-btn {
+        width: 100%; /* 移动端按钮占满宽度 */
+        margin-top: 10px;
+    }
+    
+    .compare-summary {
+        padding: 20px 15px;
+        margin-top: 20px;
+    }
+    
+    .empty-compare-state {
+        padding: 60px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .compare-selection {
+        padding: 15px 10px;
+    }
+    
+    .selection-input {
+        min-width: 100%; /* 移动端输入框占满宽度 */
+    }
+    
+    .selected-set-tag {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .compare-summary h3 {
+        font-size: 18px;
+    }
+    
+    .summary-content {
+        font-size: 14px;
+    }
+}
+
+/* 滚动条美化（非必须，提升体验） */
+.compare-table::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.compare-table::-webkit-scrollbar-track {
+    background: var(--dnf-dark);
+}
+
+.compare-table::-webkit-scrollbar-thumb {
+    background: var(--dnf-border-gold);
+    border-radius: 4px;
+}
+
+.compare-table::-webkit-scrollbar-thumb:hover {
+    background: var(--dnf-gold);
+}

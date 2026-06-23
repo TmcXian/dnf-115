@@ -1,0 +1,157 @@
+{
+    "sets": {
+        "gold": {
+            "name": "理想之黄金乡套装",
+            "alias": "恍惚套",
+            "description": "套装属性会根据装备增幅数值提升，全身红12可拉满属性。加成包含20%~24%的攻击速度、移动速度和释放速度，10%~12%的伤害减免，以及20%~24%的技能范围提升，兼顾伤害、三速与技能范围，是高增幅玩家的毕业首选。",
+            "stats": {
+                "attack_speed": "20%~24%",
+                "move_speed": "20%~24%",
+                "cast_speed": "20%~24%",
+                "damage_reduction": "10%~12%",
+                "skill_range": "20%~24%",
+                "note": "属性随增幅数值提升"
+            },
+            "recommendation": "适合高增幅玩家，全身红12可达到最佳效果",
+            "difficulty": "极高"
+        },
+        "dragon": {
+            "name": "龙战八荒套装",
+            "alias": "无色套",
+            "description": "也被称为无色套，达成太初品级后，未开启如意珠状态时，无色小晶块消耗量减少5，三速提升10%；开启如意珠状态后，所有速度提升30%，技能伤害增加3%，无色技能消耗量固定为15，释放无色技能时还会触发额外特效伤害。",
+            "stats": {
+                "normal_state": {
+                    "cost_reduction": "减少5",
+                    "speed_bonus": "10%"
+                },
+                "activated_state": {
+                    "speed_bonus": "30%",
+                    "damage_increase": "3%",
+                    "fixed_cost": "15"
+                },
+                "special_effect": "释放无色技能触发额外特效伤害"
+            },
+            "requirement": "需达成太初品级",
+            "recommendation": "适合依赖无色技能的玩家"
+        },
+        "hunt": {
+            "name": "群猎美学套装",
+            "alias": "高速回血减伤套",
+            "description": "提供30%的三速加成，具备回血回蓝效果和15%的所受伤害减免。单刷时可增加24.1%的技工，组队时能使敌人受到的伤害提升5%~8%；主动技能可给敌人挂上易伤debuff，功能类似老版本的巨龙套。",
+            "stats": {
+                "speed_bonus": "30%",
+                "damage_reduction": "15%",
+                "self_buff": "24.1%技工(单刷)",
+                "party_buff": "5%~8%增伤",
+                "active_skill": "易伤debuff"
+            },
+            "recommendation": "适合单刷和高难度副本"
+        },
+        "shadow": {
+            "name": "潜影暗袭套装",
+            "alias": "影子机制手感套",
+            "description": "释放技能可积累影子层数，消耗影子层数能够中断当前释放的角色技能，让全职业都拥有类似武神的流畅手感；消耗五层影子还能瞬移到敌人身后。该套装的攻击速度、移动速度、释放速度最高可提升15%。",
+            "stats": {
+                "mechanism": "影子层数系统",
+                "interrupt_skill": "可中断当前技能",
+                "teleport": "5层影子瞬移",
+                "speed_bonus": "最高15%",
+                "feature": "全职业技能手感优化"
+            },
+            "recommendation": "适合追求操作手感的玩家"
+        },
+        "chaos": {
+            "name": "混沌净化套装",
+            "alias": "强力CD切换套",
+            "description": "是一套强力CD套，支持净化和堕落两种模式自由切换。净化模式下，增加10%技攻、30%冷却缩减并提供护盾；堕落模式下，冷却缩减幅度提升至55%，同时附加霸体效果和二连跳能力。",
+            "stats": {
+                "purify_mode": {
+                    "tech_attack": "10%",
+                    "cooldown_reduction": "30%",
+                    "shield": "提供护盾"
+                },
+                "corruption_mode": {
+                    "cooldown_reduction": "55%",
+                    "super_armor": "霸体效果",
+                    "double_jump": "二连跳能力"
+                },
+                "flexibility": "双模式自由切换"
+            },
+            "recommendation": "适合需要灵活应对不同战斗情况的玩家"
+        },
+        "energy_3": {
+            "name": "究极能量套装（3觉）",
+            "alias": "三觉极限套",
+            "description": "太初品级下的顶级爆发套装，3觉状态可提供60%冷却缩减，宠物加成下技能冷却时间压缩至110.2秒，理论强度高达137.96%，适合依赖三觉技能打爆发的职业。",
+            "stats": {
+                "cooldown_reduction": "60%",
+                "pet_bonus_cd": "110.2秒",
+                "theoretical_strength": "137.96%",
+                "feature": "三觉技能伤害最大化"
+            },
+            "requirement": "需解锁3觉，太初品级",
+            "recommendation": "适合三觉技能占比高的爆发型职业"
+        },
+        "energy_2": {
+            "name": "究极能量套装（2觉）",
+            "alias": "二觉续航套",
+            "description": "2觉状态下提供60%冷却缩减，宠物加成下技能冷却时间为68.4秒，理论强度125.42%，兼顾爆发与续航，适合二觉技能循环优秀的职业。",
+            "stats": {
+                "cooldown_reduction": "60%",
+                "pet_bonus_cd": "68.4秒",
+                "theoretical_strength": "125.42%",
+                "feature": "二觉技能循环优化"
+            },
+            "requirement": "需解锁2觉，太初品级",
+            "recommendation": "适合二觉技能频繁使用的职业"
+        },
+        "valkyrie": {
+            "name": "诸神黄昏之女武神",
+            "alias": "持续输出套",
+            "description": "改版后理论强度提升至103.19%，特效占比7.65%。核心机制为每30秒内需要20秒攻击怪物以维持全程增益，适合持续输出型职业，对空窗期较长的职业有一定限制。",
+            "stats": {
+                "theoretical_strength": "103.19%",
+                "effect_ratio": "7.65%",
+                "maintenance_condition": "30秒内攻击20秒",
+                "feature": "持续输出增益"
+            },
+            "recommendation": "适合高频攻击、持续输出的职业"
+        },
+        "nature": {
+            "name": "造化自然套装",
+            "alias": "均衡发展套",
+            "description": "改版后理论强度提升至102.24%，特效占比8.33%，属性均衡无明显短板，对打造要求中等，适合大多数职业过渡或长期使用。",
+            "stats": {
+                "theoretical_strength": "102.24%",
+                "effect_ratio": "8.33%",
+                "feature": "属性均衡，适配性广"
+            },
+            "difficulty": "中",
+            "recommendation": "适合中等打造、追求稳定输出的玩家"
+        },
+        "spirit_orb": {
+            "name": "青丘灵珠套装（满珠）",
+            "alias": "灵珠buff套",
+            "description": "满珠状态下理论强度106.19%，核心为灵珠积累机制，满层后提供高额增益，对操作节奏有一定要求，适合能稳定维持灵珠层数的职业。",
+            "stats": {
+                "theoretical_strength": "106.19%",
+                "mechanism": "灵珠积累系统（满珠状态最佳）",
+                "feature": "层数越高增益越强"
+            },
+            "recommendation": "适合技能循环与灵珠机制匹配的职业"
+        },
+        "mage_normal": {
+            "name": "冥思者的魔力领域（普通模式）",
+            "alias": "魔力领域套",
+            "description": "普通模式下理论强度105.14%，特效占比24.23%，特效冷却仅1秒（存在折损），适合技能频率高、能频繁触发特效的职业，操作门槛较低。",
+            "stats": {
+                "theoretical_strength": "105.14%",
+                "effect_ratio": "24.23%",
+                "effect_cd": "1秒（存在折损）",
+                "feature": "高频特效触发"
+            },
+            "difficulty": "低",
+            "recommendation": "适合平民玩家和技能频率高的职业"
+        }
+    }
+}

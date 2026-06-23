@@ -1,0 +1,195 @@
+/* DNF风格样式 - 像素边框、金属按钮、暗黑背景 */
+
+/* 头部样式 */
+.dnf-header {
+    background: linear-gradient(135deg, var(--dnf-dark) 0%, #2a2a2a 100%);
+    border-bottom: 3px solid var(--dnf-gold);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 10px var(--dnf-gold));
+}
+
+.dnf-header h1 {
+    color: var(--dnf-gold);
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+/* Banner样式 */
+.banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('../img/bg/banner-bg.jpg') center/cover;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.banner-content h2 {
+    font-size: 36px;
+    color: var(--dnf-gold);
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.banner-content p {
+    font-size: 18px;
+    color: var(--dnf-silver);
+}
+
+/* 主内容区 */
+.main-content {
+    padding: 50px 0;
+}
+
+/* 功能导航 */
+.function-nav {
+    margin-bottom: 60px;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.nav-card {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--dnf-gold), var(--dnf-silver), var(--dnf-gold));
+    border-radius: 8px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-card:hover::before {
+    opacity: 1;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.nav-card h3 {
+    color: var(--dnf-gold);
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.nav-card p {
+    color: var(--dnf-silver);
+    font-size: 14px;
+}
+
+/* 套装展示区域 */
+.set-showcase h2 {
+    text-align: center;
+    color: var(--dnf-gold);
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.set-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.set-card {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.set-card:hover {
+    border-color: var(--dnf-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.set-card img {
+    width: 200px !important;  /* 强制生效，数值可改 */
+        height: 120px !important; /* 强制生效 */
+        margin: 0 auto 15px !important;
+        display: block !important;
+        object-fit: contain !important; /* 防止图片拉伸变形 */
+        filter: drop-shadow(0 0 8px var(--dnf-gold));
+}
+
+.set-card h3 {
+    color: var(--dnf-gold);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.set-alias {
+    color: var(--dnf-silver);
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dnf-header h1 {
+        font-size: 24px;
+    }
+    
+    .banner-content h2 {
+        font-size: 28px;
+    }
+    
+    .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .set-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+}

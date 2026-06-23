@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>套装详情 - DNF 115版本工具</title>
+    <!-- 路径正确：page目录下需向上跳一级引用static资源 -->
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/dnf-style.css">
+    <!-- 补充：基础样式兜底，防止样式文件缺失导致布局错乱 -->
+    <style>
+        :root {
+            --dnf-dark: #1a1a1a;
+            --dnf-gold: #ffd700;
+            --dnf-silver: #c0c0c0;
+            --dnf-border: #8b7355;
+            --dnf-red: #ff4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: var(--dnf-dark);
+            color: var(--dnf-silver);
+            font-family: "Microsoft Yahei", sans-serif;
+            min-height: 100vh;
+        }
+        .dnf-header {
+            background: #111;
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--dnf-border);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        #setTitle {
+            color: var(--dnf-gold);
+            font-size: 24px;
+        }
+        .breadcrumb {
+            background: #222;
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--dnf-border);
+        }
+        .breadcrumb .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb a {
+            color: var(--dnf-gold);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            color: #ffed4e;
+            text-decoration: underline;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        /* 适配detail.js动态生成的内容容器 */
+        #setDetailContent {
+            width: 100%;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            #setTitle {
+                font-size: 20px;
+            }
+            .header-content {
+                flex-wrap: wrap;
+            }
+            .main-content {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="dnf-header">
+        <div class="header-content">
+            <!-- 图片路径正确：page目录向上跳一级引用static -->
+            <img src="../static/img/logo/dnf-logo.png" alt="DNF Logo" class="logo" onerror="this.src='../static/img/logo/default-logo.png'">
+            <h1 id="setTitle">套装详情</h1>
+        </div>
+    </header>
+
+    <!-- 返回导航 -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <!-- 修复：跳转路径错误 - index.html需跳转到根目录（../），query.html需指定同目录 -->
+            <a href="../index.html">首页</a> > <a href="./query.html">套装查询</a> > <span class="current">详情</span>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 核心容器：供detail.js动态渲染内容 -->
+            <div id="setDetailContent">
+                <!-- 加载中提示（提升用户体验） -->
+                <div class="loading-tip">
+                    <p>正在加载套装详情...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 修复：资源引用顺序 + 移除错误的JSON文件直接引用 -->
+    <script src="../static/js/common.js"></script>
+    <!-- detail.js依赖common.js，需后置引用 -->
+    <script src="../static/js/page/detail.js"></script>
+    <!-- 补充：加载失败兜底提示 -->
+    <script>
+        // 初始化样式变量
+        function initStyleVars() {
+            const root = document.documentElement;
+            const DNF_STYLE_VARS = {
+                dark: "#1a1a1a",
+                gold: "#ffd700",
+                silver: "#c0c0c0",
+                border: "#8b7355",
+                red: "#ff4444"
+            };
+            
+            Object.entries(DNF_STYLE_VARS).forEach(([key, value]) => {
+                if (!getComputedStyle(root).getPropertyValue(`--dnf-${key}`)) {
+                    root.style.setProperty(`--dnf-${key}`, value);
+                }
+            });
+        }
+        
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            // 初始化样式变量
+            initStyleVars();
+            
+            const contentEl = document.getElementById('setDetailContent');
+            // 检测是否仍为加载中状态
+            if (contentEl.innerHTML.includes('正在加载套装详情')) {
+                contentEl.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: var(--dnf-red);">
+                        <h2>加载失败</h2>
+                        <p>套装详情加载出错，请返回首页重新选择</p>
+                        <button onclick="location.href='../index.html'" class="action-btn primary" style="margin-top: 20px;">返回首页</button>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

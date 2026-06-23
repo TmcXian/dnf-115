@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>套装属性查询 - DNF 115版本工具</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/dnf-style.css">
+    <style>
+        .search-section { margin: 30px 0; text-align: center; }
+        .search-bar { display: inline-flex; align-items: center; }
+        .category-section { margin: 20px 0 30px; }
+        .category-section h3 { color: #ffd700; margin-bottom: 15px; font-size: 20px; }
+        .page-title { color: #ffd700; font-size: 26px; margin: 20px 0; text-align: center; border-bottom: 2px solid #8b7355; padding-bottom: 10px; }
+        .category-item { padding: 8px 16px; background: #1a1a1a; color: #c0c0c0; border: 2px solid #8b7355; border-radius: 4px; cursor: pointer; margin: 0 8px 8px 0; display: inline-block; }
+        .category-item.active { background: #ffd700; color: #1a1a1a; border-color: #ffd700; }
+        #searchInput { padding: 8px 12px; border: 2px solid #8b7355; background: #1a1a1a; color: #c0c0c0; border-radius: 4px; width: 250px; }
+        #searchButton { padding: 8px 16px; background: #ffd700; color: #1a1a1a; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-left: 8px; }
+        @media (max-width: 768px) {
+            .search-bar { flex-direction: column; gap: 10px; width: 100%; padding: 0 10px; }
+            #searchInput { width: 100% !important; margin: 0 !important; }
+            #searchButton { width: 100%; margin: 0 !important; }
+            .set-categories { display: flex; flex-wrap: wrap; padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dnf-header">
+        <div class="header-content">
+            <img src="../static/img/logo/dnf-logo.png" alt="DNF Logo" class="logo" onerror="this.src='../static/img/logo/default-logo.png'">
+            <h1>套装属性查询</h1>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">首页</a> > 套装查询
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h2 class="page-title">套装属性查询</h2>
+            
+            <div class="search-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="搜索套装名称或俗称（例如：恍惚套、无色套）..." class="search-input">
+                    <button id="searchButton" class="search-btn">搜索</button>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3>套装分类</h3>
+                <div class="set-categories">
+                    <div class="category-item active" data-category="all">全部套装</div>
+                    <div class="category-item" data-category="core">核心毕业套装</div>
+                    <div class="category-item" data-category="balanced">均衡实用套装</div>
+                    <div class="category-item" data-category="beginner">新手/平民套装</div>
+                </div>
+            </div>
+
+            <div class="set-list" id="setList">
+                <div style="text-align: center; padding: 80px 20px; color: #ffd700;">
+                    <p>正在加载套装数据...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 修复：添加错误捕获，确保脚本执行 -->
+    <script src="../static/js/common.js"></script>
+    <script>
+        // 先全局声明setDatabase，避免未定义错误
+        window.setDatabase = {};
+    </script>
+    <script src="../static/js/page/query.js" onerror="alert('query.js加载失败，请检查路径！')"></script>
+</body>
+</html>

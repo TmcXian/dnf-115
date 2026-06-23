@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>套装强度排行 - DNF 115版本工具</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/dnf-style.css">
+    <link rel="stylesheet" href="../static/css/page/rank.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="dnf-header">
+        <div class="header-content">
+            <img src="../static/img/logo/dnf-logo.png" alt="DNF Logo" class="logo" onerror="this.src='../static/img/logo/default-logo.png'">
+            <h1>套装强度排行</h1>
+        </div>
+    </header>
+
+    <!-- 返回导航 -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">首页</a> > 强度排行
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="main-content rank-page">
+        <div class="container">
+            <h2 class="page-title">多维度套装强度排行</h2>
+            
+            <!-- 筛选栏 -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="rank-type">排行类型</label>
+                    <select id="rank-type" class="filter-select">
+                        <option value="overall" selected>综合强度</option>
+                        <option value="damage">伤害输出</option>
+                        <option value="survival">生存能力</option>
+                        <option value="mobility">机动性能</option>
+                        <option value="difficulty">打造难度</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="player-level">玩家水平</label>
+                    <select id="player-level" class="filter-select">
+                        <option value="high" selected>高端玩家</option>
+                        <option value="medium">中等玩家</option>
+                        <option value="beginner">新手玩家</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="game-mode">游戏模式</label>
+                    <select id="game-mode" class="filter-select">
+                        <option value="solo">单刷向</option>
+                        <option value="party">组队向</option>
+                        <option value="both" selected>通用</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 排行列表 -->
+            <div class="rank-list" id="rankList">
+                <!-- 预加载的综合强度排行内容 -->
+                <div class="rank-item" onclick="location.href='../page/detail.html?set=gold'">
+                    <div class="rank-number">1</div>
+                    <div class="rank-info">
+                        <div class="rank-name">理想之黄金乡套装 
+                            <span style="color: var(--dnf-silver); font-size: 14px;">(俗称"恍惚套")</span>
+                        </div>
+                        <div class="rank-desc">
+                            分类: 核心毕业套装 | 打造难度: 极高
+                        </div>
+                    </div>
+                    <div class="rank-score">95</div>
+                </div>
+                <div class="rank-item" onclick="location.href='../page/detail.html?set=energy_3'">
+                    <div class="rank-number">2</div>
+                    <div class="rank-info">
+                        <div class="rank-name">究极能量套装（3觉） 
+                            <span style="color: var(--dnf-silver); font-size: 14px;">(三觉极限套)</span>
+                        </div>
+                        <div class="rank-desc">
+                            分类: 核心毕业套装 | 打造难度: 极高
+                        </div>
+                    </div>
+                    <div class="rank-score">93</div>
+                </div>
+                <div class="rank-item" onclick="location.href='../page/detail.html?set=valkyrie'">
+                    <div class="rank-number">3</div>
+                    <div class="rank-info">
+                        <div class="rank-name">诸神黄昏之女武神 
+                            <span style="color: var(--dnf-silver); font-size: 14px;">(持续输出套)</span>
+                        </div>
+                        <div class="rank-desc">
+                            分类: 核心毕业套装 | 打造难度: 高
+                        </div>
+                    </div>
+                    <div class="rank-score">90</div>
+                </div>
+                <div class="rank-item" onclick="location.href='../page/detail.html?set=dragon'">
+                    <div class="rank-number">4</div>
+                    <div class="rank-info">
+                        <div class="rank-name">龙战八荒套装 
+                            <span style="color: var(--dnf-silver); font-size: 14px;">(俗称"无色套")</span>
+                        </div>
+                        <div class="rank-desc">
+                            分类: 核心毕业套装 | 打造难度: 高
+                        </div>
+                    </div>
+                    <div class="rank-score">88</div>
+                </div>
+                <div class="rank-item" onclick="location.href='../page/detail.html?set=chaos'">
+                    <div class="rank-number">5</div>
+                    <div class="rank-info">
+                        <div class="rank-name">混沌净化套装 
+                            <span style="color: var(--dnf-silver); font-size: 14px;">(强力CD切换套)</span>
+                        </div>
+                        <div class="rank-desc">
+                            分类: 均衡实用套装 | 打造难度: 高
+                        </div>
+                    </div>
+                    <div class="rank-score">85</div>
+                </div>
+                <!-- 更多排行项根据实际数据补充 -->
+            </div>
+        </div>
+    </main>
+
+    <script src="../static/js/common.js"></script>
+    <!-- 先加载数据再加载逻辑脚本 -->
+    <script src="../static/js/data/set-data.json" defer></script>
+    <script src="../static/js/page/rank.js" defer></script>
+</body>
+</html>

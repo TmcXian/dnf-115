@@ -1,0 +1,233 @@
+/* 重置样式 - 增强版（覆盖更多元素） */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 防止点击高亮 */
+    -webkit-tap-highlight-color: transparent;
+    /* 字体抗锯齿 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 扩展重置 */
+html, body {
+    height: 100%;
+    overflow-x: hidden; /* 防止横向滚动 */
+}
+
+body {
+    font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    /* 基础字号适配 */
+    font-size: 16px;
+}
+
+/* 链接样式增强 */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease; /* 过渡动画 */
+}
+
+a:hover {
+    color: var(--dnf-gold); /*  hover时变为DNF金色 */
+}
+
+/* 列表重置 */
+ul, ol {
+    list-style: none;
+}
+
+/* 图片样式优化 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* 消除inline默认间距 */
+}
+
+/* 表单元素重置 */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.3s ease; /* 按钮过渡动画 */
+}
+
+/* 表格重置 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* 全局字体和颜色 - 增强版（补充更多DNF风格变量） */
+:root {
+    /* 核心颜色 */
+    --dnf-gold: #ffd700;        /* DNF主金色 */
+    --dnf-gold-light: #ffed4e;  /* 浅金色（hover） */
+    --dnf-gold-dark: #b8860b;   /* 深金色（边框） */
+    --dnf-silver: #c0c0c0;      /* 银色（普通文本） */
+    --dnf-silver-light: #e0e0e0;/* 浅银色（高亮文本） */
+    --dnf-red: #dc143c;         /* 红色（错误/强调） */
+    --dnf-red-light: #ff4444;   /* 浅红色（提示） */
+    --dnf-blue: #4169e1;        /* 蓝色（信息） */
+    --dnf-blue-light: #6495ed;  /* 浅蓝色（hover） */
+    --dnf-dark: #1a1a1a;        /* 深色背景 */
+    --dnf-dark-deep: #0a0a0a;   /* 更深背景（页面底色） */
+    --dnf-border: #333;         /* 基础边框 */
+    --dnf-border-gold: #8b7355; /* 金色边框（DNF复古金） */
+    
+    /* 常用尺寸 */
+    --container-max-width: 1200px;
+    --container-padding: 0 20px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* 阴影效果 */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+/* 容器样式 - 增强响应式 */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    width: 100%; /* 确保占满宽度 */
+}
+
+/* 响应式断点定义（适配不同设备） */
+@media (max-width: 1200px) {
+    :root {
+        --container-max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --container-max-width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-max-width: 540px;
+        /* 移动端字号适配 */
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --container-max-width: 100%;
+    }
+}
+
+/* 通用工具类（复用性提升） */
+/* 隐藏元素 */
+.d-none {
+    display: none !important;
+}
+
+/* 文本对齐 */
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+/* 文本颜色 */
+.text-gold {
+    color: var(--dnf-gold) !important;
+}
+
+.text-silver {
+    color: var(--dnf-silver) !important;
+}
+
+.text-red {
+    color: var(--dnf-red) !important;
+}
+
+.text-blue {
+    color: var(--dnf-blue) !important;
+}
+
+/* 背景颜色 */
+.bg-dark {
+    background-color: var(--dnf-dark) !important;
+}
+
+.bg-deep-dark {
+    background-color: var(--dnf-dark-deep) !important;
+}
+
+/* 边框样式 */
+.border-gold {
+    border: 2px solid var(--dnf-border-gold) !important;
+}
+
+.border-base {
+    border: 2px solid var(--dnf-border) !important;
+}
+
+/* 圆角样式 */
+.rounded-sm {
+    border-radius: var(--border-radius-sm) !important;
+}
+
+.rounded-md {
+    border-radius: var(--border-radius-md) !important;
+}
+
+.rounded-lg {
+    border-radius: var(--border-radius-lg) !important;
+}
+
+/* 间距工具类 */
+.mt-1 { margin-top: 8px !important; }
+.mt-2 { margin-top: 16px !important; }
+.mt-3 { margin-top: 24px !important; }
+.mb-1 { margin-bottom: 8px !important; }
+.mb-2 { margin-bottom: 16px !important; }
+.mb-3 { margin-bottom: 24px !important; }
+.p-1 { padding: 8px !important; }
+.p-2 { padding: 16px !important; }
+.p-3 { padding: 24px !important; }
+
+/* 加载动画通用样式 */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--dnf-border);
+    border-top: 4px solid var(--dnf-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }

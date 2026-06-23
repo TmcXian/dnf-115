@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNF 115版本 - 装备套装工具</title>
+    <link rel="stylesheet" href="./static/css/base.css">
+    <link rel="stylesheet" href="./static/css/dnf-style.css">
+    <link rel="stylesheet" href="./static/css/page/rank.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            color: #c0c0c0;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        .set-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .set-card {
+            background: #222;
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .set-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .set-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+        .set-card h3 {
+            color: #ffd700;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        .set-alias {
+            color: #c0c0c0;
+            font-size: 14px;
+            font-style: italic;
+        }
+        .set-tier {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 2px 8px;
+            background: #8b7355;
+            color: #1a1a1a;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+        .dnf-header {
+            background: #111;
+            padding: 15px 20px;
+            border-bottom: 2px solid #8b7355;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+        .banner {
+            background: url("./static/img/bg/banner-bg.jpg") center/cover no-repeat;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .banner-content h2 {
+            color: #ffd700;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .banner-content p {
+            color: #c0c0c0;
+            font-size: 18px;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .function-nav {
+            margin-bottom: 40px;
+        }
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 10px 0;
+        }
+        .nav-card {
+            background: #222;
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            padding: 25px 15px;
+            text-align: center;
+            color: #ffd700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-card:hover {
+            border-color: #ffd700;
+            background: #2a2a2a;
+        }
+        .set-showcase h2 {
+            color: #ffd700;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 10px;
+        }
+        .set-category {
+            margin: 40px 0 20px;
+            color: #ffd700;
+            font-size: 22px;
+            padding-left: 10px;
+            border-left: 4px solid #8b7355;
+        }
+        /* 登录按钮样式 */
+        .bg-gold {
+            background-color: #ffd700;
+        }
+        .text-dark {
+            color: #1a1a1a;
+        }
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .rounded-md {
+            border-radius: 0.375rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .hover\:bg-yellow-400:hover {
+            background-color: #facc15;
+        }
+        .transition-colors {
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        }
+        /* 模态框样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background-color: #222;
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #8b7355;
+        }
+        .modal-header h3 {
+            color: #ffd700;
+            font-size: 20px;
+        }
+        .close-btn {
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        .close-btn:hover {
+            color: #fff;
+        }
+        .modal-body {
+            padding: 10px 0;
+        }
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        .block {
+            display: block;
+        }
+        .text-silver {
+            color: #c0c0c0;
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .bg-dark {
+            background-color: #1a1a1a;
+        }
+        .border {
+            border: 1px solid;
+        }
+        .border-dnf-border {
+            border-color: #8b7355;
+        }
+        .rounded {
+            border-radius: 0.25rem;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-3 {
+            margin-top: 0.75rem;
+        }
+        .text-gold {
+            color: #ffd700;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        /* 错误提示样式 */
+        .error-text {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .error-text.show {
+            display: block;
+        }
+        .input-error {
+            border-color: #ff4444 !important;
+        }
+        /* 登录后用户信息样式 */
+        .user-info {
+            color: #ffd700;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #222;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #8b7355;
+        }
+        .logout-btn {
+            background: #8b7355;
+            color: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s ease;
+        }
+        .logout-btn:hover {
+            background: #a08866;
+        }
+        /* 核心：适配页面的自定义提示弹窗（屏幕中心） */
+        .dnf-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999; /* 最高层级，确保在最前面 */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .dnf-alert.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .dnf-alert-box {
+            background: linear-gradient(135deg, #222, #111);
+            border: 3px solid #ffd700; /* 金色边框，匹配DNF风格 */
+            border-radius: 12px;
+            padding: 30px 40px;
+            min-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* 金色光晕 */
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
+        }
+        .dnf-alert.active .dnf-alert-box {
+            transform: scale(1);
+        }
+        .dnf-alert-text {
+            color: #ffd700; /* 金色文字 */
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* 文字发光 */
+        }
+        .dnf-alert-btn {
+            background: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .dnf-alert-btn:hover {
+            background: #facc15;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 20px;
+            }
+            .banner-content h2 {
+                font-size: 24px;
+            }
+            .set-showcase h2 {
+                font-size: 24px;
+            }
+            .set-category {
+                font-size: 20px;
+            }
+            .header-content {
+                flex-wrap: wrap;
+            }
+            .modal-content {
+                width: 95%;
+            }
+            .user-info {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+            /* 移动端提示弹窗适配 */
+            .dnf-alert-box {
+                min-width: 90%;
+                padding: 20px 15px;
+            }
+            .dnf-alert-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="dnf-header">
+        <div class="header-content">
+            <img src="./static/img/logo/dnf-logo.png" alt="DNF Logo" class="logo" onerror="this.src='./static/img/logo/default-logo.png'">
+            <h1>115版本装备套装工具</h1>
+            <!-- 登录/用户信息区域 -->
+            <div id="authContainer">
+                <button id="loginRegisterBtn" class="bg-gold text-dark px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-yellow-400 transition-colors">
+                    登录/注册
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner区域 -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>重力之泉版本 · 套装搭配指南</h2>
+            <p>专业的装备套装查询与分析工具</p>
+        </div>
+    </section>
+
+    <!-- 功能导航 -->
+    <main class="main-content">
+        <nav class="function-nav">
+            <div class="nav-grid">
+                <a href="./page/rank.html" class="nav-card">
+                    <h3>强度排行</h3>
+                    <p>多维度套装强度排行</p>
+                </a>
+                <a href="./page/query.html" class="nav-card">
+                    <h3>套装查询</h3>
+                    <p>搜索与浏览套装属性</p>
+                </a>
+                <a href="./page/compare.html" class="nav-card">
+                    <h3>套装对比</h3>
+                    <p>双套/多套属性对比</p>
+                </a>
+            </div>
+        </nav>
+
+        <!-- 套装展示区域 -->
+        <section class="set-showcase">
+            <h2>太初阶段套装大全</h2>
+            
+            <h3 class="set-category">核心毕业套装</h3>
+            <div class="set-grid">
+                <div class="set-card" onclick="location.href='./page/detail.html?set=gold'">
+                    <img src="./static/img/logo/set-icon/gold-set.png" alt="理想之黄金乡套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>理想之黄金乡套装</h3>
+                    <p class="set-alias">俗称"恍惚套"</p>
+                    <span class="set-tier">顶级打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=dragon'">
+                    <img src="./static/img/logo/set-icon/dragon-set.png" alt="龙战八荒套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>龙战八荒套装</h3>
+                    <p class="set-alias">俗称"无色套"</p>
+                    <span class="set-tier">顶级打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=energy_3'">
+                    <img src="./static/img/logo/set-icon/energy3-set.png" alt="究极能量套装（3觉）" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>究极能量套装（3觉）</h3>
+                    <p class="set-alias">三觉极限套</p>
+                    <span class="set-tier">顶级打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=valkyrie'">
+                    <img src="./static/img/logo/set-icon/valkyrie-set.png" alt="诸神黄昏之女武神" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>诸神黄昏之女武神</h3>
+                    <p class="set-alias">持续输出套</p>
+                    <span class="set-tier">高端打造</span>
+                </div>
+            </div>
+            
+            <h3 class="set-category">均衡实用套装</h3>
+            <div class="set-grid">
+                <div class="set-card" onclick="location.href='./page/detail.html?set=energy_2'">
+                    <img src="./static/img/logo/set-icon/energy2-set.png" alt="究极能量套装（2觉）" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>究极能量套装（2觉）</h3>
+                    <p class="set-alias">二觉续航套</p>
+                    <span class="set-tier">高端打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=nature'">
+                    <img src="./static/img/logo/set-icon/nature-set.png" alt="造化自然套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>造化自然套装</h3>
+                    <p class="set-alias">均衡发展套</p>
+                    <span class="set-tier">中等打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=spirit_orb'">
+                    <img src="./static/img/logo/set-icon/orb-set.png" alt="青丘灵珠套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>青丘灵珠套装（满珠）</h3>
+                    <p class="set-alias">灵珠buff套</p>
+                    <span class="set-tier">中等打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=chaos'">
+                    <img src="./static/img/logo/set-icon/chaos-set.png" alt="混沌净化套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>混沌净化套装</h3>
+                    <p class="set-alias">强力CD切换套</p>
+                    <span class="set-tier">高端打造</span>
+                </div>
+            </div>
+            
+            <h3 class="set-category">新手/平民套装</h3>
+            <div class="set-grid">
+                <div class="set-card" onclick="location.href='./page/detail.html?set=hunt'">
+                    <img src="./static/img/logo/set-icon/hunt-set.png" alt="群猎美学套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>群猎美学套装</h3>
+                    <p class="set-alias">高速回血减伤套</p>
+                    <span class="set-tier">平民打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=shadow'">
+                    <img src="./static/img/logo/set-icon/shadow-set.png" alt="潜影暗袭套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>潜影暗袭套装</h3>
+                    <p class="set-alias">影子机制手感套</p>
+                    <span class="set-tier">中等打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=mage_normal'">
+                    <img src="./static/img/logo/set-icon/mage-set.png" alt="冥思者的魔力领域" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>冥思者的魔力领域</h3>
+                    <p class="set-alias">魔力领域套（普通模式）</p>
+                    <span class="set-tier">平民打造</span>
+                </div>
+                <div class="set-card" onclick="location.href='./page/detail.html?set=fate'">
+                    <img src="./static/img/logo/set-icon/fate-set.png" alt="天命者的气运" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
+                    <h3>天命者的气运</h3>
+                    <p class="set-alias">技能重置套</p>
+                    <span class="set-tier">中等打造</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 登录模态框 -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content" style="width: 90%; max-width: 400px;">
+            <div class="modal-header">
+                <h3 id="authModalTitle">用户登录</h3>
+                <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- 登录表单 -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="mb-4">
+                        <label class="block text-silver mb-2" for="loginUsername">用户名</label>
+                        <input type="text" id="loginUsername" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
+                        <div class="error-text" id="loginUserError">用户名不存在</div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-silver mb-2" for="loginPassword">密码</label>
+                        <input type="password" id="loginPassword" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
+                        <div class="error-text" id="loginPwdError">密码错误</div>
+                    </div>
+                    <button type="submit" class="w-full bg-gold text-dark py-2 rounded font-bold">登录</button>
+                    <p class="text-center mt-3 text-silver">
+                        还没有账号? <span id="switchToRegister" class="text-gold cursor-pointer">立即注册</span>
+                    </p>
+                </form>
+
+                <!-- 注册表单 -->
+                <form id="registerForm" class="auth-form">
+                    <div class="mb-4">
+                        <label class="block text-silver mb-2" for="regUsername">用户名</label>
+                        <input type="text" id="regUsername" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
+                        <div class="error-text" id="regUserError">用户名已存在</div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-silver mb-2" for="regPassword">密码</label>
+                        <input type="password" id="regPassword" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
+                        <div class="error-text" id="regPwdError">密码长度需≥6位</div>
+                    </div>
+                    <button type="submit" class="w-full bg-gold text-dark py-2 rounded font-bold">注册</button>
+                    <p class="text-center mt-3 text-silver">
+                        已有账号? <span id="switchToLogin" class="text-gold cursor-pointer">立即登录</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义DNF风格提示弹窗（屏幕中心） -->
+    <div id="dnfAlert" class="dnf-alert">
+        <div class="dnf-alert-box">
+            <p class="dnf-alert-text">祝您天天出太初，样样不重复</p>
+            <button id="dnfAlertBtn" class="dnf-alert-btn">确定</button>
+        </div>
+    </div>
+
+    <script>
+        // 初始化本地存储
+        if (!localStorage.getItem('dnfUsers')) localStorage.setItem('dnfUsers', JSON.stringify({}));
+        let currentUser = localStorage.getItem('dnfCurrentUser') || null;
+
+        // 页面加载完成后执行
+        window.onload = function() {
+            // 初始化登录态展示
+            renderAuthArea();
+
+            // 绑定模态框切换事件
+            document.getElementById('switchToRegister').addEventListener('click', function() {
+                document.getElementById('loginForm').classList.remove('active');
+                document.getElementById('registerForm').classList.add('active');
+                document.getElementById('authModalTitle').textContent = '用户注册';
+                hideAllErrors();
+            });
+
+            document.getElementById('switchToLogin').addEventListener('click', function() {
+                document.getElementById('registerForm').classList.remove('active');
+                document.getElementById('loginForm').classList.add('active');
+                document.getElementById('authModalTitle').textContent = '用户登录';
+                hideAllErrors();
+            });
+
+            // 登录按钮点击事件
+            document.getElementById('loginRegisterBtn').addEventListener('click', function() {
+                document.getElementById('loginModal').classList.add('active');
+                resetAuthForms();
+            });
+
+            // 登录表单提交
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value.trim();
+                const password = document.getElementById('loginPassword').value.trim();
+                const users = JSON.parse(localStorage.getItem('dnfUsers'));
+
+                hideAllErrors();
+                let isValid = true;
+
+                if (!users[username]) {
+                    showError('loginUserError', document.getElementById('loginUsername'));
+                    isValid = false;
+                } else if (users[username] !== password) {
+                    showError('loginPwdError', document.getElementById('loginPassword'));
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // 登录成功：保存状态 + 关闭模态框 + 显示自定义提示 + 刷新登录态
+                    localStorage.setItem('dnfCurrentUser', username);
+                    currentUser = username;
+                    document.getElementById('loginModal').classList.remove('active');
+                    showDnfAlert(); // 显示自定义提示弹窗
+                    renderAuthArea();
+                }
+            });
+
+            // 注册表单提交（注册后自动登录）
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('regUsername').value.trim();
+                const password = document.getElementById('regPassword').value.trim();
+                const users = JSON.parse(localStorage.getItem('dnfUsers'));
+
+                hideAllErrors();
+                let isValid = true;
+
+                if (users[username]) {
+                    showError('regUserError', document.getElementById('regUsername'));
+                    isValid = false;
+                } else if (password.length < 6) {
+                    showError('regPwdError', document.getElementById('regPassword'));
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // 注册并自动登录
+                    users[username] = password;
+                    localStorage.setItem('dnfUsers', JSON.stringify(users));
+                    localStorage.setItem('dnfCurrentUser', username);
+                    currentUser = username;
+                    
+                    document.getElementById('loginModal').classList.remove('active');
+                    showDnfAlert(); // 显示自定义提示弹窗
+                    renderAuthArea();
+                }
+            });
+
+            // 模态框外部点击关闭
+            document.getElementById('loginModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAuthModal();
+            });
+
+            // ESC键关闭模态框/提示弹窗
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAuthModal();
+                    hideDnfAlert();
+                }
+            });
+
+            // 绑定自定义提示弹窗的确定按钮
+            document.getElementById('dnfAlertBtn').addEventListener('click', hideDnfAlert);
+        };
+
+        // 核心：显示自定义DNF风格提示弹窗（屏幕中心）
+        function showDnfAlert() {
+            const alertEl = document.getElementById('dnfAlert');
+            alertEl.classList.add('active');
+        }
+
+        // 隐藏自定义提示弹窗
+        function hideDnfAlert() {
+            const alertEl = document.getElementById('dnfAlert');
+            alertEl.classList.remove('active');
+        }
+
+        // 渲染登录/用户信息区域
+        function renderAuthArea() {
+            const authContainer = document.getElementById('authContainer');
+            currentUser = localStorage.getItem('dnfCurrentUser') || null;
+
+            if (currentUser) {
+                // 已登录：显示欢迎语 + 退出按钮
+                authContainer.innerHTML = `
+                    <div class="user-info">
+                        <span>欢迎：${currentUser}</span>
+                        <button class="logout-btn" onclick="logout()">退出</button>
+                    </div>
+                `;
+            } else {
+                // 未登录：显示登录/注册按钮
+                authContainer.innerHTML = `
+                    <button id="loginRegisterBtn" class="bg-gold text-dark px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-yellow-400 transition-colors">
+                        登录/注册
+                    </button>
+                `;
+                // 重新绑定按钮点击事件
+                document.getElementById('loginRegisterBtn').addEventListener('click', function() {
+                    document.getElementById('loginModal').classList.add('active');
+                    resetAuthForms();
+                });
+            }
+        }
+
+        // 退出登录
+        function logout() {
+            localStorage.removeItem('dnfCurrentUser');
+            currentUser = null;
+            hideDnfAlert(); // 关闭提示弹窗（如果存在）
+            renderAuthArea(); // 刷新展示
+        }
+
+        // 关闭登录模态框
+        function closeAuthModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            resetAuthForms();
+        }
+
+        // 重置表单
+        function resetAuthForms() {
+            document.getElementById('loginForm').reset();
+            document.getElementById('registerForm').reset();
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('registerForm').classList.remove('active');
+            document.getElementById('authModalTitle').textContent = '用户登录';
+            hideAllErrors();
+            document.querySelectorAll('.modal-body input').forEach(input => {
+                input.classList.remove('input-error');
+            });
+        }
+
+        // 显示错误提示
+        function showError(errorId, inputEl) {
+            document.getElementById(errorId).classList.add('show');
+            inputEl.classList.add('input-error');
+        }
+
+        // 隐藏所有错误
+        function hideAllErrors() {
+            document.querySelectorAll('.error-text').forEach(el => el.classList.remove('show'));
+        }
+
+
+    </script>
+</body>
+</html>

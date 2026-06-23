@@ -1,0 +1,237 @@
+/* 职业推荐页面样式 */
+
+.profession-page {
+    padding: 30px 0;
+}
+
+.selection-area {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.selection-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.selection-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selection-group label {
+    color: var(--dnf-gold);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.selection-input {
+    background: #2a2a2a;
+    border: 2px solid var(--dnf-border);
+    color: var(--dnf-silver);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.selection-input:focus {
+    outline: none;
+    border-color: var(--dnf-gold);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, var(--dnf-gold) 0%, #ffed4e 100%);
+    color: var(--dnf-dark);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.generate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+.generate-btn:active {
+    transform: translateY(-1px);
+}
+
+.recommendation-result {
+    min-height: 200px;
+}
+
+/* 推荐卡片样式 */
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.recommendation-card {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+    border-color: var(--dnf-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--dnf-border);
+}
+
+.card-rank {
+    background: var(--dnf-gold);
+    color: var(--dnf-dark);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-title h4 {
+    color: var(--dnf-gold);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card-title .priority {
+    color: var(--dnf-silver);
+    font-size: 12px;
+    padding: 2px 8px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-reason {
+    color: var(--dnf-silver);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.card-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.stat-tag {
+    background: rgba(65, 105, 225, 0.2);
+    color: var(--dnf-blue);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    border: 1px solid var(--dnf-blue);
+}
+
+.card-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.detail-btn, .compare-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.detail-btn {
+    background: transparent;
+    color: var(--dnf-gold);
+    border: 1px solid var(--dnf-gold);
+}
+
+.detail-btn:hover {
+    background: var(--dnf-gold);
+    color: var(--dnf-dark);
+}
+
+.compare-btn {
+    background: transparent;
+    color: var(--dnf-silver);
+    border: 1px solid var(--dnf-border);
+}
+
+.compare-btn:hover {
+    border-color: var(--dnf-silver);
+    color: var(--dnf-silver);
+}
+
+/* 空状态样式 */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--dnf-silver);
+}
+
+.empty-state img {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    color: var(--dnf-gold);
+    margin-bottom: 10px;
+}
+
+/* 加载状态 */
+.loading-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--dnf-silver);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--dnf-border);
+    border-top: 4px solid var(--dnf-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

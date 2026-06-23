@@ -1,0 +1,108 @@
+/* 排行页面样式 - 卡片布局、筛选栏样式 */
+
+.rank-page {
+    padding: 30px 0;
+}
+
+.page-title {
+    text-align: center;
+    color: var(--dnf-gold);
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* 筛选栏 */
+.filter-bar {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    color: var(--dnf-silver);
+    font-size: 14px;
+}
+
+.filter-select {
+    background: #2a2a2a;
+    border: 1px solid var(--dnf-border);
+    color: var(--dnf-silver);
+    padding: 8px 12px;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--dnf-gold);
+}
+
+/* 排行列表 */
+.rank-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rank-item {
+    background: var(--dnf-dark);
+    border: 2px solid var(--dnf-border);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.rank-item:hover {
+    border-color: var(--dnf-gold);
+    transform: translateX(5px);
+}
+
+.rank-number {
+    background: var(--dnf-gold);
+    color: var(--dnf-dark);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.rank-info {
+    flex: 1;
+}
+
+.rank-name {
+    color: var(--dnf-gold);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.rank-desc {
+    color: var(--dnf-silver);
+    font-size: 14px;
+}
+
+.rank-score {
+    color: var(--dnf-gold);
+    font-size: 24px;
+    font-weight: bold;
+}
