@@ -395,10 +395,81 @@
             .dnf-alert-text {
                 font-size: 18px;
             }
+            /* 移动端侧边栏隐藏 */
+            .side-toolbar { display: none; }
+        }
+        /* 左侧工具栏 */
+        .side-toolbar {
+            position: fixed;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .side-tool-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            border: 2px solid #8b7355;
+            background: linear-gradient(135deg, #222, #111);
+            color: #ffd700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .side-tool-btn:hover {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            transform: translateX(3px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.3);
+        }
+        .side-tool-btn span {
+            font-size: 10px;
+            margin-top: 3px;
+            white-space: nowrap;
+        }
+        .side-tool-btn.launch { border-left: 3px solid #ff4444; }
+        .side-tool-btn.launch:hover { border-left-color: #ff6666; }
+        .side-tool-btn.website { border-left: 3px solid #4488ff; }
+        .side-tool-btn.website:hover { border-left-color: #66aaff; }
+        .side-tool-btn.download { border-left: 3px solid #44cc44; }
+        .side-tool-btn.download:hover { border-left-color: #66ee66; }
+        .side-tool-tip {
+            color: #ffd700;
+            font-size: 10px;
+            text-align: center;
+            text-shadow: 0 0 6px rgba(255,215,0,0.5);
         }
     </style>
 </head>
 <body>
+    <!-- 左侧工具栏 -->
+    <div class="side-toolbar">
+        <button class="side-tool-btn launch" onclick="launchDNF()" title="启动地下城与勇士">
+            🎮
+            <span>启动游戏</span>
+        </button>
+        <span class="side-tool-tip">DNF</span>
+        <a class="side-tool-btn website" href="https://dnf.qq.com/" target="_blank" title="官方有最新的游戏资讯和活动">
+            🌐
+            <span>官方网站</span>
+        </a>
+        <button class="side-tool-btn download" onclick="downloadDNF()" title="后台下载地下城与勇士，页面不会跳转">
+            ⬇
+            <span>下载游戏</span>
+        </button>
+    </div>
+
     <!-- 顶部导航 -->
     <header class="dnf-header">
         <div class="header-content">
@@ -585,7 +656,7 @@
     <div id="dnfAlert" class="dnf-alert">
         <div class="dnf-alert-box">
             <p class="dnf-alert-text">祝您天天出太初，样样不重复</p>
-            <button id="dnfAlertBtn" class="dnf-alert-btn">确定</button>
+            <button id="dnfAlertBtn" class="dnf-alert-btn" onclick="hideDnfAlert()">确定</button>
         </div>
     </div>
 
@@ -836,6 +907,54 @@
             const div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
+        }
+
+        // ===================== 后台下载 DNF =====================
+        function downloadDNF() {
+            // 用隐藏 iframe 触发下载，不跳转页面
+            let iframe = document.getElementById('downloadFrame');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'downloadFrame';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+            iframe.src = '/api/download-dnf';
+
+            // 用自定义弹窗提示
+            const alertText = document.querySelector('.dnf-alert-text');
+            alertText.textContent = '正在下载地下城与勇士启动器...';
+            showDnfAlert();
+        }
+
+        // ===================== 启动 DNF 游戏 =====================
+        async function launchDNF() {
+            const btn = document.querySelector('.side-tool-btn.launch');
+            const origHTML = btn.innerHTML;
+            btn.innerHTML = '⏳<span>启动中</span>';
+            btn.style.pointerEvents = 'none';
+
+            try {
+                const res = await fetch('/api/launch-dnf', { method: 'POST' });
+                const data = await res.json();
+
+                // 用自定义弹窗提示结果
+                const alertText = document.querySelector('.dnf-alert-text');
+                alertText.textContent = data.message;
+                showDnfAlert();
+
+                // 成功后短暂延迟恢复按钮
+                setTimeout(() => {
+                    btn.innerHTML = origHTML;
+                    btn.style.pointerEvents = '';
+                }, 2000);
+            } catch (err) {
+                btn.innerHTML = origHTML;
+                btn.style.pointerEvents = '';
+                const alertText = document.querySelector('.dnf-alert-text');
+                alertText.textContent = '网络错误，请稍后重试';
+                showDnfAlert();
+            }
         }
     </script>
 </body>
