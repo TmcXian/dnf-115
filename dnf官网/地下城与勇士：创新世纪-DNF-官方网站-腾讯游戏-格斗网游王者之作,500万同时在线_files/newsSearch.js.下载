@@ -1,0 +1,40 @@
+
+// const ggImageUrl = "//ossweb-img.qq.com/images/clientpop/idata_ad/idata_ad_16503.js"; // 获取广告轮播图数据
+// const ggImageUrl = "//ossweb-img.qq.com/images/clientpop/idata_ad/idata_ad_25053.js"; // 获取广告轮播图数据
+const ggImageUrl = "//ossweb-img.qq.com/images/clientpop/idata_ad/idata_ad_25094.js"; // 获取广告轮播图数据
+const newsCfg = { // 获取不同类型消息数据
+    "zonghe": "//dnf.qq.com/webplat/info/news_version3/119/495/m23000/index.js", // 综合
+    "xinwen": "//dnf.qq.com/webplat/info/news_version3/119/495/496/m23000/index.js", // 新闻
+    "gonggao": "//dnf.qq.com/webplat/info/news_version3/119/495/498/m23007/index.js", // 公告
+    "huodong": "//dnf.qq.com/webplat/info/news_version3/119/495/497/m23000/index.js", // 活动
+}
+const moreNews = "//dnf.qq.com/webplat/info/news_version3/119/495/m394/list_1.shtml"; // 更多资讯跳转
+
+// 加载脚本
+function loadScript(url, callback) {
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = url;
+    if (script.readyState) { // 兼容旧版IE
+        script.onreadystatechange = function () {
+            if (script.readyState == "loaded" || script.readyState == "complete") {
+                script.onreadystatechange = null;
+                if (callback) {
+                    callback();
+                }
+            }
+        }
+    } else { // 兼容现代浏览器
+        script.onload = function () {
+            if (callback) {
+                callback();
+            }
+        }
+    }
+    // 监听错误事件
+    script.onerror = function () {
+        console.error(`${url} 加载失败`);
+    };
+    // 载入脚本
+    document.body.appendChild(script);
+};

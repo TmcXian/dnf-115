@@ -11,17 +11,16 @@
 }
 
 /* 扩展重置 */
-html, body {
-    height: 100%;
-    overflow-x: hidden; /* 防止横向滚动 */
+html {
+    overflow-x: hidden;
+    background: #0a0a0a;
 }
 
 body {
+    overflow-x: hidden;
     font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-    background: #0a0a0a;
     color: #e0e0e0;
     line-height: 1.6;
-    /* 基础字号适配 */
     font-size: 16px;
 }
 

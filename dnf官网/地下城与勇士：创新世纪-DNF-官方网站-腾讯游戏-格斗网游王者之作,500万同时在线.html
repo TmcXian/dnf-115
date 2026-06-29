@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)https://dnf.qq.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="robots" content="all">
+<meta name="author" content="Tencent">
+<meta name="Copyright" content="Tencent">
+<meta name="Description" content="《地下城与勇士：创新世纪》DNF官方网站。《地下城与勇士：创新世纪》是全球2D横版格斗网络游戏（MMOACT）的先行者。无限连击的动作特性、极富多样化的职业分支、精准的操作与多样化副本体验，让玩家全方位体验打击爽快感。">
+<meta name="Keywords" content="地下城与勇士,DNF,Dungeon&amp;Fighter,DF,D&amp;F,地下城,勇士,横版,2D,腾讯游戏,免费,ACT,转职,觉醒,冒险家,鬼剑士,格斗,格斗家,神枪手,枪手,圣职,红眼,白手,鬼气,阿修罗,气功师,大枪,漫游,阿拉德,召唤兽,投币,复活币">
+<title>地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线</title>
+<script type="text/javascript">
+function browserRedirect(){
+    var isMobile = /(iPhone|iPad|iPod|iOS|Android|Windows Phone|BlackBerry|SymbianOS)/i.test(navigator.userAgent);
+    if (isMobile) {
+        // 去移动端
+        window.location.href= '/m/m202511/index.shtml' + location.search;
+    } else {
+    }
+}
+browserRedirect();
+</script>
+<link href="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/main.css">
+<!--[if gte IE 8]>
+    <p style="background:#3e1f10;color:#fbf5e7;padding:10px 0;text-align:center;width:100%;font-size:14px;position:fixed;z-index:99999;top:0;left:0;">您使用的IE浏览器版本过低，本站不再支持，<a href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads" style="color:#F13C35">升级您的IE浏览器</a>，或使用<a href="https://www.google.cn/chrome/"  style="color:#F13C35">Google Chrome</a>等高级浏览器，将会得到更好的体验！</p>
+<![endif]-->
+<style>/*
+	PC端登录相关样式
+	less使用方式：
+	lessc login.css login-min.css -x
+*/
+
+
+/*qq登录*/
+.milo-qqLogin{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+.milo-qqLogin .qqLoginCover{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+}
+.milo-qqLogin .qqLoginContent{
+    width: 650px;
+    height: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -375px;
+    margin-top: -225px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3)
+}
+.milo-qqLogin .qqLoginFrame{
+	width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border: 0px solid white
+}
+
+/*微信登录*/
+.milo-wxLogin{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+.milo-wxLogin .wxLoginCover{
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+}
+.milo-wxLogin .wxLoginContent{
+    box-sizing: content-box;
+	width: 300px;
+    height: 460px;
+    background-color: #fff;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -150px;
+    margin-top: -230px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    padding:0px 20px;
+}
+.milo-wxLogin .wxLoginContent .wxLoginClose{
+    height: 40px;
+    width: 100%;  
+}
+.milo-wxLogin .wxLoginContent .wxLoginClose a{
+	line-height: 36px;
+    text-align: center;
+	float: right;
+	margin-right: -20px;
+    height: 40px;
+    width: 40px;
+    display:inline-block;
+	color: rgb(102, 102, 102);
+    font-family: Verdana, sans-serif;
+    font-size: 30px;
+    text-decoration:none;
+    cursor: pointer;
+}
+.milo-wxLogin .wxLoginContent .wxLoginClose a:hover{
+	color: rgb(240, 115, 115);
+    font-family: Verdana, sans-serif;
+}
+.milo-wxLogin .wxLoginContent .wxLoginBox{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+
+
+/*qq微信登录*/
+
+.milo-qqwx-login {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: none
+}
+
+.qqwx-login-cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.qqwx-login-frame {
+    width: 750px;
+    height: 470px;
+    background-color: white;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -375px;
+    margin-top: -240px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.qqwx-tabs {
+    line-height: 40px;
+    /* position: absolute; */
+    z-index: 100001;
+    width: 100%;
+    height: 40px;
+}
+
+.qqwx-tabs .qq-tab,
+.qqwx-tabs .wx-tab {
+    cursor: pointer;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    color: #b1b1b1;
+    text-decoration: none
+}
+
+.qqwx-active-qq a.qq-tab {
+    color: #fff;
+    background-color: #51b7ec
+}
+
+.qqwx-active-wx a.wx-tab {
+    color: #fff;
+    background-color: #4ab218
+}
+
+.qqwx-tabs .qqwxtab-close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-decoration: none;
+    color: grey;
+    font-size: 25px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 0px 5px;
+    border-width: 0px 0px 1px 1px;
+    border-style: solid
+}
+
+.qqwx-active-qq .qqwx-tabs .qqwxtab-close {
+    border-color: #e0dcdc
+}
+
+.qqwx-active-wx .qqwx-tabs .qqwxtab-close {
+    border-color: #8BC34A;
+    color: #d4d2d2
+}
+
+.qqwx-tabs .qqwxtab-close:hover {
+    font-weight: bold
+}
+
+.qqwx-tips {
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #a2a2a2;
+    position: absolute;
+    height: 32px;
+    width: 100%;
+    top: 40px;
+    z-index: 10001;
+    background-color: #fff;
+    border: none;
+}
+
+.qqwx-frame {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    overflow: hidden;
+    border: none;
+    top: 70px;
+}
+
+.qqwx-frame div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    display: none;
+    border: none;
+}
+
+.qqwx-frame div iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.qqwx-active-qq div.qqwx-frame-qq-div {
+    display: block
+}
+
+.qqwx-active-wx div.qqwx-frame-wx-div {
+    display: block
+}
+
+i.ico-qq-logo,
+i.ico-wx-logo {
+    display: inline-block;
+    height: 23px;
+    vertical-align: middle;
+    margin: 0px 5px;
+    margin-top: -4px;
+    background: url(https://vm.gtimg.cn/tencentvideo/vstyle/web/common/style/img/login/sprite_login.png?d=0210&max_age=31104000) no-repeat
+}
+
+i.ico-qq-logo {
+    width: 20px
+}
+
+i.ico-wx-logo {
+    width: 24px
+}
+
+.qqwx-active-wx i.ico-qq-logo {
+    background-position: -180px -90px
+}
+
+.qqwx-active-wx i.ico-wx-logo {
+    background-position: -250px -90px
+}
+
+.qqwx-active-qq i.ico-qq-logo {
+    background-position: -200px -90px
+}
+
+.qqwx-active-qq i.ico-wx-logo {
+    background-position: -220px -90px
+}
+
+div#qqwx-frame-wx-div {
+    top: 20px
+}
+
+
+/*qc登录*/
+
+.loginframe {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border: 0px solid white
+}
+
+.milo-qConnectLogin {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px
+}
+
+.qConnectLoginCover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.qConnectLoginContent {
+    width: 752px;
+    height: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -375px;
+    margin-top: -220px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3)
+}
+
+.qConnectLoginContent>div {
+    height: 30px;
+    width: 100%;
+    /* background-color: #4fb7ec; */
+    background-color: #fff;
+    font-size: 18px
+}
+
+.qConnectLoginContent>div span {
+    color: white;
+    display: inline-block;
+    line-height: 30px;
+    padding: 0px 5px
+}
+
+.qConnectLoginContent>div a {
+    float: right;
+    line-height: 30px;
+    text-decoration: none;
+    color: #009aff;
+    font-weight: bold;
+    font-size: 25px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer
+}
+
+.qConnectLoginContent>div a:hover {
+    color: #f57272
+}
+
+.qConnectLoginContent>div {
+    position: absolute;
+    z-index: 100001;
+    right: 0px;
+    width: 30px;
+    top: 0px;
+    height: 48px;
+    text-align: center
+}
+
+.qConnectLoginContent>div a {
+    line-height: 40px;
+    display: inline-block
+}
+
+
+/*qc微信登录*/
+
+.milo-qcwx-login {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: none
+}
+
+.qcwx-login-cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.qcwx-login-frame {
+    width: 750px;
+    height: 470px;
+    background-color: white;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -375px;
+    margin-top: -240px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.qcwx-tabs {
+    line-height: 40px;
+    position: absolute;
+    z-index: 100001;
+    width: 100%
+}
+
+.qcwx-tabs .qc-tab,
+.qcwx-tabs .wx-tab {
+    cursor: pointer;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    color: #b1b1b1;
+    text-decoration: none
+}
+
+.qcwx-active-qc a.qc-tab {
+    color: #fff;
+    background-color: #51b7ec
+}
+
+.qcwx-active-wx a.wx-tab {
+    color: #fff;
+    background-color: #4ab218
+}
+
+.qcwx-tabs .qcwxtab-close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-decoration: none;
+    color: grey;
+    font-size: 25px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 0px 5px;
+    border-width: 0px 0px 1px 1px;
+    border-style: solid
+}
+
+.qcwx-active-qc .qcwx-tabs .qcwxtab-close {
+    border-color: #e0dcdc
+}
+
+.qcwx-active-wx .qcwx-tabs .qcwxtab-close {
+    border-color: #8BC34A;
+    color: #d4d2d2
+}
+
+.qcwx-tabs .qcwxtab-close:hover {
+    font-weight: bold
+}
+
+.qcwx-tips {
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #a2a2a2;
+    position: absolute;
+    width: 100%;
+    top: 40px;
+    z-index: 10001;
+    background-color: #fff;
+}
+
+.qcwx-frame {
+    width: 750px;
+    height: 470px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.qcwx-frame div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    display: none
+}
+
+.qcwx-frame div iframe {
+    width: 100%;
+    height: 100%
+}
+
+.qcwx-active-qc div.qcwx-frame-qc-div {
+    display: block
+}
+
+.qcwx-active-wx div.qcwx-frame-wx-div {
+    display: block;
+    top: 70px;
+    height: 400px;
+}
+
+i.ico-qc-logo,
+i.ico-wx-logo {
+    display: inline-block;
+    height: 23px;
+    vertical-align: middle;
+    margin: 0px 5px;
+    margin-top: -4px;
+    background: url(https://vm.gtimg.cn/tencentvideo/vstyle/web/common/style/img/login/sprite_login.png?d=0210&max_age=31104000) no-repeat
+}
+
+i.ico-qc-logo {
+    width: 20px
+}
+
+i.ico-wx-logo {
+    width: 24px
+}
+
+.qcwx-active-wx i.ico-qc-logo {
+    background-position: -180px -90px
+}
+
+.qcwx-active-wx i.ico-wx-logo {
+    background-position: -250px -90px
+}
+
+.qcwx-active-qc i.ico-qc-logo {
+    background-position: -200px -90px
+}
+
+.qcwx-active-qc i.ico-wx-logo {
+    background-position: -220px -90px
+}
+
+div#qcwx-frame-wx-div {
+    top: 20px
+}
+
+
+/*wegame登录*/
+
+.wegameloginframe {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border: 0px solid white
+}
+
+.milo-wegameLogin {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px
+}
+
+.wegameLoginCover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background-color: white;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.wegameLoginContent {
+    width: 800px;
+    height: 600px;
+    background-color: #fff;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    margin-left: -400px;
+    margin-top: -300px;
+    border: 1px solid #bfbfbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3)
+}
+
+.wegameLoginContent>div {
+    height: 30px;
+    width: 100%;
+    background-color: none;
+    font-size: 18px
+}
+
+.wegameLoginContent>div.wegameLoginTitle {
+    width: 100%;
+    background-color: #0e0e0e
+}
+
+div.wegameLoginIcon {
+    display: none
+}
+
+.wegameLoginTitle>div.wegameLoginIcon {
+    display: block;
+    float: left;
+    width: 239px;
+    height: 60px;
+    background: url(https://api.rail.tgp.qq.com/web/oauth2.0/login/images/wegame-logo-m.png) no-repeat center;
+    margin-left: 10px
+}
+
+.wegameLoginContent>div span {
+    color: white;
+    display: inline-block;
+    line-height: 30px;
+    padding: 0px 5px
+}
+
+.wegameLoginContent>div a {
+    float: right;
+    line-height: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer
+}
+
+.wegameLoginContent>div a:hover {
+    color: #f57272
+}
+
+.wegameLoginContent>div {
+    position: absolute;
+    z-index: 100001;
+    right: 0px;
+    width: 30px;
+    top: 0px;
+    height: 60px;
+    text-align: center
+}
+
+.wegameLoginContent>div a {
+    line-height: 55px;
+    display: inline-block
+}
+
+</style><style>#milo_qzone_share {
+    width: 860px;
+    height: 445px;
+    z-index: 900;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    margin: auto;
+    border: 1px solid #225EA8;
+    background-color: #fff;
+}
+
+#milo_qzone_share_title {
+    width: 100%;
+    background: url(https://ossweb-img.qq.com/images/gamevip/act/act_comm/lz_top_spr_v2.png) repeat-x 0 -97px;
+    height: 36px;
+    margin: 0px;
+}
+
+#milo_qzone_share_title span {
+    float: left;
+    display: inline;
+    margin: 5px 0 0 12px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 25px;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #fff;
+}
+
+#milo_qzone_share_content {
+    text-align: center;
+    overflow: hidden;
+    height: 440px;
+}
+
+#milo_qzone_share_title a {
+    float: right;
+    display: inline;
+    margin: 10px 10px 0 0;
+    width: 14px;
+    height: 13px;
+    text-indent: -999em;
+    overflow: hidden;
+    background: url(https://ossweb-img.qq.com/images/gamevip/act/act_comm/lz_top_spr_v2.png) no-repeat -297px -5px;
+}</style><style>.milo-dialog__wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  margin: 0;
+}
+.milo-dialog__wrapper .milo-dialog {
+  position: relative;
+  margin: 100px auto;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 300px;
+  background-color: #fff;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__header {
+  padding: 20px 20px 10px;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__header .milo-dialog__title {
+  line-height: 24px;
+  font-size: 18px;
+  color: #303133;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__header .milo-dialog__headerbtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  background: 0 0;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  font-size: 16px;
+  color: #909399;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__header .milo-dialog__headerbtn:focus,
+.milo-dialog__wrapper .milo-dialog .milo-dialog__header .milo-dialog__headerbtn :hover {
+  color: #409eff;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__body {
+  padding: 30px 20px;
+  color: #606266;
+  font-size: 14px;
+  word-break: break-all;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer {
+  padding: 10px 20px 20px;
+  text-align: right;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0 5px;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button:focus,
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button.primary {
+  background: #3a8ee6;
+  border-color: #3a8ee6;
+  color: #fff;
+}
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button.primary:focus,
+.milo-dialog__wrapper .milo-dialog .milo-dialog__footer .milo-button.primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+  color: #fff;
+}
+.milo-dialog-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+  z-index: 2002;
+}
+</style><style>.milo-item {
+  line-height: 45px;
+  font-size: 14px;
+  padding: 3px 0;
+  width: 100%;
+}
+.milo-item select,
+.milo-item .milo_input {
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+.milo-item select {
+  padding: 0 15px;
+}
+.milo-item .milo_input {
+  padding: 0 19px;
+}
+#milo_auto_role_text {
+  margin-left: 5px;
+}
+#milo_auto_role {
+  max-height: 130px;
+  overflow: scroll;
+}
+#milo_auto_role_wrapper {
+  line-height: 26px;
+}
+.milo-PIPInfo {
+  margin-right: 5px;
+  border: 1px solid #dcdfe6;
+  -webkit-appearance: checkbox;
+}
+#milo-error-message {
+  display: none;
+  color: #f00;
+}
+.milo_select {
+  max-height: 200px;
+  overflow: auto;
+  cursor: pointer;
+}
+.milo_select li {
+  list-style: none;
+}
+.milo_input:disabled {
+  opacity: 0.7;
+}
+</style><style>.milo-alert-frame {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+}
+.milo-alert-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+  z-index: 9998;
+}
+.milo-alert {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.milo-alert-box {
+  display: inline-block;
+  width: 420px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ebeef5;
+  font-size: 18px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  text-align: left;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.milo-alert-box .milo-alert-header {
+  position: relative;
+  padding: 15px 15px 10px;
+}
+.milo-alert-box .milo-alert-header .milo-alert-close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background: url("https://ossweb-img.qq.com/images/milosdk/close.png");
+  background-size: contain;
+  cursor: pointer;
+}
+.milo-alert-box .milo-alert-content {
+  padding: 10px 15px;
+  color: #606266;
+  font-size: 14px;
+}
+.milo-alert-box .milo-alert-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 15px 0;
+}
+.milo-alert-box .milo-alert-footer div {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #dcdfe6;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #fff;
+  margin: 0 5px;
+  min-width: 88px;
+}
+.milo-alert-box .milo-alert-footer .milo-btn-confirm {
+  background-color: #409eff;
+  border-color: #409eff;
+  display: none;
+}
+.milo-alert-box .milo-alert-footer .milo-btn-cancel {
+  background-color: #a7a6a4;
+  border-color: #a7a6a4;
+  display: none;
+}
+.milo-alert-box-mobile {
+  display: inline-block;
+  width: 80vw;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 16px;
+  border: 1px solid #ebeef5;
+  font-size: 16px;
+  color: #606266;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  text-align: center;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.milo-alert-box-mobile .milo-alert-header {
+  position: relative;
+  padding: 27px 15px 0;
+  color: #000;
+  font-weight: bold;
+}
+.milo-alert-box-mobile .milo-alert-header .milo-alert-close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background: url("https://ossweb-img.qq.com/images/milosdk/close.png");
+  background-size: contain;
+  cursor: pointer;
+}
+.milo-alert-box-mobile .milo-alert-content {
+  padding: 15px;
+  color: #606266;
+  font-size: 14px;
+  border-bottom: 1px solid #ebeef5;
+}
+.milo-alert-box-mobile .milo-alert-footer {
+  display: flex;
+}
+.milo-alert-box-mobile .milo-alert-footer div {
+  padding: 15px;
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+}
+.milo-alert-box-mobile .milo-alert-footer .milo-btn-cancel {
+  display: none;
+  border-right: 1px solid #ebeef5;
+  color: #000;
+}
+.milo-alert-box-mobile .milo-alert-footer .milo-btn-confirm {
+  flex: 1;
+  color: #0f4379;
+  display: none;
+}
+</style><style>#milo-feedback::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+  background-color: #fff;
+}
+#milo-feedback::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background-color: #fff;
+}
+#milo-feedback::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #babdc2;
+}
+#milo-feedback {
+  height: 450px;
+}
+#milo-feedback .tabs {
+  display: flex;
+  justify-content: center;
+}
+#milo-feedback .tabs .tab {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+#milo-feedback .tabs .tab.active {
+  background-color: #ccc;
+}
+#milo-feedback .tab-content {
+  display: none;
+  padding: 10px;
+}
+#milo-feedback .tab-content.active {
+  display: block;
+}
+#milo-feedback .sub-tabs {
+  display: flex;
+  justify-content: center;
+}
+#milo-feedback .sub-tab {
+  padding: 2px 10px;
+  cursor: pointer;
+}
+#milo-feedback .sub-tab.active {
+  color: #409eff;
+  border-bottom: #409eff 1px solid;
+}
+#milo-feedback .sub-tab-content {
+  display: none;
+  text-align: left;
+}
+#milo-feedback .sub-tab-content.active {
+  display: block;
+}
+#milo-feedback .milo-form-label {
+  vertical-align: middle;
+  float: left;
+  width: 100px;
+  font-size: 14px;
+  color: #606266;
+  line-height: 30px;
+  padding: 0 12px 0 0;
+  box-sizing: border-box;
+}
+#milo-feedback .milo-form-item {
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  outline: none;
+  padding: 0 15px;
+  display: inline-block;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 250px;
+}
+#milo-feedback .milo-form-row {
+  clear: both;
+  padding: 2px 0;
+}
+#milo-feedback .milo-form-label.is-require:before {
+  content: "*";
+  color: #f56c6c;
+  margin-right: 4px;
+}
+#milo-feedback textarea {
+  height: 70px !important;
+}
+#milo-feedback  select {
+  margin: 3px 0;
+}
+#milo-feedback #milo-feedback-submit {
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+  width: 100%;
+  height: 50px;
+  border: 0;
+}
+#milo-feedback .list-container {
+  min-height: 360px;
+  height: 360px;
+  overflow-y: auto;
+}
+#milo-feedback .list {
+  list-style-type: none;
+  padding: 0;
+}
+#milo-feedback .list li {
+  transition: background-color 0.3s ease;
+}
+#milo-feedback .list li .item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f6f9fc;
+  border-radius: 6px;
+  padding: 5px 15px;
+}
+#milo-feedback .remark {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+}
+#milo-feedback .list li .item-reply {
+  padding: 5px 20px;
+  background-color: #f6f9fc;
+  border-radius: 6px;
+  margin: 10px 0;
+  margin-left: 15px;
+}
+#milo-feedback .list li .item-title {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#milo-feedback .list li .toggle-btn {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+#milo-feedback .list li .item-content {
+  margin-top: 10px;
+  display: none;
+  padding-left: 20px;
+  transition: opacity 0.3s ease;
+}
+#milo-feedback .nodata {
+  text-align: center;
+}
+#milo-feedback .list li .arrow-up,
+#milo-feedback .list li .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+#milo-feedback .list li .arrow-up {
+  border-bottom: 5px solid #000;
+}
+#milo-feedback .list li .arrow-down {
+  border-top: 5px solid #000;
+}
+</style><style>#milo-invite-code {
+  width: 100%;
+  display: flex;
+}
+#milo-invite-text {
+  background-color: #f2f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #1d2129;
+  font-weight: 400;
+  border: 1px solid #165dff;
+}
+#milo-invite-btn {
+  background-color: #3c7eff;
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 0 10px;
+  font-size: 12px;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+  font-weight: 400;
+}
+</style><style>.milo-bind-container {
+  width: 100%;
+  height: 70px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+#milo-bind-userinfo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#milo-bind-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 10px;
+}
+#milo-bind-name {
+  margin-left: 10px;
+  font-size: 15px;
+}
+#milo-bind-img {
+  width: auto;
+  max-height: 80%;
+  border-radius: 50%;
+}
+#milo-bind-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+#milo-unbind-user {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#milo-unbind-img {
+  width: auto;
+  max-height: 80%;
+  margin-left: 10px;
+}
+#milo-unbind-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style><style>.miloui-selector {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  border-radius: 4px;
+  font-size: 14px;
+  position: relative;
+}
+.milo-disabled .miloui-selector-value {
+  color: #c9cdd4;
+  cursor: not-allowed;
+}
+.miloui-selector:hover {
+  border-color: #c0c4cc;
+}
+.miloui-selector-value {
+  min-width: 2px;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+.miloui-selector-value:after {
+  content: ' ';
+  display: inline-block;
+  -webkit-transform: rotate(314deg);
+  -ms-transform: rotate(314deg);
+  transform: rotate(314deg);
+  height: 0.5rem;
+  width: 0.5rem;
+  border-width: 0 0 2px 2px;
+  border-style: solid;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+.miloui-selector-options {
+  position: absolute;
+  height: auto;
+  min-height: 40px;
+  max-height: 240px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 8px;
+  overflow: auto;
+  background-color: #fff;
+  z-index: 9999;
+  user-select: none;
+}
+.miloui-selector-option-item {
+  padding: 5px;
+  line-height: 30px;
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.miloui-selector-option-item:hover {
+  background-color: #f5f7fa;
+}
+.miloui-selector-option-item_active {
+  color: #f00;
+}
+.miloui-selector-value.miloui-empty:before {
+  position: absolute; /*强制使伪元素脱离文档流，否则ff下输入的文字会跟在placeholder后面*/
+  content: attr(placeholder); /*注意这里不能用引号*/
+  color: #ddd;
+  cursor: text;
+}
+</style><script charset="utf-8" src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/aegis.f.min.js.下载"></script><style>.foot{background:#fff;color:#000;font:12px/20px "微软雅黑","宋体";min-width:1050px;margin:0 auto;text-align:left;}.foot_dark{background:#000;color:#494949}.foot_dark a{color:#494949}.foot_cpright{padding:15px 20px}.foot_cpright:after{content:"";display:block;height:0;line-height:0;visibility:hidden;clear:both}.f_line{margin:0 2px}.foot_lefts{float:left;display:inline}.foot_ieg_logo{float:left;width:180px;height:35px;text-indent:-999em;overflow:hidden;margin:10px 0 0 10px;background:url(//game.gtimg.cn/images/js/2018foot/logo/foot-light.png)}.foot_dark .foot_ieg_logo{background:url(//game.gtimg.cn/images/js/2018foot/logo/foot-dark.png)}.foot_left{float:left;text-indent:-999em;overflow:hidden;margin:10px 0 0 10px;width:85px;height:35px;}.foot_links{display:inline;float:right;width:682px;list-style: none;}.foot_links li{line-height:20px;overflow:hidden;}.copyright_zh a{padding-right:10px}.foot_links .link_map{font-size:0;}.foot_links .link_map .f_line:last-child{display:none}.foot_links .copyright_txt{font-size:10px;}.foot_links .link_map span,.foot_links .link_map a{font-size:12px;color:#494949}.foot_links li img{vertical-align:middle;margin-right:3px;display:inline;}.foot_ratetext_inner {text-align: center;padding: 15px 20px 0;margin: 0}.foot_ratetext + .foot_cpright {padding: 0 20px 15px;}</style><script type="text/javascript" charset="UTF-8" src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/autotracker-beacon-oa-4.1.1.min.js.下载"></script></head>
+<body>
+<div class="wrap" style="width: 1897px; height: 4912.19px;">
+	<div class="bg" style="transform: scale(0.741016);">
+		<!-- <div class="vbg">
+			<video id="vBg" class="vbgvideo" src="https://dnf.lv.game.qq.com/dis_kt_c044d39b125a3bd2dc01ab9f1e02021e_1764742308/0b534qabsaaao4am2ibpdfu6pzgddhsaagia.f0.mp4"  style="object-fit:fill" x-webkit-airplay="true" webkit-playsinline="true" playsinline="true" airplay="true" autoplay="true" muted="true" preload="auto" loop="true" ></video>		
+		</div> -->
+		<!-- 首屏 -->
+		<div class="container top active">
+			<div class="kvbg">
+				<video id="kvBg" class="kvvideo" src="https://dnf.lv.game.qq.com/dis_kt_fcc2de26936f3889f80bca7f2b37d7e4_1780302667/0b53pqaaeaaaieaedea5wfvoo7gdaj6aaaqa.f0.mp4" style="object-fit:fill" x-webkit-airplay="true" webkit-playsinline="true" playsinline="true" airplay="true" autoplay="true" muted="true" preload="auto" loop="true"></video>							
+			</div>
+			<div class="top-mask"></div>
+			<a href="https://dnf.qq.com/" onclick="PTTReporter(&#39;btn&#39;,&#39;logo&#39;,&#39;logo&#39;);" class="icon logo" title="DNF">DNF</a>
+		
+			<div class="right-top">
+				<!-- <a href="javascript:openSearch();" class="icon icon-search">搜索</a> -->
+			
+				<!-- 登录前状态 -->
+				<div id="milo-unlogin" class="un_login" style="display: block;">
+					<a id="milo-qqlogin" class="icon button nav-login" title="QQ登录" onclick="PTTReporter(&#39;btn&#39;, &#39;qqlogin&#39;, &#39;点击qq登录&#39;);" href="javascript:ACT.fun.doLogin();">登录</a>
+				</div>
+				<!-- 登录后状态 -->
+				<div id="milo-logined" class="login_ed" style="display: none; ">
+					<span>欢迎您，</span><span id="milo-userName"></span>
+					<a id="milo-logout" title="退出" onclick="PTTReporter(&#39;btn&#39;, &#39;logout&#39;, &#39;点击退出&#39;);" href="javascript:ACT.fun.logout();">【退出】</a>
+				</div>
+			</div>
+		
+			<div class="nav">
+				<div class="nav-bg"></div>
+				<div class="nav-list">
+					<div class="top-link">
+						<a href="https://dnf.qq.com/web202511/main.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;首页&#39;);" target="_blank" class="icon nav-home">首页</a>
+					</div>
+				</div>
+				<div class="nav-list dot">
+					<div class="top-link">
+						<a href="https://dnf.qq.com/web202511/main.html#news" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;资讯中心&#39;);" class="icon nav-news">资讯中心</a>
+					</div>
+					<ul>
+						<li><a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22990/list_1.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;新闻&#39;);" target="_blank">新闻</a></li>
+						<li><a href="https://dnf.qq.com/webplat/info/news_version3/119/495/498/m22990/list_1.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;公告&#39;);" target="_blank">公告</a></li>
+						<li><a href="https://dnf.qq.com/web202511/dlist.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方动态&#39;);" target="_blank">官方动态</a></li>
+						<li><a href="https://dnf.qq.com/webplat/info/news_version3/119/495/14251/m22990/list_1.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;版本专题&#39;);" target="_blank">版本专题</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20260107guide/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;回归勇士秘籍&#39;);" target="_blank">回归勇士秘籍</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20260611topspeed/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;极速版专题&#39;);" target="_blank" class="dot-new">极速版专题</a></li>
+					</ul>
+				</div>
+				<div class="nav-list dot">
+					<div class="top-link">
+						<a href="https://dnf.qq.com/web202511/main.html#act" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;活动中心&#39;);" class="icon nav-act">活动中心</a>
+					</div>
+					<ul>
+						<li><a href="http://dnf.qq.com/web202511/act.html?acttype=1" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;版本活动&#39;);" target="_blank">版本活动</a></li>
+						<li><a href="http://dnf.qq.com/web202511/act.html?acttype=2" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;商城活动&#39;);" target="_blank">商城活动</a></li>
+						<li><a href="http://dnf.qq.com/web202511/act.html?acttype=3" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;合作活动&#39;);" target="_blank">合作活动</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20260108covers2/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;井盖杯2.0&#39;);" target="_blank">井盖杯2.0</a></li>
+						<li><a href="https://dnf.qq.com/cp/celebration/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;活动合集&#39;);" target="_blank" class="dot-new">活动合集页</a></li>
+						<li><a href="https://dnf.qq.com/cp/a2025vipnetbar/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;网吧特权&#39;);" target="_blank" class="dot-new">网吧特权</a></li>
+					</ul>
+				</div>
+				<div class="nav-list">
+					<div class="top-link">
+						<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方服务&#39;);" class="icon nav-service">官方服务</a>
+					</div>
+					<ul>
+						<li><a href="https://kf.qq.com/newgames/inpc/dnf/app/index.html#/app/home" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;客服专区&#39;);" target="_blank">客服专区</a></li>
+						<li><a href="https://kf.qq.com/newgames/inpc/dnf/app/index.html#/app/faq?faq_group=CSDK20230529144940kVZRmqhR&amp;faq_hotId=CFAQ20230808193743JYhCJJtD&amp;faq_group_title=%E9%81%93%E5%85%B7" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;被盗找回&#39;);" target="_blank">被盗找回</a></li>
+						<li><a href="https://kf.qq.com/newgames/inpc/dnf/app/index.html#/app/faq?faq_group=CSDK20230529144940AljUdITC&amp;faq_hotId=CFAQ20230809152340zNqbNNZA&amp;faq_group_title=%E5%A4%84%E7%BD%9A" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;处罚申诉&#39;);" target="_blank">处罚申诉</a></li>
+						<!-- <li><a href="https://kf.qq.com/newgames/inpc/dnf/app/index.html#/app/role_recovery" onclick="PTTReporter('btn', 'nav', '角色恢复');" target="_blank">角色恢复</a></li> -->
+						<li><a href="https://gamesafe.qq.com/safety-remove.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;安全模式&#39;);" target="_blank">安全模式</a></li>
+						<li><a href="https://dnf.qq.com/comm-htdocs/pay/new_index.htm?t=dnf" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;充值专区&#39;);" target="_blank">充值专区</a></li>
+						<li><a href="https://pay.qq.com/ipay/index.shtml?n=3&amp;c=dnfhz&amp;aid=ied.dnf" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;黑钻开通&#39;);" target="_blank">黑钻开通</a></li>
+						<!-- <li><a href="https://dnf.qq.com/cp/a20220307recruit/" onclick="PTTReporter('btn', 'nav', '体验服');" target="_blank">体验服</a></li> -->
+						<li><a href="https://dnfcity.qq.com/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;周边商城&#39;);" target="_blank">周边商城</a></li>
+						<!-- <li><a href="https://dnf.qq.com/web2015/down.shtml" onclick="PTTReporter('btn', 'nav', '下载中心');" target="_blank">下载中心</a></li> -->
+					</ul>
+				</div>
+				<div class="nav-list dot">
+					<div class="top-link">
+						<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;自助工具&#39;);" class="icon nav-tool">自助工具</a>
+					</div>
+					<ul>
+						<li><a href="https://dnf.qq.com/cp/a20250612vp/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;职业攻略&#39;);" target="_blank">职业攻略</a></li>
+						<li><a href="https://dnf.qq.com/gift.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;CDK兑换&#39;);" target="_blank">CDK兑换</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20190312welfare/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;口令码兑换&#39;);" target="_blank">口令码兑换</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20230817info/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;手机绑定福利&#39;);" target="_blank">手机绑定福利</a></li>
+						<li><a href="https://dnf.qq.com/act/a20260114cloth/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;时装实验室&#39;);" target="_blank" class="dot-new">时装实验室</a></li>
+					</ul>
+				</div>
+				<div class="nav-list">
+					<div class="top-link">
+						<a href="https://dnf.qq.com/act/a20241120yz/" onclick="PTTReporter(&#39;btn&#39;,&#39;nav&#39;,&#39;DNF宇宙&#39;);" target="_blank" class="icon nav-dnfu">DNF宇宙</a>
+					</div>
+					<ul>
+						<li><a href="https://dnf.qq.com/act/a20241120yz/chronicle/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;编年史&#39;);" target="_blank">编年史</a></li>
+						<li><a href="https://dnf.qq.com/act/a20241120yz/adventurer/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;职业背景&#39;);" target="_blank">职业背景</a></li>
+						<li><a href="https://dnf.qq.com/act/a20241120yz/story/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;故事百科&#39;);" target="_blank">故事百科</a></li>
+						<li><a href="https://dnf.qq.com/act/a20241120yz/picture/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;原画下载&#39;);" target="_blank">原画下载</a></li>
+						<!-- <li><a href="https://dnf.qq.com/act/a20241120yz/video/index.html" onclick="PTTReporter('btn', 'nav', '官方视频');" target="_blank">官方视频</a></li> -->
+						<li><a href="https://dnf.qq.com/act/a20241120yz/manga/index.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方漫画&#39;);" target="_blank">官方漫画</a></li>
+					</ul>
+				</div>
+				<div class="nav-list dot">
+					<div class="top-link">
+						<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;,&#39;nav&#39;,&#39;内容社区&#39;);" class="icon nav-commu">内容社区</a>
+					</div>
+					<ul>
+						<li><a href="https://dnf.qq.com/web202511/v.html" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;内容中心&#39;);" target="_blank">内容中心</a></li>
+						<li><a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;DNF助手&#39;);">DNF助手<span class="qr"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/zhushou.png"></span></a></li>
+						<li><a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方公众号&#39;);">官方公众号<span class="qr"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/gzh.png"></span></a></li>
+						<li><a href="https://www.douyin.com/user/MS4wLjABAAAAmiMzEttcBsc-C7rHmKo6pPhtTzxAGEWnVJnDa_KHJWM?from_tab_name=main" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方抖音&#39;);" target="_blank">官方抖音</a></li>
+						<li><a href="https://space.bilibili.com/102176172?spm_id_from=333.1007.0.0" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方bilibili&#39;);" target="_blank">官方bilibili</a></li>
+						<li><a href="https://dnf.gamebbs.qq.com/forum.php" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;官方论坛&#39;);" target="_blank">官方论坛</a></li>
+						<li><a href="https://bbs.colg.cn/new?from=gw" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;COLG论坛&#39;);" target="_blank">COLG论坛</a></li>
+						<li><a href="https://dnf.qq.com/cp/a20260108author/" onclick="PTTReporter(&#39;btn&#39;, &#39;nav&#39;, &#39;创作者激励计划&#39;);" target="_blank" class="dot-new">创作激励计划</a></li>
+						<!-- <li><a href="" target="_blank">玩家二创</a></li> -->
+					</ul>
+				</div>
+				<!-- <a href="javascript:closeNav();" class="nav-close"></a> -->
+			</div>
+
+			<div class="search" style="display: none;">
+				<div class="search-bar">
+					<input type="text" placeholder="请输入您要搜索内容的关键词" class="search-input" id="searchInput">
+					<a href="javascript:searchKeywords();" class="icon btn-search">搜索</a>
+				</div>
+
+				<div class="search-bg">
+					<h2 class="tit-search">推荐搜索</h2>
+					<div class="search-tags" id="searchTags">
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+						<span>女鬼剑</span>
+					</div>
+				</div>
+
+
+				<a href="javascript:closeSearch();" class="search-close"></a>
+			</div>
+		
+			<a href="https://dnf.qq.com/cp/a20260530eighteen/" onclick="PTTReporter(&#39;btn&#39;,&#39;slogan&#39;,&#39;首屏slogan&#39;)" target="_blank" class="icon slogan"></a>					
+
+			<div class="kv-buttons">
+				<!-- <a  title="下载游戏" onclick="PTTReporter('btn', 'download', '点击下载游戏');" href="//dnf.qq.com/web2015/down.shtml" target="_blank" class="icon button index-down"></a> -->
+				<!-- <a href="https://dnf.qq.com/cp/a2025vipnetbar/index.html" title="网吧" onclick="PTTReporter('btn', 'netcafe', '网吧');" target="_blank" class="icon button index-netbar"></a>		 -->
+				<a title="WeGame版下载" onclick="PTTReporter(&#39;btn&#39;, &#39;wegamedown&#39;, &#39;WeGame版下载&#39;);" href="https://dldir1.qq.com/tgc/wegame_launcher/WeGameLauncher_DNF_202302242.exe" target="_blank" class="icon button index-wegamedown"></a>
+				<a title="官方极速下载" onclick="PTTReporter(&#39;btn&#39;, &#39;pcdown&#39;, &#39;官方极速下载&#39;);" href="https://cdn-launcher.qq.com/320817738/setup/release/2115251599/DNF_0_Setup.exe" target="_blank" class="icon button index-pcdown"></a>
+				<a title="START云游戏" onclick="PTTReporter(&#39;btn&#39;, &#39;yunyou&#39;, &#39;点击云游戏&#39;);" href="https://start.qq.com/game/special-all/?ADTAG=web-dnf-pc-guanwang#/dnf?safe=1&amp;time=1780384635294" target="_blank" class="icon button index-start"></a>
+				<a title="版本配置信息" onclick="PTTReporter(&#39;btn&#39;, &#39;pcinfo&#39;, &#39;版本配置信息&#39;);" href="javascript:showPop(&#39;#popPcInfo&#39;);" class="icon button index-pcinfo"></a>
+			</div>
+		
+			<a class="tips-age button light" href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;agetips&#39;, &#39;点击适龄提示&#39;);"></a>		
+
+			<!-- <a href="javascript:;" class="icon top-lay"></a> -->
+			<!-- <div class="icon top-lay2" id="topLay">
+				<a href="javascript:hidePop('#topLay')" class="icon lay-close"></a>
+			</div> -->
+		</div>
+		
+		<!-- 新闻资讯 -->
+		<div class="container news">
+			<!-- 新闻轮播 -->
+			<a name="news"></a>
+			<div class="news-focus">
+				<!-- 轮播大图 -->
+				<div class="focus-container">
+					<div class="focus-wrap">
+						<div class="focus-scroll swiper-initialized swiper-horizontal swiper-pointer-events" id="focusScroll">
+							<div class="swiper-wrapper focus-list" id="swiper-wrapper-8c16d0adde12d9b2" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-7840px, 0px, 0px);"><div class="swiper-slide focus-slide swiper-slide-duplicate" data-swiper-slide-index="8" role="group" aria-label="9 / 9" style="width: 1120px;">
+                                <a title="玫瑰婚礼通行券" href="https://dnf.qq.com/cp/a20260611wedding/?e_code=553831" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告9&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/1abef860d3a035654fcb940cf131f054.jpeg" alt="玫瑰婚礼通行券">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">玫瑰婚礼通行券</h2>
+                                        <span class="focus-desc">感受来自阿拉德的浪漫！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide" data-swiper-slide-index="0" role="group" aria-label="1 / 9" style="width: 1120px;">
+                                <a title="18周年畅享大礼来袭！" href="https://dnf.qq.com/cp/a20260611gift/?e_code=553823" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告1&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/0fd65c1434a8431129e038f33b60e2ec.jpeg" alt="18周年畅享大礼来袭！">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">18周年畅享大礼来袭！</h2>
+                                        <span class="focus-desc">登录领全套神器装扮和稀有克隆装扮！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide2" data-swiper-slide-index="1" role="group" aria-label="2 / 9" style="width: 1120px;">
+                                <a title="奥拉蔻的夏日心意" href="https://dnf.qq.com/cp/a20260625add/?e_code=553824" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告2&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ed346ca2bcdceac6e4bc23aff04ce402.jpeg" alt="奥拉蔻的夏日心意">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">奥拉蔻的夏日心意</h2>
+                                        <span class="focus-desc">通关推荐地下城，领夏日好礼！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2" data-swiper-slide-index="2" role="group" aria-label="3 / 9" style="width: 1120px;">
+                                <a title="盛夏未央 云珂急信" href="https://dnf.qq.com/cp/a20260625weiyang/?e_code=553825" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告3&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/c0941f1fb848652d1536a534951c0677.jpeg" alt="盛夏未央 云珂急信">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">盛夏未央 云珂急信</h2>
+                                        <span class="focus-desc">未央助力，高阶司南礼盒上架！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2" data-swiper-slide-index="3" role="group" aria-label="4 / 9" style="width: 1120px;">
+                                <a title="末世录:决战终末之刃" href="https://dnf.qq.com/cp/a20260528ren/?e_code=553826" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告4&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/e17d1b2ce350ce94fb669ae73105e044.jpeg" alt="末世录:决战终末之刃">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">末世录:决战终末之刃</h2>
+                                        <span class="focus-desc">挑战新军团赢荣誉外观奖励！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2" data-swiper-slide-index="4" role="group" aria-label="5 / 9" style="width: 1120px;">
+                                <a title="进地下城办大事！" href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml?e_code=553827" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告5&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/d3070bef06cea66df3dc5e49c38713b0.jpeg" alt="进地下城办大事！">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">进地下城办大事！</h2>
+                                        <span class="focus-desc">从跨界合作到三城快闪，DNF18周年燃爆盛夏！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2 swiper-slide-prev" data-swiper-slide-index="5" role="group" aria-label="6 / 9" style="width: 1120px;">
+                                <a title="2026DNF井盖杯特别篇" href="https://dnf.qq.com/cp/a20260611stronger/index.html?e_code=553828" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告6&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/1dc270e3c69941d38d710d6420abde9c.jpeg" alt="2026DNF井盖杯特别篇">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">2026DNF井盖杯特别篇</h2>
+                                        <span class="focus-desc">参与强者之路，赢专属称号外观</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2 swiper-slide-active" data-swiper-slide-index="6" role="group" aria-label="7 / 9" style="width: 1120px;">
+                                <a title="逐浪节特卖会" href="https://dnf.qq.com/cp/a20260625festival/?e_code=553829" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告7&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/4a66e436b7dabee9d8d91494f839889d.jpeg" alt="逐浪节特卖会">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">逐浪节特卖会</h2>
+                                        <span class="focus-desc">逐浪节特卖会商品上架！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2 swiper-slide-next" data-swiper-slide-index="7" role="group" aria-label="8 / 9" style="width: 1120px;">
+                                <a title="齐心合力，初浪屿大改造！" href="https://dnf.qq.com/cp/a20260611island/?e_code=553830" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告8&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/8584399aaa6774db4f7bfa023567076e.jpeg" alt="齐心合力，初浪屿大改造！">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">齐心合力，初浪屿大改造！</h2>
+                                        <span class="focus-desc">装饰初浪屿得初浪硬币与阶段奖励！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide out-slide3 out-slide2" data-swiper-slide-index="8" role="group" aria-label="9 / 9" style="width: 1120px;">
+                                <a title="玫瑰婚礼通行券" href="https://dnf.qq.com/cp/a20260611wedding/?e_code=553831" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告9&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/1abef860d3a035654fcb940cf131f054.jpeg" alt="玫瑰婚礼通行券">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">玫瑰婚礼通行券</h2>
+                                        <span class="focus-desc">感受来自阿拉德的浪漫！</span>
+                                    </span>
+                                </a>
+                              </div><div class="swiper-slide focus-slide swiper-slide-duplicate out-slide3 out-slide2" data-swiper-slide-index="0" role="group" aria-label="1 / 9" style="width: 1120px;">
+                                <a title="18周年畅享大礼来袭！" href="https://dnf.qq.com/cp/a20260611gift/?e_code=553823" onclick="PTTReporter(&#39;btn&#39;, &#39;gg&#39;, &#39;广告1&#39;);" target="_blank">
+                                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/0fd65c1434a8431129e038f33b60e2ec.jpeg" alt="18周年畅享大礼来袭！">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">18周年畅享大礼来袭！</h2>
+                                        <span class="focus-desc">登录领全套神器装扮和稀有克隆装扮！</span>
+                                    </span>
+                                </a>
+                              </div></div>
+						<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+						<!-- <div class="focus-mask">
+							<h2 class="focus-tit"></h2>
+							<div class="focus-desc"></div>
+						</div> -->
+					</div>
+					<div class="focus-anim"></div>
+
+					<a href="https://dnf.qq.com/cp/a20260625festival/?e_code=553829" target="_blank" class="focus-link" onclick="ggPTT();" style="display: none;"></a>
+				</div>
+	
+				<!-- 轮播缩略图 -->
+				<div class="focus-thumb">
+					<div class="focus-thumb-scroll swiper-initialized swiper-horizontal swiper-pointer-events swiper-thumbs" id="focusThumb">
+						<div class="swiper-wrapper focus-thumb-list" id="swiper-wrapper-3a62ea8bf1464cf8" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-708px, 0px, 0px);"><div class="swiper-slide thumb-slide" role="group" aria-label="1 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/0fd65c1434a8431129e038f33b60e2ec.jpeg" alt="18周年畅享大礼来袭！" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图1&#39;);">
+                              </div><div class="swiper-slide thumb-slide" role="group" aria-label="2 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ed346ca2bcdceac6e4bc23aff04ce402.jpeg" alt="奥拉蔻的夏日心意" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图2&#39;);">
+                              </div><div class="swiper-slide thumb-slide" role="group" aria-label="3 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/c0941f1fb848652d1536a534951c0677.jpeg" alt="盛夏未央 云珂急信" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图3&#39;);">
+                              </div><div class="swiper-slide thumb-slide swiper-slide-prev" role="group" aria-label="4 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/e17d1b2ce350ce94fb669ae73105e044.jpeg" alt="末世录:决战终末之刃" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图4&#39;);">
+                              </div><div class="swiper-slide thumb-slide swiper-slide-visible swiper-slide-active" role="group" aria-label="5 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/d3070bef06cea66df3dc5e49c38713b0.jpeg" alt="进地下城办大事！" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图5&#39;);">
+                              </div><div class="swiper-slide thumb-slide swiper-slide-visible swiper-slide-next" role="group" aria-label="6 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/1dc270e3c69941d38d710d6420abde9c.jpeg" alt="2026DNF井盖杯特别篇" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图6&#39;);">
+                              </div><div class="swiper-slide thumb-slide swiper-slide-visible swiper-slide-thumb-active" role="group" aria-label="7 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/4a66e436b7dabee9d8d91494f839889d.jpeg" alt="逐浪节特卖会" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图7&#39;);">
+                              </div><div class="swiper-slide thumb-slide swiper-slide-visible" role="group" aria-label="8 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/8584399aaa6774db4f7bfa023567076e.jpeg" alt="齐心合力，初浪屿大改造！" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图8&#39;);">
+                              </div><div class="swiper-slide thumb-slide" role="group" aria-label="9 / 9" style="width: 177px;">
+                                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/1abef860d3a035654fcb940cf131f054.jpeg" alt="玫瑰婚礼通行券" onclick="PTTReporter(&#39;btn&#39;, &#39;ggthumb&#39;, &#39;广告缩略图9&#39;);">
+                              </div></div>
+					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+				</div>
+	
+				<!-- 轮播页签 -->
+				<div class="focus-pagesnum">
+					<span class="focus-page">07</span>
+					<span class="focus-all">/09</span>
+				</div>
+	
+				<!-- 轮播切换按钮 -->
+				<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;page2lastpage&#39;, &#39;点击上一页&#39;);" class="icon focus-prev" id="focusPrev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-8c16d0adde12d9b2"></a>
+				<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;page2nextpage&#39;, &#39;点击下一页&#39;);" class="icon focus-next" id="focusNext" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-8c16d0adde12d9b2"></a>
+			</div>
+	
+			<!-- 新闻列表 -->
+			<div class="news-content">
+				<h2>资讯动态</h2>
+				<div class="news-tab">
+					<a href="javascript:newsTabChange(0);" onclick="PTTReporter(&#39;btn&#39;, &#39;newstab0&#39;, &#39;点击最新&#39;);" class="icon news-all on">最新</a>				
+					<a href="javascript:newsTabChange(1);" onclick="PTTReporter(&#39;btn&#39;, &#39;newstab1&#39;, &#39;点击新闻&#39;);" class="icon news-news">新闻</a>				
+					<a href="javascript:newsTabChange(2);" onclick="PTTReporter(&#39;btn&#39;, &#39;newstab2&#39;, &#39;点击公告&#39;);" class="icon news-broad">公告</a>				
+					<a href="javascript:newsTabChange(3);" onclick="PTTReporter(&#39;btn&#39;, &#39;newstab3&#39;, &#39;点击活动&#39;);" class="icon news-event">活动</a>
+					<a href="javascript:newsTabChange(4);" onclick="PTTReporter(&#39;btn&#39;, &#39;newstab4&#39;, &#39;点击动态&#39;);" class="icon news-dt">动态</a>
+				</div>
+				<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/m22990/list_1.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;page2moreinfo&#39;, &#39;点击查看更多资讯&#39;);" target="_blank" class="icon news-more"></a>
+	
+				<ul class="news-list"><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987533.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;新闻列表1&#39;);">
+                                <span class="time">06/24</span>
+                                <span class="tit">2026DNF全国格斗大赛线下总决赛观赛指南</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;新闻列表2&#39;);">
+                                <span class="time">06/25</span>
+                                <span class="tit">进地下城办大事!从跨界合作到三城快闪，DNF18周年燃爆盛夏!</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/497/m22999/202606/987580.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;活动列表3&#39;);">
+                                <span class="time">06/24</span>
+                                <span class="tit">奥拉蔻的夏日心意，迎接夏日新冒险！</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/497/m22999/202606/987579.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;活动列表4&#39;);">
+                                <span class="time">06/24</span>
+                                <span class="tit">盛夏未央云珂急信，高阶司南礼盒上架！</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/497/m22999/202606/987578.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;活动列表5&#39;);">
+                                <span class="time">06/24</span>
+                                <span class="tit">逐浪节特卖会商品上架，掀起海浪卷走暑热！</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/498/m21449/202606/987552.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;公告列表6&#39;);">
+                                <span class="time">06/24</span>
+                                <span class="tit">6月25日 5点30分停机更新公告</span>
+                            </a>
+						</li><li>
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/498/m21449/202606/987270.shtml" target="_blank" class="news-link" onclick="PTTReporter(&#39;btn&#39;, &#39;news&#39;, &#39;公告列表7&#39;);">
+                                <span class="time">06/17</span>
+                                <span class="tit">6月18日 5点30分停机更新公告</span>
+                            </a>
+						</li></ul>
+			</div>
+		</div>
+		
+		<!-- 活动 -->
+		<div class="container act">
+			<a name="act"></a>
+			<div class="act-content">
+				<h2>最新活动</h2>
+				<div class="act-tab">
+					<a href="javascript:actTabChange(0);" onclick="PTTReporter(&#39;btn&#39;, &#39;acttab0&#39;, &#39;热门推荐&#39;);" class="icon act-all on">热门推荐</a>				
+					<a href="javascript:actTabChange(1);" onclick="PTTReporter(&#39;btn&#39;, &#39;acttab1&#39;, &#39;版本活动&#39;);" class="icon act-act">版本活动</a>				
+					<a href="javascript:actTabChange(2);" onclick="PTTReporter(&#39;btn&#39;, &#39;acttab3&#39;, &#39;商城特惠&#39;);" class="icon act-event">商城特惠</a>
+					<a href="javascript:actTabChange(3);" onclick="PTTReporter(&#39;btn&#39;, &#39;acttab4&#39;, &#39;合作活动&#39;);" class="icon news-dt">合作活动</a>
+				</div>
+	
+				<ul class="act-list"><li>
+                <a href="https://dnf.qq.com/cp/a20260611gift/" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动4&#39;);">
+                    <span class="tit">18周年畅享大礼来袭！</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(1)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(2)" alt=""></span>
+                    <span class="time">10天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://dnf.qq.com/cp/a20260528mslgl/" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动5&#39;);">
+                    <span class="tit">末世录军团攻略指引</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(3)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(4)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(5)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(6)" alt=""></span>
+                    <span class="time">23天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://dnf.qq.com/cp/a20260528nba/" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动26&#39;);">
+                    <span class="tit">NBA 联动礼包</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(7)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(8)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(9)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(10)" alt=""></span>
+                    <span class="time">10天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://contents.ctrip.com/activitysetupapp/mkt/index/202606dnf?activityid=MKT_ORDER_LOTTERY_1781230844465&amp;amp;popup=close" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动27&#39;);">
+                    <span class="tit">携程联动酒店送福利</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(11)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(12)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(13)" alt=""></span>
+                    <span class="time">24天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://hub.bbs.colg.cn/activity/summer_celebration/2026/index.html?from=website" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动28&#39;);">
+                    <span class="tit">社区勇士盛典</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(14)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(3)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(15)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(16)" alt=""></span>
+                    <span class="time">9天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://dnf.qq.com/cp/a20260611wegame/index.html" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动29&#39;);">
+                    <span class="tit">WeGame周年庆福利</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(17)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(18)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(19)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(15)" alt=""></span>
+                    <span class="time">9天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://act.xinyue.qq.com/act/a20260601dnf/index.html?closeTgclubTopBar=1" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动30&#39;);">
+                    <span class="tit">心悦周年庆福利</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(20)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(21)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(22)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(15)" alt=""></span>
+                    <span class="time">16天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        <li>
+                <a href="https://dnf.qq.com/cp/a20260320PixMap/" target="_blank" class="act-link" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;左侧活动31&#39;);">
+                    <span class="tit">18周年勇士一起拼</span>
+                    <span class="image"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(3)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(23)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(24)" alt=""></span>
+                    <span class="time">1天后结束</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        </ul>
+			</div>
+	
+			<div class="event">
+				<ul class="event-list" id="eventList">
+                <li>
+                    <a href="https://dnf.qq.com/cp/a20260530unique/" target="_blank" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;热门活动1&#39;);">
+                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(25)" alt="" class="event-image">
+                        <span class="event-mask"></span>
+                        <span class="event-tit">山海御灵 诸神觉醒</span>
+                        <span class="event-time">38天后结束</span>
+                        <span class="event-desc"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(26)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(27)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(28)" alt=""></span>
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://dnf.qq.com/cp/a20260611island/" target="_blank" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;热门活动2&#39;);">
+                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(29)" alt="" class="event-image">
+                        <span class="event-mask"></span>
+                        <span class="event-tit">齐心合力，初浪屿大改造！</span>
+                        <span class="event-time">38天后结束</span>
+                        <span class="event-desc"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(30)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(31)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(32)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(33)" alt=""></span>
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://dnf.qq.com/cp/celebration/" target="_blank" onclick="PTTReporter(&#39;btn&#39;, &#39;act&#39;, &#39;热门活动3&#39;);">
+                        <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(34)" alt="" class="event-image">
+                        <span class="event-mask"></span>
+                        <span class="event-tit">周年庆福利集合页</span>
+                        <span class="event-time">9天后结束</span>
+                        <span class="event-desc"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(15)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(35)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(36)" alt=""><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/saved_resource(37)" alt=""></span>
+                    </a>
+                </li>
+            </ul>
+
+				<span class="icon event-yaoqi"></span>
+
+				<!-- <ul class="event-list event-link-list" id="eventLinkList">
+				</ul> -->
+			</div>
+	
+			<a href="https://dnf.qq.com/web202511/act.html" target="_blank" onclick="PTTReporter(&#39;btn&#39;, &#39;page3moreact&#39;, &#39;查看更多活动&#39;);" class="icon act-more"></a>
+		</div>
+		
+		<!-- 版本 -->
+		<div class="container version">
+
+
+			<div class="version-focus swiper-initialized swiper-horizontal swiper-pointer-events" id="versionFocus">
+				<div class="swiper-wrapper version-focus-list" id="swiper-wrapper-102d7759bc1a1f8ab" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-1006px, 0px, 0px);"><div class="swiper-slide version-focus-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0625el.png" class="version-img" alt="">
+						<h2 style="margin-top: 0px;">进地下城办大事！</h2>
+						<h3>跨界合作到三城快闪</h3>
+						<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version5&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+					<div class="swiper-slide version-focus-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0610al.png" class="version-img" alt="" style="height: 929px;">
+						<h2 style="margin-top: -100px;">拳风逐浪<br>破茧绽光</h2>
+						<h3>新职业新玩法新装扮上线！</h3>
+						<a href="https://dnf.qq.com/cp/a20260611home/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version1&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+
+					<div class="swiper-slide version-focus-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0527cl.png" class="version-img" alt="">
+						<h2 style="margin-top: -100px;">2026DNF<br>全国格斗大赛</h2>
+						<h3>参与活动赢专属外观装扮！</h3>
+						<a href="https://dnf.qq.com/cp/a20260520events/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version2&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+
+					<div class="swiper-slide version-focus-slide" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0528cl.png" class="version-img" alt="">
+						<h2 style="margin-top: -100px;">18周年<br>勇士一起拼</h2>
+						<h3>点亮像素画领限定奖励！</h3>
+						<a href="https://dnf.qq.com/cp/a20260320PixMap/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version3&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+					<div class="swiper-slide version-focus-slide" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0424el.png" class="version-img" alt="" style="height: 929px;">
+						<h2>网吧勇士集结</h2>
+						<h3>每天暴击888Q币</h3>
+						<a href="https://act1.hdnf.qq.com/a20260423netbar/pcbanner.html" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version4&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+					<div class="swiper-slide version-focus-slide swiper-slide-duplicate-prev" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0625el.png" class="version-img" alt="">
+						<h2 style="margin-top: 0px;">进地下城办大事！</h2>
+						<h3>跨界合作到三城快闪</h3>
+						<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version5&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div>
+
+				<div class="swiper-slide version-focus-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 1006px;">
+						<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0610al.png" class="version-img" alt="" style="height: 929px;">
+						<h2 style="margin-top: -100px;">拳风逐浪<br>破茧绽光</h2>
+						<h3>新职业新玩法新装扮上线！</h3>
+						<a href="https://dnf.qq.com/cp/a20260611home/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version1&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+					</div></div>
+			<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+			<!-- <h2>雾岚黄昏战</h2>
+			<h3>夏日登录快速成长，格斗雪人主题宠物等你领</h3>
+			<a href="javascript:alert('敬请期待！')" class="icon btn-enter">立即进入</a> -->
+
+			<div class="version-thumb">
+				<div class="version-thumb-swiper swiper-initialized swiper-horizontal swiper-pointer-events" id="versionThumbSwiper">
+					<div class="swiper-wrapper version-thumb-list" id="swiper-wrapper-1cda524a56e2664d" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-2250px, 0px, 0px);"><div class="swiper-slide version-thumb-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260611home/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version1&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0610ag.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0610a.png);">
+								</span>
+								<h4>拳风逐浪 破茧绽光<br>新职业新玩法新装扮上线！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260520events/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version2&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0527cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0527c.png);">
+								</span>
+								<h4>2026DNF全国格斗大赛<br>参与活动赢专属外观装扮！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260320PixMap/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version3&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0528cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0528c.png);">
+								</span>
+								<h4>18周年勇士一起拼<br>点亮像素画领限定奖励！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 450px;">
+							<a href="https://act1.hdnf.qq.com/a20260423netbar/pcbanner.html" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version4&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0424eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0424e.png);">
+								</span>
+								<h4>网吧勇士集结<br>每天暴击888Q币</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version5&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0625eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0625e.png);">
+								</span>
+								<h4>进地下城办大事！<br>跨界合作到三城快闪</h4>
+							</a>
+						</div>						
+						<div class="swiper-slide version-thumb-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260611home/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version1&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0610ag.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0610a.png);">
+								</span>
+								<h4>拳风逐浪 破茧绽光<br>新职业新玩法新装扮上线！</h4>
+							</a>
+						</div>
+
+						<div class="swiper-slide version-thumb-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260520events/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version2&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0527cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0527c.png);">
+								</span>
+								<h4>2026DNF全国格斗大赛<br>参与活动赢专属外观装扮！</h4>
+							</a>
+						</div>	
+						<div class="swiper-slide version-thumb-slide" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260320PixMap/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version3&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0528cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0528c.png);">
+								</span>
+								<h4>18周年勇士一起拼<br>点亮像素画领限定奖励！</h4>
+							</a>
+						</div>			
+						<div class="swiper-slide version-thumb-slide" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 450px;">
+							<a href="https://act1.hdnf.qq.com/a20260423netbar/pcbanner.html" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version4&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0424eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0424e.png);">
+								</span>
+								<h4>网吧勇士集结<br>每天暴击888Q币</h4>
+							</a>
+						</div>			
+						<div class="swiper-slide version-thumb-slide swiper-slide-duplicate-prev" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version5&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0625eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0625e.png);">
+								</span>
+								<h4>进地下城办大事！<br>跨界合作到三城快闪</h4>
+							</a>
+						</div>	
+					<div class="swiper-slide version-thumb-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260611home/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version1&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0610ag.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0610a.png);">
+								</span>
+								<h4>拳风逐浪 破茧绽光<br>新职业新玩法新装扮上线！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260520events/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version2&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0527cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0527c.png);">
+								</span>
+								<h4>2026DNF全国格斗大赛<br>参与活动赢专属外观装扮！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/cp/a20260320PixMap/" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version3&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0528cg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0528c.png);">
+								</span>
+								<h4>18周年勇士一起拼<br>点亮像素画领限定奖励！</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 450px;">
+							<a href="https://act1.hdnf.qq.com/a20260423netbar/pcbanner.html" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version4&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0424eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0424e.png);">
+								</span>
+								<h4>网吧勇士集结<br>每天暴击888Q币</h4>
+							</a>
+						</div><div class="swiper-slide version-thumb-slide swiper-slide-duplicate" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 450px;">
+							<a href="https://dnf.qq.com/webplat/info/news_version3/119/495/496/m22999/202606/987626.shtml" onclick="PTTReporter(&#39;btn&#39;, &#39;version&#39;, &#39;version5&#39;);" target="_blank" class="version-thumb-link">
+								<span class="gray">
+									<img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/ver0625eg.png" class="version-thumb-img" alt="">
+								</span>
+								<span class="on" style="background-image: url(https://game.gtimg.cn/images/dnf/web202511/main/ver0625e.png);">
+								</span>
+								<h4>进地下城办大事！<br>跨界合作到三城快闪</h4>
+							</a>
+						</div></div>
+				<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+			</div>
+
+			<!-- 版本切换按钮 -->
+			<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;versionlastpage&#39;, &#39;点击上一页&#39;);" class="icon version-prev" id="versionPrev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-102d7759bc1a1f8ab"></a>
+			<a href="javascript:;" onclick="PTTReporter(&#39;btn&#39;, &#39;versionnextpage&#39;, &#39;点击下一页&#39;);" class="icon version-next" id="versionNext" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-102d7759bc1a1f8ab"></a>
+		</div>
+		
+		<!-- 攻略 -->
+		<div class="container guide">
+			<h2>内容中心</h2>
+			<!-- <div class="guide-tab">
+				<a href="javascript:guideTabChange(0);" onclick="PTTReporter('btn', 'guidetab0', '热门推荐');" class="icon guide-all on">官方视频</a>				
+				<a href="javascript:guideTabChange(1);" onclick="PTTReporter('btn', 'guidetab1', '新手升级');" class="icon guide-guide">品牌栏目</a>				
+				<a href="javascript:guideTabChange(2);" onclick="PTTReporter('btn', 'guidetab2', '周常地下城');" class="icon guide-broad">职业视频</a>				
+				<a href="javascript:guideTabChange(3);" onclick="PTTReporter('btn', 'guidetab3', '商城特惠');" class="icon guide-event">赛事栏目</a>
+				<a href="javascript:guideTabChange(4);" onclick="PTTReporter('btn', 'guidetab4', '合作活动');" class="icon news-dt">主播推荐</a>			                                                
+			</div> -->
+	
+			<div class="top-guide">
+            <a href="javascript:showVideoPop(&#39;https://1500042120.vod-qcloud.com/cbd466d8vodsh1500042120/24fa13fc5001834806851339610/AhdqDRfx038A.mp4&#39;)" onclick="PTTReporter(&#39;btn&#39;, &#39;video&#39;, &#39;头条视频&#39;);" class="top-guide-link" title="DNF18周年庆版本6月11日正式更新！盖盖带你细读版本全内容！">
+                <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/20260611_1e1a78da_版本导读.png" class="top-guide-image" alt="DNF18周年庆版本6月11日正式更新！盖盖带你细读版本全内容！">
+                <span class="top-guide-mask"></span>
+                <span class="top-guide-tit">DNF18周年庆版本6月11日正式更新！盖盖带你细读版本全内容！</span>
+            </a>           
+        </div>
+	
+			<ul class="guide-list">
+            <li>
+				<a href="javascript:showVideoPop(&#39;https://1500042120.vod-qcloud.com/cbd466d8vodsh1500042120/adbbf6345001834808873968197/lYxYkgkDCD8A.mp4&#39;)" class="guide-link" title="2026DNF全国格斗大赛总决赛出征片" onclick="PTTReporter(&#39;btn&#39;, &#39;video&#39;, &#39;视频1&#39;);">
+                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/20260626_e8db3dc7_2026DNF全国格斗大赛总决赛出征片.png" class="guide-image" alt="2026DNF全国格斗大赛总决赛出征片">
+                    <span class="guide-mask"></span>
+                    <span class="guide-tit">2026DNF全国格斗大赛总决赛出征片</span>
+                </a> 
+			</li>
+        
+            <li>
+				<a href="javascript:showVideoPop(&#39;https://1500042120.vod-qcloud.com/6ce0f011vodcq1500042120/75986cdd5001834808203608097/sdC1tOlVUjUA.mp4&#39;)" class="guide-link" title="2026DNF井盖杯强者之路特别篇火热开赛" onclick="PTTReporter(&#39;btn&#39;, &#39;video&#39;, &#39;视频2&#39;);">
+                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/20260622_a059d1e5_2026DNF井盖杯强者之路特别票火热来赛.png" class="guide-image" alt="2026DNF井盖杯强者之路特别篇火热开赛">
+                    <span class="guide-mask"></span>
+                    <span class="guide-tit">2026DNF井盖杯强者之路特别篇火热开赛</span>
+                </a> 
+			</li>
+        
+            <li>
+				<a href="javascript:showVideoPop(&#39;https://1500042120.vod-qcloud.com/cbd466d8vodsh1500042120/f40c9a3f5001834806928515522/dQiLPUiilv4A.mp4&#39;)" class="guide-link" title="高燃警告！李佳薇xDNF 帝国骑士主题曲《淬火(IGNITE)》MV发布" onclick="PTTReporter(&#39;btn&#39;, &#39;video&#39;, &#39;视频3&#39;);">
+                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/20260611_a733d9f2_淬火IGNITE-16-9--.jpg" class="guide-image" alt="高燃警告！李佳薇xDNF 帝国骑士主题曲《淬火(IGNITE)》MV发布">
+                    <span class="guide-mask"></span>
+                    <span class="guide-tit">高燃警告！李佳薇xDNF 帝国骑士主题曲《淬火(IGNITE)》MV发布</span>
+                </a> 
+			</li>
+        
+            <li>
+				<a href="javascript:showVideoPop(&#39;https://1500042120.vod-qcloud.com/6ce0f011vodcq1500042120/56e366025001834806855280572/iWYagswRkOAA.mp4&#39;)" class="guide-link" title="6月11日18周年庆版本更新速览" onclick="PTTReporter(&#39;btn&#39;, &#39;video&#39;, &#39;视频4&#39;);">
+                    <img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/20260611_253a6718_版本速览.png" class="guide-image" alt="6月11日18周年庆版本更新速览">
+                    <span class="guide-mask"></span>
+                    <span class="guide-tit">6月11日18周年庆版本更新速览</span>
+                </a> 
+			</li>
+        </ul>
+
+			<a href="https://dnf.qq.com/web202511/v.html" target="_blank" onclick="PTTReporter(&#39;btn&#39;, &#39;guidemore&#39;, &#39;查看更多攻略&#39;);" class="icon guide-more"></a>
+		</div>
+		
+		<!-- DNFU -->
+		<div class="container dnfu">
+			<h2 class="tit-dnfu">DNFU</h2>
+			<h3>DNF世界观设定站，涵盖编年史、世界、职业、人物等资料档案，海量原画、最新故事，一网打尽。</h3>
+			<a href="https://dnf.qq.com/act/a20241120yz/" onclick="PTTReporter(&#39;btn&#39;, &#39;dnfu&#39;, &#39;dnfuenter&#39;);" target="_blank" class="icon btn-enter">立即进入</a>
+		</div>
+		
+		<!-- 返回顶部 -->
+		<div class="container return">
+			<a href="https://dnf.qq.com/#" class="icon btn-returntop"></a>
+		</div>
+		
+		<!-- 底部 -->
+		<div class="container foot fp-auto-height">
+			<div class="zoomclass">
+				<div class="footer">
+					<div id="gfooter" ams="119/35078/m313" age="16" ieg-logo="1"><div class="foot"><div class="foot_cpright"><div class="foot_lefts"><a target="_blank" rel="noopener" href="https://ieg.tencent.com/2023/index.html" title="腾讯互动娱乐" class="foot_ieg_logo">腾讯互动娱乐</a></div><ul class="foot_links"><li class="link_map"><a target="_blank" rel="noopener" href="https://ieg.tencent.com/2023/index.html">腾讯互动娱乐</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://game.qq.com/contract.shtml">服务条款</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://game.qq.com/privacy_guide.shtml?ADTAG=gamepcbottom">隐私保护指引</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://game.qq.com/privacy_guide_children.shtml?ADTAG=gamepcbottom">儿童隐私保护指引</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://careers.tencent.com/">腾讯游戏招聘</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://kf.qq.com/">腾讯游戏客服</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://game.qq.com/web201910/introduce.html?ADTAG=gamepcbottom">游戏列表</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://www.tencent.com/zh-cn/partnership.html">广告服务及商务合作</a><span class="f_line">|</span></li><li class="copyright_zh"><a target="_blank" rel="noopener" href="https://www.tencent.com/law/mo_law.shtml?/law/copyright.htm">腾讯公司版权所有</a><a target="_blank" rel="noopener" href="https://game.qq.com/self-discipline_pact.shtml">网络游戏行业防沉迷自律公约</a></li><li class="copyright_en"><p class="copyright_txt">COPYRIGHT © 1998 - 2026 TENCENT. ALL RIGHTS RESERVED.</p><p class="copyright_txt">COPYRIGHT © 2008 NEOPLE Inc., Licensed to TENCENT. All Rights Reserved. <!--a class="font-link" href="javascript:void(0);" style="cursor: default;">游戏字体</a--></p><p class="copyright_txt">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p></li><li class="limit_age">本网络游戏适合16+岁的用户使用；为了您的健康，请合理控制游戏时间。</li><li class="copyright_public"><a target="_blank" rel="noopener" href="https://szcert.ebs.org.cn/6917b6fe-b844-4e12-97c5-85b8d1df30ed" title="深圳市市场监督管理局企业主体身份公示"><img src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/gswj.png" width="15" height="15" alt="深圳市市场监督管理局企业主体身份公示">工商网监电子标识 </a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://www.qq.com/culture.shtml">粤网文[2023]2882-203号</a><span class="f_line">|</span><a target="_blank" rel="noopener" href="https://game.qq.com/culture3.html">（署）网出证（粤）字第054号</a></li><li class="copyright_private">文网进字[2014]034号<span class="f_line">|</span>ISBN 978-7-89988-060-9<span class="f_line">|</span>新广出审[2014]952号<span class="f_line">|</span>全国文化市场统一举报电话：12318</li></ul></div></div></div>
+					<div class="foot-font" style="display: none;">
+						字体名称 : AF PEPSI<br>
+						<!-- - Copyright : Font by Abstract Fonts (<a href="https://www.abstractfonts.com/" target="_blank">https://www.abstractfonts.com/</a>)<br /> -->
+						- Copyright : Font by Abstract Fonts (https://www.abstractfonts.com/)<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 视频弹窗 -->
+<div class="lay" id="popVideo" style="display: none;">
+	<div class="media-con media-video" id="mediaVideo" style="transform: scale(0.741016);">
+		<div class="video-con" id="popVideoCon"></div>
+		<!-- <a href="javascript:mediaVideoPlay();" class="icon btn-play" id="mediaPlay"></a> -->
+		<a href="javascript:hideVideoPop();" class="icon pop-close"></a>
+	</div>
+</div>
+
+<!-- 开屏视频 -->
+<div class="lay video-lay" style="display: none;">
+	<video id="opVideo" class="opv" src="https://dnf.lv.game.qq.com/dis_kt_11051ddb5f8b98f3af9cb8c1e2cd69c2_1766470774/0b534mac4aaarmabvhckczu6py6df3rqalqa.f0.mp4" style="object-fit:fill" x-webkit-airplay="true" webkit-playsinline="true" playsinline="true" airplay="true" muted="true" preload="auto"></video>	
+	
+</div>
+
+<!-- 配置信息弹窗 -->
+<div class="lay" id="popPcInfo" style="display: none;">
+	<div class="pop-pcinfo" id="pcInfo" style="transform: scale(0.741016);">
+		<a href="javascript:hidePop(&#39;#popPcInfo&#39;);" class="icon btn-pcclose"></a>
+		<ul class="info-list">
+			<li class="li1">客户端版本：<span>34.3.10.2</span></li>
+			<li class="li2">支持系统：WIN7 / WIN8 / WIN10 / Win11</li>
+			<li class="li1">更新日期：2026-02-05</li>
+			<li class="li2">文件大小：<span>45712m</span></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 鼠标跟随 -->
+<div class="mouse" style="display: block; transform: translate(1603px, 194px);"></div>
+<!-- 引入脚本 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/jquery-1.12.3.min.js.下载"></script>
+<!-- 获取活动列表 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/Dnf_actListOnline_3.js.下载" charset="gb2312"></script>
+
+<!-- 获取视频会用到的工具-s -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/milo.js.下载"></script>
+<!-- 获取视频会用到的工具-e -->
+<!-- 登录工具-s -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/milo.min.js.下载"></script>
+<!-- 新闻活动攻略资讯 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/newsSearch.js.下载"></script>
+<script src="https://dnf.qq.com/web202511/js/activitySearch.js"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/videoSearch.js.下载"></script>
+<!-- 组件 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/swiper-bundle.min.js.下载"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/foot.js.下载"></script><script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/eas.js.下载"></script><script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/index.js.下载"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/txplayer.js.下载"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/fx.js.下载"></script>
+<!-- 新闻组件 -->
+<!-- <script src="//game.gtimg.cn/images/js/fillnewsgicp/v1.4.js" charset="UTF-8"></script> -->
+<!-- 交互 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/tgodp.js.下载"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/main.js.下载" charset="UTF-8"></script>
+ <!-- 20231109版本统计 -->
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/fe-report-sdk.min.js.下载" charset="UTF-8"></script>
+<script src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/o2aegis.f.min.js.下载" charset="UTF-8"></script>
+<!-- <script>
+	document.write('<script type="text/javascript" src="/web202511/js/tgodp.js?v=' + Date.now() + '"></s' + 'cript>');
+</script> -->
+<script>
+	ACT.fun.checkLogin();
+	// showIndexImg();
+	showGGImg();
+	showNewsList(0);
+	initActList();
+	showActList(0);
+	showVideoList(0);
+</script><script type="text/javascript" src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/idata_ad_25094.js.下载"></script><script type="text/javascript" src="./地下城与勇士：创新世纪-DNF-官方网站-腾讯游戏-格斗网游王者之作,500万同时在线_files/index(1).js.下载"></script>
+
+<script>
+var setSite = {
+	siteType: "os",
+	pageType: "main",
+	pageName: "首页",
+	project: "other",
+	osact: "pc"
+};
+if (typeof (pgvMain) === 'function') {
+	pgvMain({
+		// o2: { enable: true },
+		autoTrackBeacon: {
+			reporterName: 'autoTrackBeacon',
+			report: {
+				commonParams: {
+					uid: FxFeReportSDK.util.getCookie("acctype") == "qc" || FxFeReportSDK.util.getCookie("acctype") == "wx" ? FxFeReportSDK.util.getCookie("openid") : FxFeReportSDK.util.getCookie("uin"),
+				}
+			}
+		}
+	})
+}
+</script>
+
+</body></html>

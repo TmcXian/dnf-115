@@ -1,0 +1,58 @@
+window.ACT = {};
+ACT.fun = {
+    // 检测登录 ACT.fun.checkLogin();
+    checkLogin() {
+        Milo.checkLogin({
+            iUseQQConnect: true,
+            success: function (res) {
+                let userInfo = window['userInfo'] = res && res.userInfo;
+                console.log('登录成功, 用户信息为:', userInfo);
+                $('#milo-userName').text(userInfo.nickName);
+                // userInfo.avatarUrl
+                $('#milo-unlogin').css("display", "none");
+                $('#milo-logined').css("display", "block");
+                if(userInfo && userInfo.openid) {
+                    console.log('用户登录openid：',userInfo.openid)
+                    PTTSendClick && PTTSendClick('btn', 'loginopenid', userInfo.openid);
+                }
+            },
+            fail: function (res) {
+                console.log('未登录');
+                $('#milo-unlogin').css("display", "block");
+                $('#milo-logined').css("display", "none");
+            }
+        });
+    },
+    //登录 ACT.fun.doLogin();
+    doLogin() {
+        Milo.loginByQQConnect({
+            appId: "101491592",
+            scope: "get_user_info",
+            state: "STATE",
+            redirectUri: "https://milo.qq.com/comm-htdocs/login/qc_redirect.html",
+            sUrl: '', // 登录之后的跳转地址
+            callback: function (res) { // 登录成功后的回调
+                let userInfo = res && res.userInfo;
+                console.log('登录成功, 用户信息为:', userInfo);
+                $('#milo-userName').text(userInfo.nickName);
+                // userInfo.avatarUrl
+                $('#milo-unlogin').css("display", "none");
+                $('#milo-logined').css("display", "block");
+                if(userInfo && userInfo.openid) {
+                    console.log('用户登录openid：',userInfo.openid)
+                    PTTSendClick && PTTSendClick('btn', 'loginopenid', userInfo.openid);
+                }
+            },
+        });
+    },
+    // 注销 ACT.fun.logout();
+    logout() {
+        Milo.logout({
+            callback: function () {
+                console.log('已注销');
+                $('#milo-unlogin').css("display", "block");
+                $('#milo-logined').css("display", "none");
+            }
+        })
+    }
+}

@@ -40,18 +40,28 @@ app.use('/api', authRoutes);
 app.use('/api/logs', logsRoutes);
 app.use('/api', launcherRoutes);
 
-// 前端页面路由：保持原有逻辑
+// SPA fallback：所有非 API 请求返回新的 index.html
 app.get('*', (req, res) => {
-  const indexPath = path.join(__dirname, 'page', 'index.html');
+  // API 路由不会走到这里（已在上面注册），这是兜底
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ code: 404, message: 'API 路由不存在' });
+  }
+  const indexPath = path.join(__dirname, 'index.html');
   const fs = require('fs');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
   } else {
-    res.status(404).send({
-      code: 404,
-      message: '前端页面文件不存在，请检查page/index.html路径',
-      path: indexPath
-    });
+    // 降级：尝试旧页面路径
+    const oldPath = path.join(__dirname, 'page', 'index.html');
+    if (fs.existsSync(oldPath)) {
+      res.sendFile(oldPath);
+    } else {
+      res.status(404).send({
+        code: 404,
+        message: '前端页面文件不存在',
+        path: indexPath
+      });
+    }
   }
 });
 

@@ -1,0 +1,144 @@
+const cdnBase = "https://vasd-cms.qq.com"; // CDN域名
+const cdnEnv = "prod"; // 环境标识: pre-预发布 / prod-生产
+const serachUrl = cdnBase + "/cms/dnf/" + cdnEnv + "/api/v1/dnf_info_articles_6_zh.json"; // 全量视频数据
+const goDetailUrl = "https://dnf.qq.com/v/detail.shtml"; // 视频详情跳转链接头部
+const moreVideo = "https://dnf.qq.com/v/search.shtml"; // 更多视频跳转
+
+// 视频数据缓存（按栏目uid缓存）
+let videoDataCache = {};
+
+// 获取时间戳参数（10秒级别，提高CDN实时性）
+function getTenSecondTick() {
+    return Math.floor(Date.now() / 10000);
+}
+
+// 栏目ID与tab序号的映射关系（对应v.html中tab的顺序）
+// tab0-官方视频 tab1-品牌栏目 tab2-职业视频 tab3-赛事栏目 tab4-主播推荐
+// 栏目名称与tab序号的对应关系
+const categoryNameMap = {
+    1: '官方视频',
+    2: '品牌栏目',
+    3: '职业视频',
+    4: '赛事栏目',
+    5: '主播推荐'
+};
+let categoryMap = {};
+let columnsLoaded = false;
+
+// 从CDN拉取栏目列表
+function fetchColumns() {
+    if (columnsLoaded) {
+        return Promise.resolve(categoryMap);
+    }
+    const url = cdnBase + "/cms/dnf/" + cdnEnv + "/api/v1/columns111.json?ts=" + getTenSecondTick();
+    return new Promise((resolve) => {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                const columns = result.data || [];
+                // 根据栏目名称匹配tab序号
+                for (let key in categoryNameMap) {
+                    const name = categoryNameMap[key];
+                    const col = columns.find(item => item.name === name);
+                    if (col) {
+                        categoryMap[key] = col.uid;
+                    }
+                }
+                columnsLoaded = true;
+                console.log("栏目列表加载成功：", categoryMap);
+                resolve(categoryMap);
+            },
+            error: function () {
+                // 请求失败时使用兜底默认值
+                categoryMap = { 1: 30050, 2: 30088, 3: 30089, 4: 30090, 5: 30091 };
+                columnsLoaded = true;
+                console.log("栏目列表请求失败，使用默认值");
+                resolve(categoryMap);
+            }
+        });
+    });
+}
+
+// 根据栏目uid拉取数据
+function fetchVideoDataByColumn(columnUid) {
+    const cacheKey = columnUid || 'all';
+    if (videoDataCache[cacheKey]) {
+        return Promise.resolve(videoDataCache[cacheKey]);
+    }
+
+    // 按栏目uid拉取 或 拉取全量数据
+    let url;
+    if (columnUid) {
+        url = cdnBase + "/cms/dnf/" + cdnEnv + "/api/v1/dnf_info_articles_6_columns_" + columnUid + ".json";
+    } else {
+        url = serachUrl;
+    }
+    url += "?ts=" + getTenSecondTick();
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                const data = result.data || [];
+                videoDataCache[cacheKey] = data;
+                resolve(data);
+            },
+            error: function (error) {
+                console.log("视频数据请求失败：", error);
+                reject(error);
+            }
+        });
+    });
+}
+
+// 排序逻辑：置顶优先，再按order_number降序（数字大的在前）
+function sortVideoList(list) {
+    return list.sort((a, b) => {
+        // 置顶优先
+        if (a.set_top !== b.set_top) {
+            return b.set_top ? 1 : -1;
+        }
+        // order_number 降序（数字大的在前，null排最后）
+        const orderA = a.order_number != null ? a.order_number : -Infinity;
+        const orderB = b.order_number != null ? b.order_number : -Infinity;
+        return orderB - orderA;
+    });
+}
+
+// 获取视频列表 cusSize-每页数据条数, category-分类type, page-页码
+async function getVideoList(cusSize, category, page, notSort) {
+    const currentPage = page || 1;
+    await fetchColumns();
+    const columnUid = categoryMap[category];
+
+    let allData = await fetchVideoDataByColumn(columnUid).catch(() => []);
+
+    // TODO: 测试用 - 官方视频栏目虚拟扩充到60条，验证分页效果，上线前删除
+    // if (columnUid === 30050 && allData.length > 0) {
+    //     let mockData = [];
+    //     while (mockData.length < 60) {
+    //         mockData = mockData.concat(allData.map((item, idx) => ({
+    //             ...item,
+    //             title: item.title + ' (' + (mockData.length + idx + 1) + ')',
+    //             documentId: item.documentId + '_' + (mockData.length + idx)
+    //         })));
+    //     }
+    //     allData = mockData.slice(0, 60);
+    // }
+
+    // 排序
+    const sortedData = notSort ? allData : sortVideoList([...allData]);
+
+    // 设置总数用于分页
+    window.totalVideo = sortedData.length;
+
+    // 分页截取
+    const startIndex = (currentPage - 1) * cusSize;
+    const pageData = sortedData.slice(startIndex, startIndex + cusSize);
+
+    return pageData;
+}

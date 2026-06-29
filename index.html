@@ -1,961 +1,227 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNF 115版本 - 装备套装工具</title>
-    <link rel="stylesheet" href="./static/css/base.css">
-    <link rel="stylesheet" href="./static/css/dnf-style.css">
-    <link rel="stylesheet" href="./static/css/page/rank.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            min-height: 100vh;
-            background-color: #1a1a1a;
-            color: #c0c0c0;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-        .set-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .set-card {
-            background: #222;
-            border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .set-card:hover {
-            border-color: #ffd700;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
-        .set-card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 10px;
-            object-fit: contain;
-        }
-        .set-card h3 {
-            color: #ffd700;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        .set-alias {
-            color: #c0c0c0;
-            font-size: 14px;
-            font-style: italic;
-        }
-        .set-tier {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 2px 8px;
-            background: #8b7355;
-            color: #1a1a1a;
-            font-size: 12px;
-            border-radius: 4px;
-        }
-        .dnf-header {
-            background: #111;
-            padding: 15px 20px;
-            border-bottom: 2px solid #8b7355;
-        }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .logo {
-            width: 60px;
-            height: 60px;
-        }
-        .banner {
-            background: url("./static/img/bg/banner-bg.jpg") center/cover no-repeat;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .banner-content h2 {
-            color: #ffd700;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        .banner-content p {
-            color: #c0c0c0;
-            font-size: 18px;
-        }
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-        .function-nav {
-            margin-bottom: 40px;
-        }
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            padding: 10px 0;
-        }
-        .nav-card {
-            background: #222;
-            border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 25px 15px;
-            text-align: center;
-            color: #ffd700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .nav-card:hover {
-            border-color: #ffd700;
-            background: #2a2a2a;
-        }
-        .set-showcase h2 {
-            color: #ffd700;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 2px solid #8b7355;
-            padding-bottom: 10px;
-        }
-        .set-category {
-            margin: 40px 0 20px;
-            color: #ffd700;
-            font-size: 22px;
-            padding-left: 10px;
-            border-left: 4px solid #8b7355;
-        }
-        /* 登录按钮样式 */
-        .bg-gold {
-            background-color: #ffd700;
-        }
-        .text-dark {
-            color: #1a1a1a;
-        }
-        .px-4 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        .py-2 {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-        .rounded-md {
-            border-radius: 0.375rem;
-        }
-        .font-bold {
-            font-weight: 700;
-        }
-        .cursor-pointer {
-            cursor: pointer;
-        }
-        .hover\:bg-yellow-400:hover {
-            background-color: #facc15;
-        }
-        .transition-colors {
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-        }
-        /* 模态框样式 */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .modal-content {
-            background-color: #222;
-            border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 20px;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #8b7355;
-        }
-        .modal-header h3 {
-            color: #ffd700;
-            font-size: 20px;
-        }
-        .close-btn {
-            color: #ffd700;
-            font-size: 24px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-            line-height: 1;
-        }
-        .close-btn:hover {
-            color: #fff;
-        }
-        .modal-body {
-            padding: 10px 0;
-        }
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-        .block {
-            display: block;
-        }
-        .text-silver {
-            color: #c0c0c0;
-        }
-        .mb-2 {
-            margin-bottom: 0.5rem;
-        }
-        .w-full {
-            width: 100%;
-        }
-        .bg-dark {
-            background-color: #1a1a1a;
-        }
-        .border {
-            border: 1px solid;
-        }
-        .border-dnf-border {
-            border-color: #8b7355;
-        }
-        .rounded {
-            border-radius: 0.25rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mt-3 {
-            margin-top: 0.75rem;
-        }
-        .text-gold {
-            color: #ffd700;
-        }
-        .auth-form {
-            display: none;
-        }
-        .auth-form.active {
-            display: block;
-        }
-        /* 错误提示样式 */
-        .error-text {
-            color: #ff4444;
-            font-size: 12px;
-            margin-top: 5px;
-            display: none;
-        }
-        .error-text.show {
-            display: block;
-        }
-        .input-error {
-            border-color: #ff4444 !important;
-        }
-        /* 登录后用户信息样式 */
-        .user-info {
-            color: #ffd700;
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #222;
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: 1px solid #8b7355;
-        }
-        .logout-btn {
-            background: #8b7355;
-            color: #fff;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background 0.2s ease;
-        }
-        .logout-btn:hover {
-            background: #a08866;
-        }
-        /* 核心：适配页面的自定义提示弹窗（屏幕中心） */
-        .dnf-alert {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999; /* 最高层级，确保在最前面 */
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        .dnf-alert.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .dnf-alert-box {
-            background: linear-gradient(135deg, #222, #111);
-            border: 3px solid #ffd700; /* 金色边框，匹配DNF风格 */
-            border-radius: 12px;
-            padding: 30px 40px;
-            min-width: 400px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* 金色光晕 */
-            transform: scale(0.95);
-            transition: transform 0.4s ease;
-        }
-        .dnf-alert.active .dnf-alert-box {
-            transform: scale(1);
-        }
-        .dnf-alert-text {
-            color: #ffd700; /* 金色文字 */
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* 文字发光 */
-        }
-        .dnf-alert-btn {
-            background: #ffd700;
-            color: #1a1a1a;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .dnf-alert-btn:hover {
-            background: #facc15;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
-        }
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 20px;
-            }
-            .banner-content h2 {
-                font-size: 24px;
-            }
-            .set-showcase h2 {
-                font-size: 24px;
-            }
-            .set-category {
-                font-size: 20px;
-            }
-            .header-content {
-                flex-wrap: wrap;
-            }
-            .modal-content {
-                width: 95%;
-            }
-            .user-info {
-                font-size: 14px;
-                padding: 6px 10px;
-            }
-            /* 移动端提示弹窗适配 */
-            .dnf-alert-box {
-                min-width: 90%;
-                padding: 20px 15px;
-            }
-            .dnf-alert-text {
-                font-size: 18px;
-            }
-            /* 移动端侧边栏隐藏 */
-            .side-toolbar { display: none; }
-        }
-        /* 左侧工具栏 */
-        .side-toolbar {
-            position: fixed;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .side-tool-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            border: 2px solid #8b7355;
-            background: linear-gradient(135deg, #222, #111);
-            color: #ffd700;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-        .side-tool-btn:hover {
-            border-color: #ffd700;
-            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-            transform: translateX(3px);
-            box-shadow: 0 6px 20px rgba(255,215,0,0.3);
-        }
-        .side-tool-btn span {
-            font-size: 10px;
-            margin-top: 3px;
-            white-space: nowrap;
-        }
-        .side-tool-btn.launch { border-left: 3px solid #ff4444; }
-        .side-tool-btn.launch:hover { border-left-color: #ff6666; }
-        .side-tool-btn.website { border-left: 3px solid #4488ff; }
-        .side-tool-btn.website:hover { border-left-color: #66aaff; }
-        .side-tool-btn.download { border-left: 3px solid #44cc44; }
-        .side-tool-btn.download:hover { border-left-color: #66ee66; }
-        .side-tool-tip {
-            color: #ffd700;
-            font-size: 10px;
-            text-align: center;
-            text-shadow: 0 0 6px rgba(255,215,0,0.5);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNF 115 — 千海天 · 誓约套装指南</title>
+  <link rel="icon" href="./static/img/logo/dnf-logo.png">
+  <link rel="stylesheet" href="./static/css/components.css">
+
+  <!-- Import Map: Vue 3 + Vue Router (本地文件) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "vue": "./static/js/vendor/vue.esm-browser.prod.js",
+      "vue-router": "./static/js/vendor/vue-router.esm-browser.prod.js"
+    }
+  }
+  </script>
+
+  <!-- ===== 全局样式 ===== -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', 'Microsoft YaHei', '微软雅黑', system-ui, -apple-system, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 900px 600px at 20% -10%, rgba(184,134,11,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 500px at 80% 20%, rgba(9,105,218,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 400px at 50% 90%, rgba(130,80,223,0.04) 0%, transparent 60%);
+    }
+    a { color: #b8860b; text-decoration: none; }
+    a:hover { color: #8b6914; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; border: none; outline: none; background: none; }
+    ul, ol { list-style: none; }
+    table { border-collapse: collapse; width: 100%; }
+
+    :root {
+      --color-bg-primary:    #f0f2f5;
+      --color-bg-secondary:  #ffffff;
+      --color-bg-tertiary:   #f5f6f8;
+      --color-bg-hover:      #e8eaed;
+      --color-bg-glass:      rgba(255, 255, 255, 0.85);
+      --color-border-default:  #e1e4e8;
+      --color-border-emphasis: #8b949e;
+      --color-border-gold:     rgba(184, 134, 11, 0.2);
+      --color-text-primary:   #1a1a2e;
+      --color-text-secondary: #656d76;
+      --color-text-muted:     #8b949e;
+      --color-accent:       #b8860b;
+      --color-accent-hover: #8b6914;
+      --color-accent-glow:  rgba(184, 134, 11, 0.15);
+      --color-cyan:       #0969da;
+      --color-cyan-hover: #0550ae;
+      --color-cyan-glow:  rgba(9, 105, 218, 0.12);
+      --color-red:       #cf222e;
+      --color-green:     #1a7f37;
+      --color-purple:    #8250df;
+      --color-orange:    #bf8700;
+      --font-size-xs:   0.75rem;
+      --font-size-sm:   0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg:   1.125rem;
+      --font-size-xl:   1.25rem;
+      --font-size-2xl:  1.5rem;
+      --font-size-3xl:  2rem;
+      --font-size-4xl:  2.5rem;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   16px;
+      --radius-xl:   24px;
+      --radius-full: 9999px;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:   0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:   0 8px 30px rgba(0,0,0,0.1);
+      --shadow-gold: 0 0 20px var(--color-accent-glow);
+      --shadow-cyan: 0 0 20px var(--color-cyan-glow);
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      --container-max: 1200px;
+      --header-height: 60px;
+      --toolbar-width: 56px;
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0d1117; }
+    ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8b949e; }
+
+    #app { min-height: 100vh; display: flex; flex-direction: column; }
+    .app-root { display: flex; flex-direction: column; min-height: 100vh; padding-left: var(--toolbar-width); }
+    .app-main { flex: 1; padding-top: var(--header-height); width: 100%; }
+
+    .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-lg); }
+    .flex { display: flex; } .flex-col { flex-direction: column; }
+    .items-center { align-items: center; } .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-sm { gap: var(--space-sm); } .gap-md { gap: var(--space-md); }
+    .gap-lg { gap: var(--space-lg); } .gap-xl { gap: var(--space-xl); }
+    .text-center { text-align: center; }
+    .text-gold { color: var(--color-accent); } .text-cyan { color: var(--color-cyan); }
+    .text-muted { color: var(--color-text-secondary); }
+    .mt-sm { margin-top: var(--space-sm); } .mt-md { margin-top: var(--space-md); }
+    .mt-lg { margin-top: var(--space-lg); } .mt-xl { margin-top: var(--space-xl); }
+    .mt-2xl { margin-top: var(--space-2xl); }
+    .mb-md { margin-bottom: var(--space-md); } .mb-lg { margin-bottom: var(--space-lg); }
+    .mb-xl { margin-bottom: var(--space-xl); }
+    .p-md { padding: var(--space-md); } .p-lg { padding: var(--space-lg); }
+    .p-xl { padding: var(--space-xl); }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-card::after {
+      content: '';
+      position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,134,11,0.2), transparent);
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(184,134,11,0.2);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+    .glass-card:hover::after { opacity: 1; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm);
+      padding: 10px 22px; border-radius: var(--radius-md);
+      font-weight: 600; font-size: var(--font-size-sm);
+      cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); white-space: nowrap;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #b8860b, #d4a017); color: #fff; border: none;
+      box-shadow: 0 2px 8px rgba(184,134,11,0.25);
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: linear-gradient(135deg, #d4a017, #e6b422); box-shadow: 0 4px 20px rgba(184,134,11,0.35); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1px solid rgba(0,0,0,0.12); color: #656d76; }
+    .btn-outline:hover { border-color: #b8860b; color: #b8860b; box-shadow: 0 0 14px rgba(0,0,0,0.12); }
+    .btn-ghost { background: transparent; color: #656d76; }
+    .btn-ghost:hover { color: #1a1a2e; background: rgba(0,0,0,0.04); }
+    .btn-sm { padding: 6px 14px; font-size: var(--font-size-xs); }
+    .btn-lg { padding: 14px 28px; font-size: var(--font-size-base); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+    .input {
+      width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-md);
+      color: #1a1a2e; transition: all 0.3s ease;
+    }
+    .input:focus { border-color: rgba(184,134,11,0.4); box-shadow: 0 0 0 3px rgba(0,0,0,0.04), 0 0 16px rgba(184,134,11,0.04); background: #fff; }
+    .input::placeholder { color: #8b949e; }
+    .input.error { border-color: #cf222e; box-shadow: 0 0 0 3px rgba(207,34,46,0.08); }
+
+    .select {
+      padding: 8px 32px 8px 12px; background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-md);
+      color: #1a1a2e; cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b7d6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      transition: all 0.3s ease;
+    }
+    .select:hover { border-color: rgba(184,134,11,0.25); }
+    .select:focus { border-color: rgba(184,134,11,0.4); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); outline: none; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(184,134,11,0.25); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { width: 32px; height: 32px; border: 3px solid #30363d; border-top-color: #f0c040; border-radius: 50%; animation: spin 0.8s linear infinite; }
+
+    .fade-enter-active, .fade-leave-active { transition: opacity 0.25s ease; }
+    .fade-enter-from, .fade-leave-to { opacity: 0; }
+
+    .app-loader {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100vh; gap: var(--space-md); color: #8b949e;
+    }
+
+    @media (max-width: 768px) {
+      :root { --toolbar-width: 0px; }
+      .app-root { padding-left: 0; }
+      .container { padding: 0 var(--space-md); }
+    }
+  </style>
 </head>
 <body>
-    <!-- 左侧工具栏 -->
-    <div class="side-toolbar">
-        <button class="side-tool-btn launch" onclick="launchDNF()" title="启动地下城与勇士">
-            🎮
-            <span>启动游戏</span>
-        </button>
-        <span class="side-tool-tip">DNF</span>
-        <a class="side-tool-btn website" href="https://dnf.qq.com/" target="_blank" title="官方有最新的游戏资讯和活动">
-            🌐
-            <span>官方网站</span>
-        </a>
-        <button class="side-tool-btn download" onclick="downloadDNF()" title="后台下载地下城与勇士，页面不会跳转">
-            ⬇
-            <span>下载游戏</span>
-        </button>
+  <div id="app">
+    <div class="app-loader">
+      <div class="spinner" style="width:48px;height:48px;border-width:4px;"></div>
+      <p>千海天 · 誓约套装指南</p>
     </div>
+  </div>
 
-    <!-- 顶部导航 -->
-    <header class="dnf-header">
-        <div class="header-content">
-            <img src="./static/img/logo/dnf-logo.png" alt="DNF Logo" class="logo" onerror="this.src='./static/img/logo/default-logo.png'">
-            <h1>115版本装备套装工具</h1>
-            <!-- 登录/用户信息区域 -->
-            <div id="authContainer">
-                <button id="loginRegisterBtn" class="bg-gold text-dark px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-yellow-400 transition-colors">
-                    登录/注册
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Banner区域 -->
-    <section class="banner">
-        <div class="banner-content">
-            <h2>重力之泉版本 · 套装搭配指南</h2>
-            <p>专业的装备套装查询与分析工具</p>
-        </div>
-    </section>
-
-    <!-- 功能导航 -->
-    <main class="main-content">
-        <nav class="function-nav">
-            <div class="nav-grid">
-                <a href="./page/rank.html" class="nav-card">
-                    <h3>强度排行</h3>
-                    <p>多维度套装强度排行</p>
-                </a>
-                <a href="./page/query.html" class="nav-card">
-                    <h3>套装查询</h3>
-                    <p>搜索与浏览套装属性</p>
-                </a>
-                <a href="./page/compare.html" class="nav-card">
-                    <h3>套装对比</h3>
-                    <p>双套/多套属性对比</p>
-                </a>
-                <a href="./page/logs.html" class="nav-card" id="logsNavCard" style="display:none;">
-                    <h3>📋 操作日志</h3>
-                    <p>查看用户操作记录</p>
-                </a>
-            </div>
-        </nav>
-
-        <!-- 套装展示区域 -->
-        <section class="set-showcase">
-            <h2>太初阶段套装大全</h2>
-            
-            <h3 class="set-category">核心毕业套装</h3>
-            <div class="set-grid">
-                <div class="set-card" onclick="location.href='./page/detail.html?set=gold'">
-                    <img src="./static/img/logo/set-icon/gold-set.png" alt="理想之黄金乡套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>理想之黄金乡套装</h3>
-                    <p class="set-alias">俗称"恍惚套"</p>
-                    <span class="set-tier">顶级打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=dragon'">
-                    <img src="./static/img/logo/set-icon/dragon-set.png" alt="龙战八荒套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>龙战八荒套装</h3>
-                    <p class="set-alias">俗称"无色套"</p>
-                    <span class="set-tier">顶级打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=energy_3'">
-                    <img src="./static/img/logo/set-icon/energy3-set.png" alt="究极能量套装（3觉）" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>究极能量套装（3觉）</h3>
-                    <p class="set-alias">三觉极限套</p>
-                    <span class="set-tier">顶级打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=valkyrie'">
-                    <img src="./static/img/logo/set-icon/valkyrie-set.png" alt="诸神黄昏之女武神" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>诸神黄昏之女武神</h3>
-                    <p class="set-alias">持续输出套</p>
-                    <span class="set-tier">高端打造</span>
-                </div>
-            </div>
-            
-            <h3 class="set-category">均衡实用套装</h3>
-            <div class="set-grid">
-                <div class="set-card" onclick="location.href='./page/detail.html?set=energy_2'">
-                    <img src="./static/img/logo/set-icon/energy2-set.png" alt="究极能量套装（2觉）" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>究极能量套装（2觉）</h3>
-                    <p class="set-alias">二觉续航套</p>
-                    <span class="set-tier">高端打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=nature'">
-                    <img src="./static/img/logo/set-icon/nature-set.png" alt="造化自然套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>造化自然套装</h3>
-                    <p class="set-alias">均衡发展套</p>
-                    <span class="set-tier">中等打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=spirit_orb'">
-                    <img src="./static/img/logo/set-icon/orb-set.png" alt="青丘灵珠套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>青丘灵珠套装（满珠）</h3>
-                    <p class="set-alias">灵珠buff套</p>
-                    <span class="set-tier">中等打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=chaos'">
-                    <img src="./static/img/logo/set-icon/chaos-set.png" alt="混沌净化套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>混沌净化套装</h3>
-                    <p class="set-alias">强力CD切换套</p>
-                    <span class="set-tier">高端打造</span>
-                </div>
-            </div>
-            
-            <h3 class="set-category">新手/平民套装</h3>
-            <div class="set-grid">
-                <div class="set-card" onclick="location.href='./page/detail.html?set=hunt'">
-                    <img src="./static/img/logo/set-icon/hunt-set.png" alt="群猎美学套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>群猎美学套装</h3>
-                    <p class="set-alias">高速回血减伤套</p>
-                    <span class="set-tier">平民打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=shadow'">
-                    <img src="./static/img/logo/set-icon/shadow-set.png" alt="潜影暗袭套装" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>潜影暗袭套装</h3>
-                    <p class="set-alias">影子机制手感套</p>
-                    <span class="set-tier">中等打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=mage_normal'">
-                    <img src="./static/img/logo/set-icon/mage-set.png" alt="冥思者的魔力领域" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>冥思者的魔力领域</h3>
-                    <p class="set-alias">魔力领域套（普通模式）</p>
-                    <span class="set-tier">平民打造</span>
-                </div>
-                <div class="set-card" onclick="location.href='./page/detail.html?set=fate'">
-                    <img src="./static/img/logo/set-icon/fate-set.png" alt="天命者的气运" onerror="this.src='./static/img/logo/set-icon/default-set.png'">
-                    <h3>天命者的气运</h3>
-                    <p class="set-alias">技能重置套</p>
-                    <span class="set-tier">中等打造</span>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 登录模态框 -->
-    <div id="loginModal" class="modal-overlay">
-        <div class="modal-content" style="width: 90%; max-width: 400px;">
-            <div class="modal-header">
-                <h3 id="authModalTitle">用户登录</h3>
-                <span class="close-btn" onclick="closeAuthModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <!-- 登录表单 -->
-                <form id="loginForm" class="auth-form active">
-                    <div class="mb-4">
-                        <label class="block text-silver mb-2" for="loginUsername">用户名</label>
-                        <input type="text" id="loginUsername" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
-                        <div class="error-text" id="loginUserError">用户名不存在</div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-silver mb-2" for="loginPassword">密码</label>
-                        <input type="password" id="loginPassword" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
-                        <div class="error-text" id="loginPwdError">密码错误</div>
-                    </div>
-                    <button type="submit" class="w-full bg-gold text-dark py-2 rounded font-bold">登录</button>
-                    <p class="text-center mt-3 text-silver">
-                        还没有账号? <span id="switchToRegister" class="text-gold cursor-pointer">立即注册</span>
-                    </p>
-                </form>
-
-                <!-- 注册表单 -->
-                <form id="registerForm" class="auth-form">
-                    <div class="mb-4">
-                        <label class="block text-silver mb-2" for="regUsername">用户名</label>
-                        <input type="text" id="regUsername" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
-                        <div class="error-text" id="regUserError">用户名已存在</div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-silver mb-2" for="regPassword">密码</label>
-                        <input type="password" id="regPassword" class="w-full bg-dark border border-dnf-border rounded px-3 py-2 text-silver" required>
-                        <div class="error-text" id="regPwdError">密码长度需≥6位</div>
-                    </div>
-                    <button type="submit" class="w-full bg-gold text-dark py-2 rounded font-bold">注册</button>
-                    <p class="text-center mt-3 text-silver">
-                        已有账号? <span id="switchToLogin" class="text-gold cursor-pointer">立即登录</span>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- 自定义DNF风格提示弹窗（屏幕中心） -->
-    <div id="dnfAlert" class="dnf-alert">
-        <div class="dnf-alert-box">
-            <p class="dnf-alert-text">祝您天天出太初，样样不重复</p>
-            <button id="dnfAlertBtn" class="dnf-alert-btn" onclick="hideDnfAlert()">确定</button>
-        </div>
-    </div>
-
-    <script>
-        // ===================== 认证 API 封装 =====================
-        const API_BASE = '';
-
-        async function apiLogin(username, password) {
-            const res = await fetch(`${API_BASE}/api/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            return res.json();
-        }
-
-        async function apiRegister(username, password) {
-            const res = await fetch(`${API_BASE}/api/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            return res.json();
-        }
-
-        // ===================== Token 管理 =====================
-        function getToken() {
-            return localStorage.getItem('dnf_token');
-        }
-
-        function saveToken(token) {
-            localStorage.setItem('dnf_token', token);
-        }
-
-        function clearToken() {
-            localStorage.removeItem('dnf_token');
-        }
-
-        function getCurrentUser() {
-            const userStr = localStorage.getItem('dnf_current_user');
-            if (!userStr) return null;
-            try {
-                return JSON.parse(userStr);
-            } catch {
-                return null;
-            }
-        }
-
-        function saveCurrentUser(user) {
-            localStorage.setItem('dnf_current_user', JSON.stringify(user));
-        }
-
-        function clearCurrentUser() {
-            localStorage.removeItem('dnf_current_user');
-        }
-
-        function isLoggedIn() {
-            return !!getToken() && !!getCurrentUser();
-        }
-
-        // ===================== 页面初始化 =====================
-        window.onload = function() {
-            // 初始化登录态展示
-            renderAuthArea();
-
-            // 绑定模态框切换事件
-            document.getElementById('switchToRegister').addEventListener('click', function() {
-                document.getElementById('loginForm').classList.remove('active');
-                document.getElementById('registerForm').classList.add('active');
-                document.getElementById('authModalTitle').textContent = '用户注册';
-                hideAllErrors();
-            });
-
-            document.getElementById('switchToLogin').addEventListener('click', function() {
-                document.getElementById('registerForm').classList.remove('active');
-                document.getElementById('loginForm').classList.add('active');
-                document.getElementById('authModalTitle').textContent = '用户登录';
-                hideAllErrors();
-            });
-
-            // 登录按钮点击事件
-            document.getElementById('loginRegisterBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').classList.add('active');
-                resetAuthForms();
-            });
-
-            // 登录表单提交 → 调用后端 API
-            document.getElementById('loginForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const username = document.getElementById('loginUsername').value.trim();
-                const password = document.getElementById('loginPassword').value;
-
-                hideAllErrors();
-
-                if (!username || !password) {
-                    showError('loginPwdError', document.getElementById('loginPassword'));
-                    return;
-                }
-
-                try {
-                    const data = await apiLogin(username, password);
-                    if (data.success) {
-                        saveToken(data.token);
-                        saveCurrentUser(data.user);
-                        document.getElementById('loginModal').classList.remove('active');
-                        showDnfAlert();
-                        renderAuthArea();
-                    } else {
-                        // 显示后端返回的错误信息
-                        showError('loginPwdError', document.getElementById('loginPassword'));
-                        document.getElementById('loginPwdError').textContent = data.message;
-                    }
-                } catch (error) {
-                    console.error('登录请求失败:', error);
-                    showError('loginPwdError', document.getElementById('loginPassword'));
-                    document.getElementById('loginPwdError').textContent = '网络错误，请稍后重试';
-                }
-            });
-
-            // 注册表单提交 → 调用后端 API（注册即登录）
-            document.getElementById('registerForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const username = document.getElementById('regUsername').value.trim();
-                const password = document.getElementById('regPassword').value;
-
-                hideAllErrors();
-
-                // 前端基础校验
-                if (!username || username.length < 3 || username.length > 20) {
-                    showError('regUserError', document.getElementById('regUsername'));
-                    document.getElementById('regUserError').textContent = '用户名需3-20位';
-                    return;
-                }
-                if (!password || password.length < 6) {
-                    showError('regPwdError', document.getElementById('regPassword'));
-                    return;
-                }
-
-                try {
-                    const data = await apiRegister(username, password);
-                    if (data.success) {
-                        saveToken(data.token);
-                        saveCurrentUser(data.user);
-                        document.getElementById('loginModal').classList.remove('active');
-                        showDnfAlert();
-                        renderAuthArea();
-                    } else {
-                        showError('regUserError', document.getElementById('regUsername'));
-                        document.getElementById('regUserError').textContent = data.message;
-                    }
-                } catch (error) {
-                    console.error('注册请求失败:', error);
-                    showError('regUserError', document.getElementById('regUsername'));
-                    document.getElementById('regUserError').textContent = '网络错误，请稍后重试';
-                }
-            });
-
-            // 模态框外部点击关闭
-            document.getElementById('loginModal').addEventListener('click', function(e) {
-                if (e.target === this) closeAuthModal();
-            });
-
-            // ESC键关闭模态框/提示弹窗
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeAuthModal();
-                    hideDnfAlert();
-                }
-            });
-
-            // 绑定自定义提示弹窗的确定按钮
-            document.getElementById('dnfAlertBtn').addEventListener('click', hideDnfAlert);
-        };
-
-        // ===================== UI 辅助函数 =====================
-        function showDnfAlert() {
-            const alertEl = document.getElementById('dnfAlert');
-            alertEl.classList.add('active');
-        }
-
-        function hideDnfAlert() {
-            const alertEl = document.getElementById('dnfAlert');
-            alertEl.classList.remove('active');
-        }
-
-        function renderAuthArea() {
-            const authContainer = document.getElementById('authContainer');
-            const user = getCurrentUser();
-            const logsCard = document.getElementById('logsNavCard');
-
-            if (user && getToken()) {
-                authContainer.innerHTML = `
-                    <div class="user-info">
-                        <span>欢迎：${escapeHtml(user.username)}</span>
-                        <button class="logout-btn" onclick="logout()">退出</button>
-                    </div>
-                `;
-                if (logsCard) logsCard.style.display = '';
-            } else {
-                authContainer.innerHTML = `
-                    <button id="loginRegisterBtn" class="bg-gold text-dark px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-yellow-400 transition-colors">
-                        登录/注册
-                    </button>
-                `;
-                if (logsCard) logsCard.style.display = 'none';
-                document.getElementById('loginRegisterBtn').addEventListener('click', function() {
-                    document.getElementById('loginModal').classList.add('active');
-                    resetAuthForms();
-                });
-            }
-        }
-
-        function logout() {
-            clearToken();
-            clearCurrentUser();
-            hideDnfAlert();
-            renderAuthArea();
-        }
-
-        function closeAuthModal() {
-            document.getElementById('loginModal').classList.remove('active');
-            resetAuthForms();
-        }
-
-        function resetAuthForms() {
-            document.getElementById('loginForm').reset();
-            document.getElementById('registerForm').reset();
-            document.getElementById('loginForm').classList.add('active');
-            document.getElementById('registerForm').classList.remove('active');
-            document.getElementById('authModalTitle').textContent = '用户登录';
-            hideAllErrors();
-            document.querySelectorAll('.modal-body input').forEach(input => {
-                input.classList.remove('input-error');
-            });
-        }
-
-        function showError(errorId, inputEl) {
-            document.getElementById(errorId).classList.add('show');
-            if (inputEl) inputEl.classList.add('input-error');
-        }
-
-        function hideAllErrors() {
-            document.querySelectorAll('.error-text').forEach(el => el.classList.remove('show'));
-        }
-
-        function escapeHtml(str) {
-            if (!str || typeof str !== 'string') return '';
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        // ===================== 后台下载 DNF =====================
-        function downloadDNF() {
-            // 用隐藏 iframe 触发下载，不跳转页面
-            let iframe = document.getElementById('downloadFrame');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.id = 'downloadFrame';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-            iframe.src = '/api/download-dnf';
-
-            // 用自定义弹窗提示
-            const alertText = document.querySelector('.dnf-alert-text');
-            alertText.textContent = '正在下载地下城与勇士启动器...';
-            showDnfAlert();
-        }
-
-        // ===================== 启动 DNF 游戏 =====================
-        async function launchDNF() {
-            const btn = document.querySelector('.side-tool-btn.launch');
-            const origHTML = btn.innerHTML;
-            btn.innerHTML = '⏳<span>启动中</span>';
-            btn.style.pointerEvents = 'none';
-
-            try {
-                const res = await fetch('/api/launch-dnf', { method: 'POST' });
-                const data = await res.json();
-
-                // 用自定义弹窗提示结果
-                const alertText = document.querySelector('.dnf-alert-text');
-                alertText.textContent = data.message;
-                showDnfAlert();
-
-                // 成功后短暂延迟恢复按钮
-                setTimeout(() => {
-                    btn.innerHTML = origHTML;
-                    btn.style.pointerEvents = '';
-                }, 2000);
-            } catch (err) {
-                btn.innerHTML = origHTML;
-                btn.style.pointerEvents = '';
-                const alertText = document.querySelector('.dnf-alert-text');
-                alertText.textContent = '网络错误，请稍后重试';
-                showDnfAlert();
-            }
-        }
-    </script>
+  <script type="module" src="./src/app.js"></script>
 </body>
 </html>

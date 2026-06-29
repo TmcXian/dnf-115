@@ -1,0 +1,679 @@
+// 缩放
+function samResize() {
+    var samWidth = $(window).width(),
+    samHeight = $(window).height();
+
+    console.log('-----------samwidth',samWidth,samHeight)
+
+    // var samZoom = samZoomW < samZoomH ? samZoomW : samZoomH;
+    if(samWidth < 2560) {
+        var samZoom = samWidth > 1280 ? samWidth/2560 : 1280/2560;
+        if(window.navigator.userAgent.indexOf("MSIE")>=1){
+            $('.bg').css('zoom',samZoom);	
+            $('.media-video,.pop-pcinfo').css('zoom',samZoom);	
+            // $('.container').css('zoom',samZoom);	
+            // $('.pop-login,.pop-detail,.pop-bind').css('zoom',samZoom);	
+        } else{
+            $('.bg').css('transform','scale('+samZoom+')');
+            $('.media-video,.pop-pcinfo').css('transform','scale('+samZoom+')');
+            // $('.container').css('transform','scale('+samZoom+')');
+            // $('.pop-login,.pop-detail,.pop-bind').css('transform','scale('+samZoom+')');
+        }
+        $('.wrap').css({'width':samZoom*2560+'px','height':samZoom*6629+'px'});	
+
+        // if(samHeight < samZoom * 1440) {
+        //     $('.top,.kvbg').css('height',samHeight/samZoom)
+        // }
+        // return;
+    }
+    // if(samHeight < 1440) {
+    //     $('.top,.kvbg').css('height',samHeight)
+    // }
+}
+samResize();
+// $(window).on('load',samResize);
+$(window).on('resize',samResize);
+
+// 导航
+$('.nav').on('mouseover',function(params) {
+    $('.nav').addClass('on')
+})
+$('.nav').on('mouseout',function(params) {
+    $('.nav').removeClass('on')
+})
+function closeNav() {
+    $('.nav').removeClass('on')    
+}
+
+// 搜索
+function openSearch() {
+    $('.search').show();
+    $('.nav').hide();
+}
+function closeSearch() {
+    $('.search').hide();
+    $('.nav').show();
+}
+// searchKeywords('女鬼剑')
+
+// 展示广告轮播图
+var focusInfo = [];
+function showGGImg() {
+    function showImgs() {
+        // const allData = window['gAds16503']; // gAds16503 是广告轮播图脚本中的变量
+        const allData = window['gAds25094']; // gAds16503 是广告轮播图脚本中的变量
+        // const ggInfo = ['22995', '22996', '22997', '22998', '22999', '23000', '23001', '23564', '23565'] // 固定广告位
+        // const ggInfo = ['25060911', '25060912', '25060913', '25060914', '25060915', '25060916', '25060917', '25060918', '25060919'] // 固定广告位
+        const ggInfo = ['25095', '25096', '25097', '25098', '25099', '25100', '25101', '25102', '25103'] // 固定广告位
+        const ggInfoLen = ggInfo.length;
+        let showGGSum = 0;
+        let ggHtml = '';
+        let thumbHtml = '';
+        // console.log('alldata',allData)
+        for (var i = 0; i < ggInfoLen; i++) {
+            const key = ggInfo[i];
+            const data = allData.common[key];
+            // const data = ggInfo[i];
+            // console.log('gginfo',data)
+            // console.log("广告", data);
+            if (data) {
+                focusInfo.push(data)
+                showGGSum++;
+                // data.imgUrl = 'https://game.gtimg.cn/images/dnf/web202503/main/ngg.jpg';
+                const item = `<div class="swiper-slide focus-slide">
+                                <a title="${data.Fname}" href="${data.adUrl}" onclick="PTTReporter('btn', 'gg', '广告${i+1}');" target="_blank">
+                                    <img src="${data.imgUrl}" alt="${data.Fname}">
+                                    <span class="focus-mask">
+                                        <h2 class="focus-tit">${data.Fname}</h2>
+                                        <span class="focus-desc">${data.ad_memo}</span>
+                                    </span>
+                                </a>
+                              </div>`;
+                const thumb = `<div class="swiper-slide thumb-slide">
+                                        <img src="${data.imgUrl}" alt="${data.Fname}" onclick="PTTReporter('btn', 'ggthumb', '广告缩略图${i+1}');">
+                              </div>`;
+                // ggSwiper.appendSlide(item);
+                ggHtml+=item;
+                thumbHtml+=thumb;
+            } else {
+                console.log(`没拉到广告位（ID:“${key}”），请确认广告位ID正确，或广告已下架`);
+            }
+        }
+        $('.focus-list').html(ggHtml);
+        $('.focus-thumb-list').html(thumbHtml);
+        initGGInfo(showGGSum);
+        ggInit();
+    }
+    function ggInit() {
+        ggSwiper = new Swiper('#focusScroll', {
+            speed: 250,
+            initialSlide: 0, 
+            slidesPerView: 1,
+            spaceBetween: 0,
+            centeredSlides : true,
+            watchSlidesProgress : false,
+            autoplay: true,
+            loop: true,
+            navigation: {
+                nextEl: '#focusNext',
+                prevEl: '#focusPrev',
+            },
+            thumbs: {
+                swiper: {
+                    el: '#focusThumb',
+                    spaceBetween: 0,
+                    slidesPerView: 4,
+                    watchSlidesVisibility: true,/*避免出现bug*/
+                },
+            },
+            on: {
+                init: function (swiper){
+                    slides = this.slides
+                    for (var i = 0; i < this.slides.length; i++) {
+                        var slide = this.slides.eq(i);
+                        slide.removeClass('opa1 opa2 opa3');
+                        if(i > swiper.realIndex + 1 && i < swiper.realIndex + 4) {
+                            slide.addClass('out-slide'+(i-swiper.realIndex));
+                        }
+                    }
+                },
+                slideChangeTransitionStart: function(swiper){
+                    slides = this.slides;
+                    for (var i = 0; i < this.slides.length; i++) {
+                        var slide = this.slides.eq(i);
+                        slide.removeClass('opa1 opa2 opa3');
+                        if(i > swiper.realIndex + 1 && i < swiper.realIndex + 4) {
+                            slide.addClass('out-slide'+(i-swiper.realIndex));
+                            // console.log('-========slide',i,slide)
+                        }
+                    }
+                    $('.focus-page').text('0'+(swiper.realIndex+1))
+                    if(focusInfo && focusInfo[swiper.realIndex]) {
+                        // $('.focus-tit').text(focusInfo[swiper.realIndex].Fname)
+                        // $('.focus-desc').text(focusInfo[swiper.realIndex].ad_memo)
+                        $('.focus-link').attr('href',focusInfo[swiper.realIndex].adUrl)
+                    }
+                },                
+            },
+        });
+        // ggSwiper.autoplay.stop();
+    }
+    function initGGInfo(cusSum) {
+        const pageSum = cusSum > 10 ? cusSum : ("0" + cusSum);
+        $(".focus-page").text("01");
+        $(".focus-all").text('/'+pageSum);
+    }
+    loadScript(ggImageUrl, function () { showImgs(); });
+}
+function ggPTT() {
+    const index = ggSwiper.realIndex || 0;
+    PTTReporter('btn', 'gg', '广告'+index);
+}
+// 适龄提示
+$(".tips-age").on("click", function () {
+    alert("【适龄提示】敬请期待~");
+})
+
+const map = ["zonghe", "xinwen", "gonggao", "huodong"]; // 新闻分类
+const actString = ['','','',''];//活动列表字符串
+
+// 新闻切换
+function newsTabChange(num) {
+    if ($(".news-tab a").eq(num).hasClass("on")) return;
+    $(".news-tab a").removeClass("on");
+    $(".news-tab a").eq(num).addClass('on');
+    if(num == 4) {
+        showDList();
+        return;
+    }
+    showNewsList(num);
+}
+// D助动态
+function showDList() {
+    // console.log('show d list');
+    requestApi({
+        path: '/dnfOfficialMomentList',
+        method: 'POST',
+        data: {
+            "appid": "3000001",
+            "page": 1
+        },
+        success: (res)=> {
+            console.log('拉取D助动态数据成功', res);
+            if(res.code === 0 && res?.data?.list?.length) {
+                const sites = res.data.list ? res.data.list.slice(0, 7) : [];
+
+                console.log("获取9条新闻数据：", sites);
+                const sitesLen = sites.length;
+                const detailURL = `/web202511/ddetail.html`;
+                // if(sites[0].sInfoType == 'moment') {
+                //     $('.top-newstit h2').html(`<a href="${detailURL}?momentid=${sites[0].momentId}" target="_blank">${sites[0].sTitle}</a>`)
+                //     $('.top-news .time').text(`${formatTime(sites[0].moment.time)}`)
+                //     // $('.top-newsdesc').text(`${decodeURI(sites[0].sSubContent)}`)
+                //     $('.news-detailmore').attr('href',`${detailURL}?momentid=${sites[0].momentId}`)
+                // }   else {
+                //     $('.top-newstit h2').html(`<a href="${sites[0].detailUrl}" target="_blank">${sites[0].sTitle}</a>`)
+                //     $('.top-news .time').text(`${formatTime(sites[0].dtReleaseTime*1000)}`)
+                //     // $('.top-newsdesc').text(`${decodeURI(sites[0].sSubContent)}`)
+                //     $('.news-detailmore').attr('href',`${sites[0].detailUrl}`)                    
+                // }
+                let htmlTxt = "";
+                for (let i = 0; i < sitesLen; i++) {
+                    if(sites[i].sInfoType == 'moment') {
+                        htmlTxt += `<li>
+                                        <a href="${detailURL}?momentid=${sites[i].momentId}" target="_blank" class="news-link" onclick="PTTReporter('btn', 'news', '动态列表${i+1}');">
+                                            <span class="time">${formatTime(sites[i].moment.time)}</span>
+                                            <span class="tit">${sites[i].sTitle}</span>
+                                        </a>
+                                    </li>`;
+                    }   else {
+                        htmlTxt += `<li>
+                                        <a href="${sites[i].detailUrl}" target="_blank" class="news-link" onclick="PTTReporter('btn', 'news', '动态列表${i+1}');">
+                                            <span class="time">${formatTime(sites[i].dtReleaseTime*1000)}</span>
+                                            <span class="tit">${sites[i].sTitle}</span>
+                                        </a>
+                                    </li>`;
+                    }
+                }
+                $(".news-list").html(htmlTxt);        
+            }
+        },
+        fail: (e)=> {
+            console.error('拉取D助动态数据失败', e);
+            alert((e.message || '拉取D助动态数据失败'))
+
+        }
+    });
+}
+// 展示新闻
+function showNewsList(cusIndex) {
+    const key = map[cusIndex];
+    function showList() {
+        const sites = newsIndexData ? newsIndexData.slice(0, 7) : []; // newsIndexData 是新闻脚本中的变量
+        console.log("获取9条新闻数据：", sites);
+        const sitesLen = sites.length;
+
+        let htmlTxt = "";
+        for (let i = 0; i < sitesLen; i++) {
+            htmlTxt += `<li>
+							<a href="${decodeURIComponent(sites[i].infoPath)}" target="_blank" class="news-link" onclick="PTTReporter('btn', 'news', '${decodeURIComponent(sites[i].sTypeName)}列表${i+1}');">
+                                <span class="time">${sites[i].dtCreateDateShort}</span>
+                                <span class="tit">${decodeURIComponent(sites[i].sTitle)}</span>
+                            </a>
+						</li>`;
+        }
+        $(".news-list").html(htmlTxt);
+    }
+    loadScript(newsCfg[key], function () { showList(); });
+}
+
+// 活动切换
+function actTabChange(num) {
+    if ($(".act-tab a").eq(num).hasClass("on")) return;
+    $(".act-tab a").removeClass("on");
+    $(".act-tab a").eq(num).addClass('on');
+
+    showActList(num);
+}
+// 活动列表
+function showActList(num) {
+    if(actString[num].length>0){
+        $('.act-list').html(actString[num]);
+    }   else{
+        $('.act-list').html( "<li><span class='noact'>暂无活动！</span></li>");
+    }
+}
+// 初始化活动
+function initActList() {
+    // 活动列表
+    const actData = DNF_ACTLIST_ONLINE_3;
+    console.log('==========actData',actData)
+    const actLength = [0,0,0,0];
+
+    for (let i = 0; i < actData.length; i++) {
+        let imgHtml = '';
+        if(actData[i].sExtChar6 !=0){
+            imgHtml+='<img src="' + decodeURIComponent(actData[i].sExtChar6).replace("http:", "https:") + '" alt="">'
+        }
+        if(actData[i].sExtChar7 !=0){
+            imgHtml+='<img src="' + decodeURIComponent(actData[i].sExtChar7).replace("http:", "https:") + '" alt="">'
+        }
+        if(actData[i].sExtChar8 !=0){
+            imgHtml+='<img src="' + decodeURIComponent(actData[i].sExtChar8).replace("http:", "https:") + '" alt="">'
+        }
+        if(actData[i].sExtChar9 !=0){
+            imgHtml+='<img src="' + decodeURIComponent(actData[i].sExtChar9).replace("http:", "https:") + '" alt="">'
+        }
+
+        let htmlTxt = `<li>
+                <a href="${decodeURIComponent(actData[i].sActDetailUrl)}" target="_blank" class="act-link" onclick="PTTReporter('btn', 'act', '左侧活动${i+1}');">
+                    <span class="tit">${decodeURIComponent(actData[i].sName)}</span>
+                    <span class="image">${imgHtml}</span>
+                    <span class="time">${culOverTimeTip(actData[i].dtEnd)}</span>
+                    <span class="more"></span>
+                </a>
+            </li>
+        `
+
+        let listIndex;
+        if (actLength[0] < 5 && actData[i].status == '6' && (actData[i].iActType == "7" || actData[i].iActType == "3" || actData[i].iActType == "4")) {
+            actString[0] += htmlTxt;
+            // actLength[0]++;
+        }
+        if (actLength[1] < 5 && actData[i].iActType == "7") {
+            actString[1] += htmlTxt;
+            // actLength[1]++;
+        }
+        // if (actLength[2] < 5 && actData[i].iActType == "13") {
+        //     actString[2] += htmlTxt;
+        //     actLength[2]++;
+        // }
+        if (actLength[2] < 5 && actData[i].iActType == "3") {
+            actString[2] += htmlTxt;
+            // actLength[2]++;
+        }
+        // if (actLength[2] < 5 && actData[i].iActType == "7" && actData[i].sExtChar3=="付费") {
+        //     actString[2] += htmlTxt;
+        //     actLength[2]++;
+        // }
+        if (actLength[3] < 5 && actData[i].iActType == "4") {
+            actString[3] += htmlTxt;
+            // actLength[3]++;
+        }
+        
+    }
+
+    // 热门活动
+    let eventLength = 0;
+    let eventHtml = '';
+    let eventLinkHtml = '';
+
+    for (let i = 0; i < actData.length; i++) {
+        // if(eventLength < 3 && actData[i].status == '6' && (actData[i].iActType == "3" || actData[i].iActType == "4" || actData[i].iActType == "7")) {
+        if(eventLength < 3 && (actData[i].iActType == "3" || actData[i].iActType == "4" || actData[i].iActType == "7")) {
+            // 创建奖励标签
+            let imgHtml = ``;
+            if (actData[i].sExtChar6 != 0) {
+                imgHtml += `<img src="${decodeURIComponent(actData[i].sExtChar6).replace("http:", "https:")}" alt="">`;
+            }
+            if (actData[i].sExtChar7 != 0) {
+                imgHtml += `<img src="${decodeURIComponent(actData[i].sExtChar7).replace("http:", "https:")}" alt="">`;
+            }
+            if (actData[i].sExtChar8 != 0) {
+                imgHtml += `<img src="${decodeURIComponent(actData[i].sExtChar8).replace("http:", "https:")}" alt="">`;
+            }
+            if (actData[i].sExtChar9 != 0) {
+                imgHtml += `<img src="${decodeURIComponent(actData[i].sExtChar9).replace("http:", "https:")}" alt="">`;
+            }
+            const htmlTxt = `
+                <li>
+                    <a href="${decodeURIComponent(actData[i].sActDetailUrl)}" target="_blank" onclick="PTTReporter('btn', 'act', '热门活动${i+1}');">
+                        <img src="${decodeURIComponent(actData[i].sBigImgUrl)}" alt="" class="event-image">
+                        <span class="event-mask"></span>
+                        <span class="event-tit">${decodeURIComponent(actData[i].sName)}</span>
+                        <span class="event-time">${culOverTimeTip(actData[i].dtEnd)}</span>
+                        <span class="event-desc">${imgHtml}</span>
+                    </a>
+                </li>
+            `
+            const htmlLinkTxt = `
+                <li>
+                    <a href="${decodeURIComponent(actData[i].sActDetailUrl)}" target="_blank" onclick="PTTReporter('btn', 'act', '热门活动${i+1}');">
+                    </a>
+                </li>
+            `
+
+            eventHtml+=htmlTxt;
+            // eventLinkHtml+=htmlLinkTxt;
+            eventLength++;
+        }
+        $('#eventList').html(eventHtml);
+        // $('#eventLinkList').html(eventLinkHtml);
+    }
+
+}
+
+
+// 视频切换
+function guideTabChange(num) {
+    if ($(".guide-tab a").eq(num).hasClass("on")) return;
+    $(".guide-tab a").removeClass("on");
+    $(".guide-tab a").eq(num).addClass('on');
+
+    let type = 0;
+    switch (num) {
+        case 0:
+            type = 1;
+            break;
+        case 1:
+            type = 2;
+            break;
+        case 2:
+            type = 3;
+            break;
+        case 3:
+            type = 4;
+            break;
+        case 4:
+            type = 5;
+            break;
+    }
+
+    showVideoList(type);
+}
+
+// 展示视频（首页-不传category时拉全量，传category时按栏目拉取）
+async function showVideoList(category) {
+    const list = await getVideoList(5, category);
+    // 头条
+    const topItem = list[0];
+    if(topItem) {
+        const imgUrl = topItem['cover_image'] || '';
+        $('.top-guide').html(`
+            <a href="javascript:showVideoPop('${topItem['video']}')" onclick="PTTReporter('btn', 'video', '头条视频');" class="top-guide-link" title="${topItem['title']}">
+                <img src="${imgUrl}" class="top-guide-image" alt="${topItem['title']}">
+                <span class="top-guide-mask"></span>
+                <span class="top-guide-tit">${topItem['title']}</span>
+            </a>           
+        `)
+    }
+
+    let videoHtml = '';
+    // 后4条
+    for (let i = 1; i < 5; i++) {
+        const item = list[i];
+        if (!item) break;
+        const imgUrl = item['cover_image'] || '';
+        videoHtml += `
+            <li>
+				<a href="javascript:showVideoPop('${item['video']}')" class="guide-link" title="${item['title']}" onclick="PTTReporter('btn', 'video', '视频${i}');">
+                    <img src="${imgUrl}" class="guide-image" alt="${item['title']}">
+                    <span class="guide-mask"></span>
+                    <span class="guide-tit">${item['title']}</span>
+                </a> 
+			</li>
+        `
+    }
+    $('.guide-list').html(videoHtml);
+}
+
+$('#searchTags span').on('click',function(e) {
+    if(e && e.currentTarget && e.currentTarget.innerText) {
+        searchKeywords(e.currentTarget.innerText);
+    }
+})
+
+function searchKeywords(str) {
+    const text = str || $('#searchInput').val();
+    if(!text) {
+        alert('请输入要搜索内容的关键词！');
+        return;
+    }
+
+    const link = `/web202511/search.html?keyword=${encodeURIComponent(text)}`
+    console.log(link)
+    window.open(link)
+}
+
+// 版本
+var versionThumbSwiper = new Swiper('#versionThumbSwiper', {
+    speed: 100,
+    initialSlide: 0, 
+    slidesPerView: 5,
+    spaceBetween: 0,
+    centeredSlides : false,
+    watchSlidesProgress : false,
+    // autoplay: true,
+    loop: true,
+    // effect : 'fade',
+    // fadeEffect: {
+    //     crossFade: true,
+    // },
+    navigation: {
+        nextEl: '#versionNext',
+        prevEl: '#versionPrev',
+    },
+    on: {
+        init: function (swiper){
+            slides = this.slides
+        },
+        slideChangeTransitionStart: function(swiper){
+            slides = this.slides;
+        },
+    },
+});
+var versionSwiper = new Swiper('#versionFocus', {
+    speed: 100,
+    initialSlide: 0, 
+    slidesPerView: 1,
+    spaceBetween: 0,
+    centeredSlides : false,
+    watchSlidesProgress : false,
+    // autoplay: true,
+    loop: true,
+    // effect : 'fade',
+    navigation: {
+        nextEl: '#versionNext',
+        prevEl: '#versionPrev',
+    },
+    // thumbs: {
+    //     swiper: {
+    //         el: '#versionThumbSwiper',
+    //         spaceBetween: 0,
+    //         slidesPerView: 5,
+    //         watchSlidesVisibility: true,/*避免出现bug*/
+    //     },
+    // },
+    on: {
+        init: function (swiper){
+            slides = this.slides
+        },
+        slideChangeTransitionStart: function(swiper){
+            slides = this.slides;
+        },                
+    },
+});
+function versionSlideTo(num) {
+    versionThumbSwiper.slideTo(num);
+    versionSwiper.slideTo(num+1);
+}
+//弹窗
+function showPop(popname,text){
+  $(popname).show();
+}
+function hidePop(popname){
+  $(popname).hide();
+}
+
+// 视频弹窗
+function showVideoPop(videoUrl) {
+    const html = `<video src="${videoUrl}" controls autoplay controlsList="nodownload" style="width:100%;height:100%;">您的浏览器不支持视频播放</video>`;
+    $('#popVideoCon').html(html);
+    $('#popVideo').show();
+}
+function hideVideoPop() {
+    $('#popVideoCon').html('');
+    $('#popVideo').hide();
+}
+
+// 开屏动画
+var opIsPlayed = false;
+function initOPVideo() {
+    if(opIsPlayed)return;
+    $('.video-lay').show();
+    document.getElementById('opVideo').play();
+    opIsPlayed = true;
+}
+// initOPVideo();
+
+document.getElementById('opVideo').addEventListener('ended',function(){
+  $('.video-lay').css('opacity',0);
+  setTimeout(() => {
+        $('.video-lay').hide();    
+  }, 2000);
+})  
+// 检查今天是不是播放过
+function checkOpVideo() {
+    // if(opIsPlayed)return;
+    const nowTime = Date.now();
+    const lastTime = window.localStorage.getItem('checkOpTime1225');
+    // 如果之前没有记录，或者之前的记录和现在不是同一天
+    if(!lastTime || formatTime(lastTime) != formatTime(nowTime)) {
+        initOPVideo();
+        // console.log('==============today',nowTime,lastTime,typeof lastTime);
+        window.localStorage.setItem('checkOpTime1225',nowTime);
+    }
+}
+// checkOpVideo();
+
+// 判断是否在视口
+function isInViewport(element) { //判断方法
+  const rect = element.getBoundingClientRect();
+  const ch =  window.innerHeight || document.documentElement.clientHeight
+  if(rect.top >= 0 && rect.top+200 < ch) {
+    return true;
+  }
+  if(rect.bottom - 100 > 0 && rect.bottom < ch) {
+    return true;
+  }
+  return false;
+//   return (
+//     rect.top >= 0 &&
+//     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+//   );
+}
+// const myElement = document.querySelector('.news'); //获取需要判断的dom
+// if (isInViewport(myElement)) {
+//   alert('该元素在视口内')
+// } else {
+//  alert('该元素不在视口内')
+// }
+
+function scrollCheck() {
+    $('.container').each(function(){
+        if(isInViewport($(this)[0])) {
+            $(this).addClass('active')
+        }   else {
+            $(this).removeClass('active')
+
+        }
+    })
+}
+scrollCheck();
+$(window).on('scroll',scrollCheck);
+
+function mouseIcon(e) {
+    $(".mouse").is(":hidden") && $('.mouse').show();
+    // $(".mouse").css({left: e.pageX-18+'px',top: e.pageY-18+'px'})
+    $(".mouse").css({transform: 'translate('+(e.pageX-18)+'px,'+(e.pageY-18)+'px)'})
+}
+$(window).on('mousemove',mouseIcon);
+// $(window).on('mousemove',function(e) {
+//     requestAnimationFrame(() => mouseIcon(e));
+// });
+$(window).on('mouseout',function(params) {
+    $(".mouse").is(":visible") && $('.mouse').hide();
+});
+// window.addEventListener('mousemove',function(e){
+//     // mouseIcon(e)
+//     // document.querySelector('.mouse').style.cssText = 'display:block;transform: translate('+e.pageX+'px,'+e.pageY+'px);'
+//     document.querySelector('.mouse').style.cssText = 'display:block;left: '+e.pageX+'px;top:'+e.pageY+'px;'
+// })
+
+
+// 红点
+const redText = ['创作激励计划','活动合集页','时装实验室','极速版专题','网吧特权']
+let redIsClicked = [];
+$('.nav li a').each(function() {
+    const text = $(this).text();
+    const has = redText.indexOf(text)>-1;
+    redIsClicked = JSON.parse(window.localStorage.getItem('redIsClicked0611')) || [];
+    const isClicked = redIsClicked.indexOf(text)>-1;
+    if(text && has && !isClicked) {
+        $(this).addClass('dot-new');
+        $(this).parent().parent().parent().addClass('dot');
+    }
+})
+$('a.dot-new').on('click',function() {
+    if($(this).hasClass('dot-new')) {
+        const text = $(this).text();
+        $(this).removeClass('dot-new');
+        $(this).parent().parent().parent().removeClass('dot');
+        redIsClicked.push(text);
+        console.log(redIsClicked)
+        window.localStorage.setItem('redIsClicked0611',JSON.stringify(redIsClicked));
+    }
+})
+
+// 上报
+function PTTReporter(link,name,string) {
+	if(PTTSendClick) {
+		PTTSendClick(link,name,string);
+	}
+    if(window.o2Aegis && typeof window.o2Aegis.report === 'function') {
+        window.o2Aegis.report({
+            name: link+'-'+name+'-'+string
+        })
+    }
+}
+

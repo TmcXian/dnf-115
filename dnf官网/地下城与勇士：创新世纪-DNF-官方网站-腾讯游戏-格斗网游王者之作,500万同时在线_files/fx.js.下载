@@ -1,0 +1,80 @@
+/** API正式环境接口前缀 */
+const apiProdPrefix = 'https://mini.mdnf.qq.com/mdnf-activities/dnf-assistant-api-proxy/api/';
+/** API测试环境接口前缀 */
+const apiTestPrefix = 'https://mini.mdnf.qq.com/mdnf-activities/trial-dnf-assistant-api-proxy/api/';
+/** 当前API环境 */
+const apiPrefix = apiProdPrefix;
+
+
+function formatTime(d,full) {
+    const date = new Date(Number(d));
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    const pad = (num)=>{
+        return num.toString().padStart(2, "0");
+    }
+    if(full) {
+        return `${year}-${pad(month)}-${pad(day)}`;
+    }
+    return `${pad(month)}/${pad(day)}`;
+    // return `${year}-${pad(month)}-${pad(day)} ${pad(hour)}:${pad(minute)}:${pad(second)}`;
+}
+
+
+// 网络请求
+function requestApi(option) {
+    var baseUrl = apiPrefix.replace(/\/$/g, '');
+    var path = option.path;
+    var method = option.method || 'GET';
+    var data = option.data || {};
+    var success = option.success || function (res) {
+        console.log(res);
+    };
+    var fail = option.fail || function (e) {
+        console.error(e);
+    };
+
+    var ajaxOption = {
+        url: baseUrl + path,
+        type: method,
+        data,
+
+        success: function (res) {
+            if (res && res.code === 401) {
+                var err = new Error('登录信息失效，请重新登录');
+                err.code = 401;
+                fail(err);
+                return;
+            }
+            if (res && res.code === 0) {
+                if (success) {
+                    success(res);
+                }
+                return;
+            }
+            var err = new Error((res && res.message) || '请求出错～');
+            if (res && res.code !== undefined) {
+                err.code = res.code;
+            }
+            fail(err);
+        },
+        error: function (jqXHR, textStatus, e) {
+            console.error('xhr error', jqXHR, textStatus, e);
+            if (textStatus === 'error') {
+                fail(new Error('网络请求出错'));
+                return;
+            }
+            fail(new Error('请求出错: ' + textStatus));
+        },
+    };
+    if (option.$ajaxOption) {
+        for (var key in option.$ajaxOption) {
+            ajaxOption[key] = option.$ajaxOption[key];
+        }
+    }
+    $.ajax(ajaxOption);
+}
